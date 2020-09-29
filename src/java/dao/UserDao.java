@@ -160,7 +160,7 @@ public class UserDao {
                 return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro de SQL.", e);
         }
         return false;
     }
@@ -176,7 +176,7 @@ public class UserDao {
             
             if (rs.next()){
                 codigo = rs.getInt("cd_perfilUsuario");                
-                System.out.println("USUARIO EXISTE!!!\nSegue o código do Perfil dele: " + codigo);
+                System.out.println("USUARIO EXISTE!!!\nSegue o cï¿½digo do Perfil dele: " + codigo);
             }else{
                 System.out.println("USUARIO NAO EXISTE! FAZER CADASTRO!");
             }            

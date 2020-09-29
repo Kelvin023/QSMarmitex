@@ -33,7 +33,7 @@ public class logincontrol extends HttpServlet {
         System.out.println("Senha inicializada no atributo do objeto cheklogin: " + checkLogin.getSenha());
         
         if (checkLogin.getEmail() == null && checkLogin.getSenha() == null) {
-            System.out.println("Usu�rio ou senha inv�lidos!\nTente novamente.");
+            System.out.println("Usuário ou senha inválidos!\nTente novamente.");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else if(checkLogin.getEmail() != null && checkLogin.getSenha() != null){
             int cdPerfilUsuario = dao.pegaCodPerfilUsuario(email, senha);
