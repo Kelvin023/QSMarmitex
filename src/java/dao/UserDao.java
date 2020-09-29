@@ -45,8 +45,7 @@ public class UserDao {
     public void deleteUser(String cpf) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from tb_usuario where cpf=?");
-            // Parameters start with 1            
+                    .prepareStatement("delete from tb_usuario where cpf=?");            
             preparedStatement.setString(1, cpf);
             preparedStatement.executeUpdate();
 
@@ -60,8 +59,7 @@ public class UserDao {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update tb_usuario set nomeUsuario=?, telefoneUsuario=?, endereco=?, email=?, dt_nascimento=?" +
-                            "where cpf=?");
-            // Parameters start with 1
+                            "where cpf=?");            
             preparedStatement.setString(1, user.getNomeUsuario());
             preparedStatement.setString(2, user.getTelefoneUsuario());
             preparedStatement.setString(3, user.getEndereco());
@@ -164,7 +162,28 @@ public class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
+    }
+    
+    public int pegaCodPerfilUsuario(String email, String senha){
+        int codigo = 0;
+        try {
+            String SQL = "SELECT cd_perfilUsuario FROM tb_usuario WHERE email = ? AND senha = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, email);
+            ps.setString(2, senha);            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                codigo = rs.getInt("cd_perfilUsuario");                
+                System.out.println("USUARIO EXISTE!!!\nSegue o código do Perfil dele: " + codigo);
+            }else{
+                System.out.println("USUARIO NAO EXISTE! FAZER CADASTRO!");
+            }            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL", e);            
+        }                   
+        return codigo;
     }
 }

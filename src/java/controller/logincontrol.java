@@ -2,7 +2,6 @@ package controller;
 
 import dao.UserDao;
 import java.io.IOException;
-/*import java.io.PrintWriter;*/
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,32 +16,12 @@ public class logincontrol extends HttpServlet {
     public logincontrol() {
         super();
         dao = new UserDao();
-    }  
-    
-
-    /*protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet logincontrol</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet logincontrol at " + request.getContextPath() + "</h1>");
-            out.println("<h4>Login digitado: " + request.getParameter("login") + "</h4>");
-            out.println("<h4>Senha digitado: " + request.getParameter("senha") + "</h4>");                
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }*/
+    }          
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        /*processRequest(request, response);*/
+            throws ServletException, IOException {        
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         
@@ -54,21 +33,26 @@ public class logincontrol extends HttpServlet {
         System.out.println("Senha inicializada no atributo do objeto cheklogin: " + checkLogin.getSenha());
         
         if (checkLogin.getEmail() == null && checkLogin.getSenha() == null) {
-            System.out.println("Usuário ou senha inválidos!\nTente novamente.");
+            System.out.println("Usu�rio ou senha inv�lidos!\nTente novamente.");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else if(checkLogin.getEmail() != null && checkLogin.getSenha() != null){
+            int cdPerfilUsuario = dao.pegaCodPerfilUsuario(email, senha);
+            switch(cdPerfilUsuario){
+                case 1:
+                    System.out.println("Administrador");
+                    break;
+                case 2:
+                    System.out.println("Atendente");
+                    break;
+                case 3:
+                    System.out.println("Cliente");
+                    break;
+                case 4:
+                    System.out.println("Entregador");
+                    break;
+            }
             request.setAttribute("email", email);        
             request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        }
-        
-        /*
-        if(checkLogin != null){
-            request.setAttribute("email", email);        
-            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-        }*/
-        
-        
+        }                
     }
 }
