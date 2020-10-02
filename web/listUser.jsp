@@ -37,5 +37,7 @@
         </tbody>
     </table>
     <p><a href="UserController?action=insert">Add User</a></p>
+    <br>
+    <a href="telaAdmin.jsp">Voltar</a>
 </body>
 </html>

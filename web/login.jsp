@@ -15,7 +15,8 @@
             Senha: 
             <input type="password" name="senha" required="true">
             <br><br>
-            <input type="submit">
+            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Logar">
         </form>
     </body>
 </html>

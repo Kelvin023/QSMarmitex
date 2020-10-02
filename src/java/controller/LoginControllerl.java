@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 @WebServlet(name = "logincontrol", urlPatterns = {"/logincontrol"})
-public class logincontrol extends HttpServlet {
+public class LoginControllerl extends HttpServlet {
     private final UserDao dao;
 
-    public logincontrol() {
+    public LoginControllerl() {
         super();
         dao = new UserDao();
     }          
@@ -40,19 +40,23 @@ public class logincontrol extends HttpServlet {
             switch(cdPerfilUsuario){
                 case 1:
                     System.out.println("Administrador");
+                    request.setAttribute("email", email);        
+                    request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
                     break;
                 case 2:
                     System.out.println("Atendente");
                     break;
                 case 3:
                     System.out.println("Cliente");
+                    request.setAttribute("email", email);        
+                    request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
                     break;
                 case 4:
                     System.out.println("Entregador");
                     break;
             }
-            request.setAttribute("email", email);        
-            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
+            /*request.setAttribute("email", email);        
+            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);*/
         }                
     }
 }

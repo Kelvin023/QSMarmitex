@@ -83,15 +83,7 @@ public class UserController extends HttpServlet {
             dao.updateUser(user);
         }else{
             dao.addUser(user);
-        }
-        
-        /*System.out.println("request.getParameterNames()" + request.getParameterNames());        
-        if (request.getParameter("action").equals("insert")){
-            dao.addUser(user);
-        } else if(request.getParameter("action").equals("edit")){
-            dao.updateUser(user);
-        }*/                                           
-        
+        }                                                                 
                  
         request.setAttribute("users", dao.getAllUsers());
         request.getRequestDispatcher(LIST_USER).forward(request, response);
