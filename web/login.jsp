@@ -15,7 +15,8 @@
             Senha: 
             <input type="password" name="senha" required="true">
             <br><br>
-            <input type="submit" value="Cadastrar">
+            <!--<input type="submit" value="Cadastrar">-->
+            <input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">
             <input type="submit" value="Logar">
         </form>
     </body>

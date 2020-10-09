@@ -30,8 +30,10 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String forward="";
+        String forward="";        
         String action = request.getParameter("action");
+        int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
+        
 
         if (action.equalsIgnoreCase("delete")){
             String cpf = request.getParameter("cpf");            
@@ -48,6 +50,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("users", dao.getAllUsers());
         } else {
             forward = INSERT_OR_EDIT;
+            request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -57,7 +60,9 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
-                
+        int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
+        
+        user.setCd_perfilUsuario(cdPerfilUsuario);
         user.setCpf(request.getParameter("cpf"));
         user.setNomeUsuario(request.getParameter("nomeUsuario"));
         user.setTelefoneUsuario(request.getParameter("telefoneUsuario"));
@@ -79,12 +84,20 @@ public class UserController extends HttpServlet {
         }
         
         if(dao.userExist(request.getParameter("cpf"))){
-            //FALTA FAZER O CAMPO CPF FICAR DISABLED PRA ESSA FUNCAO(UPDATE
+            //FALTA FAZER O CAMPO CPF FICAR DISABLED PRA ESSA FUNCAO UPDATE-> Boto fé que é la no jsp mesmo com os <%if...%>
             dao.updateUser(user);
         }else{
             dao.addUser(user);
         }                                                                 
-                 
+        /*
+        Fazer um controle de:
+        se(cdperfilusuario = 3){
+            exibe mensagem que foi cadastrado com sucesso e joga na tela de cliente logado
+        }
+        se(cdperfilusuario = 1){
+            exibe mensagem que foi cadastrado com sucesso e joga na tela de ADM logado
+        }
+        */  
         request.setAttribute("users", dao.getAllUsers());
         request.getRequestDispatcher(LIST_USER).forward(request, response);
     }

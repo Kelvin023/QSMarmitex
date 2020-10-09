@@ -13,7 +13,7 @@
         <br><br><br>
         <h3>Aqui deverá ser mostrado o cardápio</h3>
         <h4>Com as opções de marmita</h4>
-        <h5>Opção de deslogar, editar dados do cliente e tal</h5>        
-        <a href="login.jsp">Sair</a>
+        <h5>Opção de deslogar, editar dados do cliente e tal</h5>                
+        <input type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
     </body>
 </html>

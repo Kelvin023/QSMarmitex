@@ -11,6 +11,7 @@
             Bem vindo à tela de ADM! <br>
             Usuário logado: <%=request.getAttribute("email") %> 
         </h3>
+        <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
         <a href="UserController?action=listUser">Usuários</a>
         <br>
         <a href="login.jsp">Sair</a>

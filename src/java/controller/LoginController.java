@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 @WebServlet(name = "logincontrol", urlPatterns = {"/logincontrol"})
-public class LoginControllerl extends HttpServlet {
+public class LoginController extends HttpServlet {
     private final UserDao dao;
 
-    public LoginControllerl() {
+    public LoginController() {
         super();
         dao = new UserDao();
     }          
