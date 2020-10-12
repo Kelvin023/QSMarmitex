@@ -88,17 +88,23 @@ public class UserController extends HttpServlet {
             dao.updateUser(user);
         }else{
             dao.addUser(user);
-        }                                                                 
-        /*
-        Fazer um controle de:
-        se(cdperfilusuario = 3){
-            exibe mensagem que foi cadastrado com sucesso e joga na tela de cliente logado
+        } 
+        
+        //Se ele for cliente, manda os dados dele pra página de cliente
+        if (cdPerfilUsuario == 3) {
+            System.out.println("Cliente cadastrado com sucesso!");
+            request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
-        se(cdperfilusuario = 1){
-            exibe mensagem que foi cadastrado com sucesso e joga na tela de ADM logado
+        //Se ele for AMD, manda os dados dele pra página de ADM
+        if (cdPerfilUsuario==1) {
+            System.out.println("Novo ADM cadastrado com sucesso!");
+            request.setAttribute("users", dao.getAllUsers());
+            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
         }
-        */  
+        
+        /*  
         request.setAttribute("users", dao.getAllUsers());
-        request.getRequestDispatcher(LIST_USER).forward(request, response);
+        request.getRequestDispatcher(LIST_USER).forward(request, response);*/
     }
 }
