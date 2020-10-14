@@ -22,7 +22,14 @@
         <br><br><br>
         <h3>Aqui deverá ser mostrado o cardápio</h3>
         <h4>Com as opções de marmita</h4>
-        <h5>Opção de deslogar, editar dados do cliente e tal</h5>                
+        <h5>Opção de deslogar, editar dados do cliente e tal</h5> 
+        
+        <!--DESBUGAR FUNÇÃO DE UPDATE DOS DADOS CLIENTE NA TELA DO CLIENTE
+            TA FALTANDO CAPTURAR ESSE CPF AÍ DEBAIXO
+            QUANDO JOGA NO USERCONTROLER, ELE TA RECEBENDO NENHUM CPF
+            AÍ POR ISSO QUANDO CLICA NESSE CARA APARECE UMA TELA SEM OS DADOS PREENCHIDISO PRA SEREM ATUALIZADOS
+        -->
+        <a href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>">Update</a>        
         <input type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
     </body>
 </html>

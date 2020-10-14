@@ -32,7 +32,7 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward="";        
         String action = request.getParameter("action");
-        int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
+        //int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
         
 
         if (action.equalsIgnoreCase("delete")){
@@ -43,12 +43,15 @@ public class UserController extends HttpServlet {
         } else if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;
             String cpf = request.getParameter("cpf");
+            int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             User user = dao.getUserById(cpf);
+            request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
             request.setAttribute("user", user);
         } else if (action.equalsIgnoreCase("listUser")){
             forward = LIST_USER;
             request.setAttribute("users", dao.getAllUsers());
         } else {
+            int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             forward = INSERT_OR_EDIT;
             request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
         }
@@ -68,7 +71,7 @@ public class UserController extends HttpServlet {
         user.setTelefoneUsuario(request.getParameter("telefoneUsuario"));
         user.setEndereco(request.getParameter("endereco"));
         user.setEmail(request.getParameter("email"));
-        /*user.setSenha(request.getParameter("senha"));*/
+        user.setSenha(request.getParameter("senha"));
         try {
             Date dt_nascimento=null;            
             if(request.getParameter("dt_nascimento")!=null){
@@ -96,15 +99,11 @@ public class UserController extends HttpServlet {
             request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
-        //Se ele for AMD, manda os dados dele pra página de ADM
+        //Se ele for ADM, manda os dados dele pra página de ADM
         if (cdPerfilUsuario==1) {
             System.out.println("Novo ADM cadastrado com sucesso!");
             request.setAttribute("users", dao.getAllUsers());
             request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        }
-        
-        /*  
-        request.setAttribute("users", dao.getAllUsers());
-        request.getRequestDispatcher(LIST_USER).forward(request, response);*/
+        }                
     }
 }

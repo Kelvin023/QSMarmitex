@@ -36,7 +36,10 @@
         DATA DE NASCIMENTO : <input
             type="text" placeholder="dd/MM/yyyy" name="dt_nascimento" data-date-format="dd/MM/yyyy"
             value="<fmt:formatDate pattern="dd/MM/yyyy" value="${user.dt_nascimento}" />" /> <br />                 
-        <input type="hidden" name="cd_perfilUsuario" 
+        SENHA : <input
+            type="text" name="senha"
+            value="<c:out value="${user.senha}" />"/><br/> 
+        <input type="text" name="cd_perfilUsuario" 
                value="<%=request.getAttribute("cdPerfilUsuario")%>"/><br><br>
         <input type="submit" value="Submit" />
     </form>                

@@ -22,8 +22,8 @@ public class UserDao {
     public void addUser(User user) {
         System.out.println("Entrei na addUser!!");
         try {
-            String SQL = "INSERT INTO tb_usuario(cpf,cd_perfilUsuario,nomeUsuario,telefoneUsuario,endereco,email,dt_nascimento) VALUES"
-                    + "(?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_usuario(cpf,cd_perfilUsuario,nomeUsuario,telefoneUsuario,endereco,email,senha,dt_nascimento) VALUES"
+                    + "(?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement ps = connection.prepareStatement(SQL)) {
                 ps.setString(1, user.getCpf());
                 ps.setInt(2, user.getCd_perfilUsuario());
@@ -31,7 +31,8 @@ public class UserDao {
                 ps.setString(4, user.getTelefoneUsuario());
                 ps.setString(5, user.getEndereco());
                 ps.setString(6, user.getEmail());
-                ps.setDate(7, new java.sql.Date(user.getDt_nascimento().getTime()));
+                ps.setString(7, user.getSenha());
+                ps.setDate(8, new java.sql.Date(user.getDt_nascimento().getTime()));
                 ps.executeUpdate();
                 ps.close();
                 System.out.println("Usuario: " + user.getNomeUsuario() + " inserido com sucesso!");                
@@ -59,15 +60,15 @@ public class UserDao {
         System.out.println("Entrei na updateUser!!");
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update tb_usuario set nomeUsuario=?, telefoneUsuario=?, endereco=?, email=?, dt_nascimento=?" +
+                    .prepareStatement("update tb_usuario set nomeUsuario=?, telefoneUsuario=?, endereco=?, email=?, dt_nascimento=?, senha=?" +
                             "where cpf=?");            
             preparedStatement.setString(1, user.getNomeUsuario());
             preparedStatement.setString(2, user.getTelefoneUsuario());
             preparedStatement.setString(3, user.getEndereco());
-            preparedStatement.setString(4, user.getEmail());
-            /*preparedStatement.setString(5, user.getSenha());*/
+            preparedStatement.setString(4, user.getEmail());            
             preparedStatement.setDate(5, new java.sql.Date(user.getDt_nascimento().getTime()));            
-            preparedStatement.setString(6, user.getCpf());
+            preparedStatement.setString(6, user.getSenha());
+            preparedStatement.setString(7, user.getCpf());
             System.out.println("CPF = " + user.getCpf());
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -82,18 +83,18 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> listaDeUsuario = new ArrayList<User>();
         try {
-            String SQL = "select cpf,nomeUsuario,telefoneUsuario,endereco,email,dt_nascimento from tb_usuario";
+            String SQL = "select * from tb_usuario";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {
                 User user = new User();
                 user.setCpf(rs.getString("cpf"));
-                //user.setCd_perfilUsuario(rs.getInt("cd_perfilUsuario"));
+                user.setCd_perfilUsuario(rs.getInt("cd_perfilUsuario"));
                 user.setNomeUsuario(rs.getString("nomeUsuario"));
                 user.setTelefoneUsuario(rs.getString("telefoneUsuario"));
                 user.setEndereco(rs.getString("endereco"));
                 user.setEmail(rs.getString("email"));
-                //user.setSenha(rs.getString("senha"));
+                user.setSenha(rs.getString("senha"));
                 user.setDt_nascimento(rs.getDate("dt_nascimento"));                                
                 listaDeUsuario.add(user);
             }
