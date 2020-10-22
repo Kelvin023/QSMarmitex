@@ -31,6 +31,7 @@ public class LoginController extends HttpServlet {
         User checkLogin = dao.checkLogin(email, senha);        
         System.out.println("Email inicializado no atributo do objeto cheklogin: " + checkLogin.getEmail());
         System.out.println("Senha inicializada no atributo do objeto cheklogin: " + checkLogin.getSenha());
+        System.out.println("CPF do usuario logado: " + checkLogin.getCpf());
         
         if (checkLogin.getEmail() == null && checkLogin.getSenha() == null) {
             System.out.println("Usuário ou senha inválidos!\nTente novamente.");
@@ -49,6 +50,7 @@ public class LoginController extends HttpServlet {
                 case 3:
                     System.out.println("Cliente");
                     request.setAttribute("email", email);        
+                    request.setAttribute("cpf", checkLogin.getCpf());        
                     request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
                     break;
                 case 4:

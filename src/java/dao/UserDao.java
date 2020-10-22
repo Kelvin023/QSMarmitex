@@ -132,15 +132,17 @@ public class UserDao {
     public User checkLogin(String email, String senha){
         User user = new User();
         try {
-            String SQL = "SELECT email, senha FROM tb_usuario WHERE email = ? AND senha = ?";
+            String SQL = "SELECT email, senha, cpf FROM tb_usuario WHERE email = ? AND senha = ?";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ps.setString(1, email);
             ps.setString(2, senha);            
+            
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()){
                 user.setEmail(rs.getString("email"));
                 user.setSenha(rs.getString("senha")); 
+                user.setCpf(rs.getString("cpf")); 
                 System.out.println("USUARIO EXISTE!!!");
             }else{
                 System.out.println("USUARIO NAO EXISTE! FAZER CADASTRO!");

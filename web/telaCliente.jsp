@@ -19,7 +19,7 @@
             </c:otherwise>
         </c:choose>                                                           
         
-        <br><br><br>
+        <br><br><br>        
         <h3>Aqui deverá ser mostrado o cardápio</h3>
         <h4>Com as opções de marmita</h4>
         <h5>Opção de deslogar, editar dados do cliente e tal</h5> 
@@ -28,8 +28,16 @@
             TA FALTANDO CAPTURAR ESSE CPF AÍ DEBAIXO
             QUANDO JOGA NO USERCONTROLER, ELE TA RECEBENDO NENHUM CPF
             AÍ POR ISSO QUANDO CLICA NESSE CARA APARECE UMA TELA SEM OS DADOS PREENCHIDISO PRA SEREM ATUALIZADOS
-        -->
-        <a href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>">Update</a>        
+        -->        
+        <c:choose>
+            <c:when test="${not empty users.email}">
+                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Update</a>
+            </c:when>              
+            <c:otherwise>                                
+                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Update</a>
+            </c:otherwise>
+        </c:choose>
+        
         <input type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
     </body>
 </html>
