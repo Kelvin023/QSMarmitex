@@ -8,6 +8,7 @@
         <title>QS MARMITEX</title>
     </head>
     <body>
+        <c:import url="includes/cabecalho.jsp"/>        
         <h1>QS MARMITEX</h1>
         Bem vindo à tela de CLIENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>! <br>                        
         <c:choose>
@@ -39,5 +40,7 @@
         </c:choose>
         
         <input type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+        <br><br><br><br><br>
+        <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

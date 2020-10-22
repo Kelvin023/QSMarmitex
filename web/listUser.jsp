@@ -9,6 +9,7 @@
         <title>Show All Users</title>
     </head>
 <body>
+    <c:import url="includes/cabecalho.jsp"/>
     <table border=1>
         <thead>
             <tr>
@@ -58,5 +59,7 @@
     <p><a href="UserController?action=insert&cd_perfilUsuario=1">Add Novo ADM</a></p>
     <br>
     <a href="telaAdmin.jsp">Voltar</a>
+    <br><br><br><br><br><br>    
+    <c:import url="includes/rodape.jsp"/>
 </body>
 </html>

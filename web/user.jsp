@@ -12,6 +12,7 @@
 <title>Add new user</title>
 </head>
 <body>
+    <c:import url="includes/cabecalho.jsp"/>
     <script>
         $(function() {
             $('input[name=dt_nascimento]').datepicker();
@@ -42,6 +43,8 @@
         <input type="text" name="cd_perfilUsuario" hidden="true"
                value="<%=request.getAttribute("cdPerfilUsuario")%>"/><br><br>
         <input type="submit" value="Submit" />
-    </form>                
+    </form>              
+    <br><br><br><br><br><br>    
+    <c:import url="includes/rodape.jsp"/>        
 </body>
 </html>
