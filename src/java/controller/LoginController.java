@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
         
         if (checkLogin.getEmail() == null && checkLogin.getSenha() == null) {
             System.out.println("Usuário ou senha inválidos!\nTente novamente.");
+            request.setAttribute("loginError","Usuário ou senha inválidos!");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else if(checkLogin.getEmail() != null && checkLogin.getSenha() != null){
             int cdPerfilUsuario = dao.pegaCodPerfilUsuario(email, senha);

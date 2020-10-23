@@ -19,9 +19,19 @@
         });
     </script>
 
-    <form method="POST" action='UserController' name="frmAddUser">
-        CPF : <input type="text" name="cpf"
-            value="<c:out value="${user.cpf}" />" /> <br /> 
+    <form method="POST" action='UserController' name="frmAddUser">                
+        <c:choose>
+            <c:when test="${not empty user.cpf}">
+                CPF : <input type="text" name="cpf" readonly
+                value="<c:out value="${user.cpf}" />" /> <br /> 
+            </c:when>              
+            <c:otherwise>                                
+                CPF : <input type="text" name="cpf"
+                value="<c:out value="${user.cpf}" />" /> <br />
+            </c:otherwise>
+        </c:choose>
+        
+        
         NOME : <input
             type="text" name="nomeUsuario"
             value="<c:out value="${user.nomeUsuario}" />" /> <br /> 
