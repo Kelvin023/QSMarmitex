@@ -48,4 +48,27 @@ public class MarmitaDao {
             e.printStackTrace();
         }
     }
-} 
+    public void updateMarmita(Marmita marmita){
+        System.out.println("Entrei na updateMarmita!");
+        try {
+            PreparedStatement ps = connection
+                    .prepareStatement("update tb_marmita set cd_grupoMarmita=?, ds_ingredientes=?, cd_tamanho=?, preco=?, nomeMarmita=?,foto=?, st_cardapio=?"+
+                            "where cd_nr_marmita");
+                ps.setString(1, marmita.getGrupoMarmita());
+                ps.setString(2, marmita.getIngredientes());
+                ps.setString(3, marmita.getTamanho());
+                ps.setShort(4,marmita.getPreco());
+                ps.setString(5, marmita.getNomeProduto());
+                ps.setBlob(6, marmita.getFoto());
+                ps.setBoolean(7, marmita.isStatusCardapio());
+                System.out.println("Número da marmita = "+marmita.getNumeroMarmita());
+                ps.executeUpdate();
+                ps.close();
+                System.out.println("Marmita atualizada com sucesso!");
+                
+        }   catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar marmita!");
+            }
+    }
+}
