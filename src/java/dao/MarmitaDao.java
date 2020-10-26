@@ -3,11 +3,15 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 import model.Marmita;
 import util.DbUtil;
+
 
 public class MarmitaDao {
     
@@ -71,4 +75,25 @@ public class MarmitaDao {
             throw new RuntimeException("Erro ao atualizar marmita!");
             }
     }
+   public List<Marmita> getAllMarmitas(){
+       List<Marmita> listaDeMarmita = new ArrayList<Marmita>();
+       try {
+           String SQL = "select*from tb_marmita";
+           PreparedStatement ps = connection.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            /*while (rs.next()){
+                Marmita marmita = new Marmita();
+                marmita.setFoto("foto"); // Está dando erro e sugere criar o setFoto na classe Marmita.java, porém, era para ele reconhecer o extends para pegar o setFoto na classe Produto.java
+                marmita.setGrupoMarmita("cd_grupoMarmita");
+                marmita.getIngredientes("ds_ingredientes");
+                marmita.getNomeProduto("nomeMarmita");
+            }*/
+       } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar marmitas em MarmitaDao.", e);
+        }   
+        return listaDeMarmita;
+   }
 }
+    
+
+
