@@ -1,14 +1,18 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Marmita;
 import util.DbUtil;
 
 public class MarmitaDao {
     
     private final Connection connection;
+    private Object preparedStatement;
     
     public MarmitaDao(){
         connection = DbUtil.getConnection();
@@ -34,4 +38,14 @@ public class MarmitaDao {
             e.printStackTrace();
         }
     }
-}
+    public void deleteMarmita (int numeroMarmita){
+        try {
+            PreparedStatement ps = connection
+                    .prepareStatement("delete from tb_marmita where cd_nr_marmita= ?");
+            ps.setInt(1, numeroMarmita);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+} 
