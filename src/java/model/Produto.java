@@ -1,11 +1,15 @@
 package model;
 
+import java.sql.Blob;
+
 public abstract class Produto {
     
     private String nomeProduto;
     private String tamanho;
     private short preco;
     private String ingredientes;
+    private Blob foto;
+    private boolean statusCardapio;
 
     public Produto() {
     }
@@ -37,8 +41,26 @@ public abstract class Produto {
     public String getIngredientes() {
         return ingredientes;
     }
-
+   
     public void setIngredientes(String ingredientes) {
         this.ingredientes = ingredientes;
     }
+    
+    public Blob getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Blob foto) {
+        this.foto = foto;
+    }
+
+    public boolean isStatusCardapio() {
+        return statusCardapio;
+    }
+
+    public void setStatusCardapio(boolean statusCardapio) {
+        this.statusCardapio = statusCardapio;
+    }
+    
+    
 }
