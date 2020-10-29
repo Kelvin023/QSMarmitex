@@ -122,4 +122,18 @@ public class MarmitaDao {
         }
         return marmita;
     }
+    public boolean marmitaExist(int cd_nr_marmita ) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_usuario where cpf=?");
+            preparedStatement.setInt(1, cd_nr_marmita);
+            ResultSet rs = preparedStatement.executeQuery();
+                        
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL.", e);
+        }
+        return false;
+    }
 }
