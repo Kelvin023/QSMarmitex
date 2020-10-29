@@ -18,7 +18,7 @@ public class DbUtil {
                 
                 String user = "root";
                 String password = "";
-                Class.forName("com.mysql.jdbc.Driver"); // Para quem for usar MySql                
+                Class.forName("com.mysql.jdbc.Driver");               
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/qsmarmitex?useTimezone=true&serverTimezone=UTC", user, password);// Para quem for usar MySql                
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
