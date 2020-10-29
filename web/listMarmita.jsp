@@ -9,11 +9,13 @@
        
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Busca por marmitas</h1>
         <div class="search-box">
             <input class="search-txt" type="text" name=""placeholder="Tipo de Busca">
             <a class="search-btn" href="#">
-                
+                <i class="fas-fa-search">
+                    
+                </i>
             </a>
         </div>
     </body>
