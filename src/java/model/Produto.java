@@ -1,14 +1,18 @@
 package model;
 
 import java.sql.Blob;
+import javax.persistence.Column;
 
 public abstract class Produto {
     
     private String nomeProduto;
-    private String tamanho;
+    @Column(name="cd_tamanho")
+    private int tamanho;
     private short preco;
+    @Column(name="ds_ingredientes")
     private String ingredientes;
     private Blob foto;
+    @Column(name="st_cardapio")
     private boolean statusCardapio;
 
     public Produto() {
@@ -22,11 +26,11 @@ public abstract class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public String getTamanho() {
+    public int getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(String tamanho) {
+    public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
     }
 
