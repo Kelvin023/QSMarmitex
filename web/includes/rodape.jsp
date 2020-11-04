@@ -16,7 +16,7 @@
     }
 </style>
 
-<hr/>
+
 <footer>
     <div id="rodape">
         <ul>

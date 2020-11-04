@@ -13,4 +13,3 @@
 <div id="cabecalho">        
     <h1 id="intro">SYSTEM QUALITY MARMITEX</h1>    
 </div>
-<hr>
