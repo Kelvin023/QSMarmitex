@@ -10,8 +10,7 @@
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Lista de Cartoes</h1>
-        
+        <h1>Lista de Cartoes</h1>                
         
         <c:choose>
             <c:when test="${empty cartoes}">
@@ -39,7 +38,7 @@
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${cartao.dtValCartao}" /></td>                                        
                             <td><c:out value="${cartao.cvvCartao}" /></td>                    
                             <td><a href="CartaoController?action=edit&cd_cartao=<c:out value="${cartao.cd_cartao}"/>">Update</a></td>
-                            <td><a href="CartaoController?action=delete&cd_cartao=<c:out value="${cartao.cd_cartao}"/>">Delete</a></td>
+                            <td><a href="CartaoController?action=delete&cd_cartao=<c:out value="${cartao.cd_cartao}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>            

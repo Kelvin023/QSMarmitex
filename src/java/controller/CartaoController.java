@@ -33,10 +33,12 @@ public class CartaoController extends HttpServlet {
         String action = request.getParameter("action");
         
         if (action.equalsIgnoreCase("delete")){
-            String cpf = request.getParameter("cpf");            
-            //dao.deleteCartao(cpf);
+            String cpf = request.getParameter("cpf");
+            int cdCartao = Integer.parseInt(request.getParameter("cd_cartao"));                      
+            dao.deleteCartao(cdCartao);
             forward = LIST_CARTAO;
-            request.setAttribute("cartoes", dao.getAllCartoes());    
+            request.setAttribute("cartoes", dao.getCartaoByCpf(cpf)); 
+            request.setAttribute("cpf", cpf);
         } else if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;
             String cpf = request.getParameter("cpf");
