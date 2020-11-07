@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class Cartao {
-    private int cd_cartao;
+    private Integer cd_cartao;
     private String cpf;
     private String nomeTitular;
     private String numeroCartao;

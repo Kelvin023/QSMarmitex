@@ -32,7 +32,7 @@
                     <tbody>
                         <c:forEach items="${cartoes}" var="cartao">
                         <tr>                                                            
-                            <td><c:out value="${cartao.nomeTitular}" /></td>                    
+                            <td style="text-transform: uppercase;"><c:out value="${cartao.nomeTitular}" /></td>                    
                             <td><c:out value="<%=(String)request.getAttribute("cpf")%>" /></td>                   
                             <td><c:out value="${cartao.numeroCartao}" /></td>
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${cartao.dtValCartao}" /></td>                                        
@@ -45,7 +45,12 @@
                 </table>
             </c:otherwise>
             </c:choose> 
+        <p><a href="CartaoController?action=insert&cpf=<%=(String)request.getAttribute("cpf")%>">Add Novo Cartao</a></p>
+        <!--FAZER UM BOTAO OU <a> pra retornar a tela anterior.
+        PARA ISSO, DEVEMOS CRIAR MAIS UMA CONDIÇÃO NO CONTROLLER PARA RETORNAR SEM PERDER OS DADOS
+        USAR O FORWARD = telaCliente-->
         
+        <a href="CartaoController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar ao Cardapio</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
     </body>

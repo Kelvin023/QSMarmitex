@@ -42,7 +42,8 @@ public class LoginController extends HttpServlet {
             switch(cdPerfilUsuario){
                 case 1:
                     System.out.println("Administrador");
-                    request.setAttribute("email", email);        
+                    request.setAttribute("email", email);   
+                    request.setAttribute("cpf", checkLogin.getCpf());        
                     request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
                     break;
                 case 2:

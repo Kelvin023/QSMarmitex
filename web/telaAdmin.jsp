@@ -12,10 +12,11 @@
         <h1>Tela ADMIN</h1>
         <h3>
             Bem vindo à tela de ADM! <br>
-            Usuário logado: <%=request.getAttribute("email") %> 
+            Usuário logado: <%=request.getAttribute("email") %> <br>
+            CPF do ADMIN logado: <%=request.getAttribute("cpf") %>
         </h3>
         <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
-        <a href="UserController?action=listUser">Usuários</a>
+        <a href="UserController?action=listUser&cpf=<%=(String)request.getAttribute("cpf")%>">Usuários</a>
         <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    

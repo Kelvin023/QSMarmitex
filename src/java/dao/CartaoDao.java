@@ -118,4 +118,20 @@ public class CartaoDao {
         }   
         return listaDeCartoes;
     }
+    
+    /**/
+    public boolean cartaoExist(Integer  cd_cartao) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_cartao where cd_cartao=?");
+            preparedStatement.setInt(1, cd_cartao);
+            ResultSet rs = preparedStatement.executeQuery();
+                        
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL.", e);
+        }
+        return false;
+    }
 }

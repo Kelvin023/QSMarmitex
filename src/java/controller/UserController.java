@@ -49,11 +49,19 @@ public class UserController extends HttpServlet {
             request.setAttribute("user", user);
         } else if (action.equalsIgnoreCase("listUser")){
             forward = LIST_USER;
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("cpf", cpf);
             request.setAttribute("users", dao.getAllUsers());
-        } else {
+        } else if (action.equalsIgnoreCase("insert")){
             int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             forward = INSERT_OR_EDIT;
             request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
+        }
+        else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/ 
+            System.out.println("Estou na voltar do UserController");                                
+                System.out.println("Quero voltar com o perfil de ADM, logo devo voltar pra coisas do ADM");
+                request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
+                request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);                    
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -86,8 +94,7 @@ public class UserController extends HttpServlet {
             e.printStackTrace();
         }
         
-        if(dao.userExist(request.getParameter("cpf"))){
-            //FALTA FAZER O CAMPO CPF FICAR DISABLED PRA ESSA FUNCAO UPDATE-> Boto fé que é la no jsp mesmo com os <%if...%>
+        if(dao.userExist(request.getParameter("cpf"))){            
             dao.updateUser(user);
         }else{
             dao.addUser(user);

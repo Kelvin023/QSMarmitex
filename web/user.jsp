@@ -54,6 +54,8 @@
                value="<%=request.getAttribute("cdPerfilUsuario")%>"/><br><br>
         <input type="submit" value="Submit" />
     </form>              
+
+    <!--<a href="UserController?action=voltar&cpf=<c:out value="${user.cpf}" />&cd_perfilUsuario=3">Retornar ao Cardapio</a>        -->
     <br><br><br><br><br><br>    
     <c:import url="includes/rodape.jsp"/>        
 </body>

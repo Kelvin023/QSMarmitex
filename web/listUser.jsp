@@ -9,7 +9,8 @@
         <title>Show All Users</title>
     </head>
 <body>
-    <c:import url="includes/cabecalho.jsp"/>
+    <c:import url="includes/cabecalho.jsp"/>       
+    <h1>CPF do Admin logado: <%=(String)request.getAttribute("cpf")%></h1>
     <table border=1>
         <thead>
             <tr>
@@ -58,7 +59,7 @@
     </table>
     <p><a href="UserController?action=insert&cd_perfilUsuario=1">Add Novo ADM</a></p>
     <br>
-    <a href="telaAdmin.jsp">Voltar</a>
+    <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
     <br><br><br><br><br><br>    
     <c:import url="includes/rodape.jsp"/>
 </body>
