@@ -4,7 +4,7 @@ public class Acompanhamento {
      private String nomeAcompanhamento;
     private String tamanho;
     private double precoAcompanhemento;
-    private Blob foto;
+    /*private Blob foto;*/
 
     public String getNomeAcompanhamento() {
         return nomeAcompanhamento;
@@ -30,6 +30,7 @@ public class Acompanhamento {
         this.precoAcompanhemento = precoAcompanhemento;
     }
     
+    /*
     public Blob getFoto() {
         return foto;
     }
@@ -37,4 +38,5 @@ public class Acompanhamento {
     public void setFoto(Blob foto) {
         this.foto = foto;
     }
+   */
 }

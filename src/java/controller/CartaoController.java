@@ -41,34 +41,48 @@ public class CartaoController extends HttpServlet {
         if (action.equalsIgnoreCase("delete")){
             String cpf = request.getParameter("cpf");
             int cdCartao = Integer.parseInt(request.getParameter("cd_cartao"));                      
-            dao.deleteCartao(cdCartao);
-            forward = LIST_CARTAO;
+            dao.deleteCartao(cdCartao);            
             request.setAttribute("cartoes", dao.getCartaoByCpf(cpf)); 
             request.setAttribute("cpf", cpf);
-        } else if (action.equalsIgnoreCase("edit")){
-            forward = INSERT_OR_EDIT;
+            request.getRequestDispatcher("/listCartao.jsp").forward(request, response);
+        } 
+        
+        else if (action.equalsIgnoreCase("edit")){ 
+            System.out.println("Entrei no edit do CartaoController");                     
             String cpf = request.getParameter("cpf");
-            //int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
-            //Cartao cartao = dao.getCartaoById(cpf);
-            //request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
-            //request.setAttribute("cartao", cartao);
-        } else if (action.equalsIgnoreCase("listCartao")){
-            forward = LIST_CARTAO;
+            System.out.println("Cpf inicializado: " + cpf);
+            int cd_cartao = Integer.parseInt(request.getParameter("cd_cartao"));
+            System.out.println("cd_cartao inicializado: " + cd_cartao);
+            Cartao cartao = dao.getUserById(cd_cartao);
+            request.setAttribute("cd_cartao", cd_cartao);  
+            request.setAttribute("cpf", cpf); 
+            request.setAttribute("cartoes", cartao);
+            System.out.println("A um passo do getRequestDispatcher");
+            request.setAttribute("fraseCartao", "ATUALIZAÇÃO DE CADASTRO DE CARTÃO");
+            request.getRequestDispatcher("/cartao.jsp").forward(request, response);
+        } 
+        
+        else if (action.equalsIgnoreCase("listCartao")){            
             String cpf = request.getParameter("cpf");
             request.setAttribute("cartoes", dao.getCartaoByCpf(cpf));
-            request.setAttribute("cpf", cpf);            
-        } else if (action.equalsIgnoreCase("insert")){   
-            String cpf = request.getParameter("cpf");
-            forward = INSERT_OR_EDIT;
-            request.setAttribute("cpf", cpf);                    
-        }else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/
-            //forward = "/telaCliente.jsp";
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/listCartao.jsp").forward(request, response);
+        } 
+        
+        else if (action.equalsIgnoreCase("insert")){   
+            String cpf = request.getParameter("cpf");            
+            request.setAttribute("cpf", cpf);       
+            request.setAttribute("fraseCartao", "CADASTRO NOVO CARTÃO");
+            request.getRequestDispatcher("/cartao.jsp").forward(request, response);
+        }
+        
+        else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/           
             request.setAttribute("users", udao.getUserById(request.getParameter("cpf")));
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
 
-        RequestDispatcher view = request.getRequestDispatcher(forward);
-        view.forward(request, response);
+        /*RequestDispatcher view = request.getRequestDispatcher(forward);
+        view.forward(request, response);*/
     }
     
     
@@ -97,6 +111,7 @@ public class CartaoController extends HttpServlet {
         String cd_cartao = request.getParameter("cd_cartao");
         if(cd_cartao == null || cd_cartao.isEmpty())
         {
+            System.out.println("Entrei na addCartao!!");
             dao.addCartao(cartao);
         }
         else

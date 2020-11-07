@@ -114,12 +114,42 @@ public class CartaoDao {
             }
             
         } catch (SQLException e) {
-            throw new RuntimeException("Falha ao listar pessoas em UserDAO.", e);
+            throw new RuntimeException("Falha ao listar cartoes.", e);
         }   
         return listaDeCartoes;
     }
     
-    /**/
+    public Cartao getUserById(int cd_cartao) {
+        System.out.println("Entrei no getUserById!");
+        Cartao cartao = new Cartao();
+        try {                        
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_cartao where cd_cartao=?");
+            preparedStatement.setInt(1, cd_cartao);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                cartao.setCd_cartao(rs.getInt("cd_cartao"));
+                cartao.setCpf(rs.getString("cpf"));
+                cartao.setNomeTitular(rs.getString("nomeTitular"));
+                cartao.setNumeroCartao(rs.getString("numeroCartao"));
+                cartao.setDtValCartao(rs.getDate("dtValCartao"));                                
+                cartao.setCvvCartao(rs.getString("cvvCartao"));                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw  new RuntimeException("Erro ao buscar registro de cartão.");
+        }        
+        System.out.println("SELECT EXECUTADO COM SUCESSO!");        
+        System.out.println("Pra provar, segue o CPF do cartão a ser updatado: " + cartao.getCpf());
+        System.out.println("Pra provar, segue o NOME DO TITULAR do cartão a ser updatado: " + cartao.getNomeTitular());
+        System.out.println("Pra provar, segue o NUMERO DO CARTAO a ser updatado: " + cartao.getNumeroCartao());
+        System.out.println("Pra provar, segue o DATA DE VALIDADE do cartão a ser updatado: " + cartao.getDtValCartao());
+        System.out.println("Pra provar, segue o CVV do cartão a ser updatado: " + cartao.getCvvCartao());
+        System.out.println("Pra provar, segue o CD_CARTAO do cartão a ser updatado: " + cartao.getCd_cartao());
+        return cartao;
+    }
+    
+    
     public boolean cartaoExist(Integer  cd_cartao) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_cartao where cd_cartao=?");

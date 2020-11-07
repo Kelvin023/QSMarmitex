@@ -18,8 +18,11 @@
             $('input[name=dtValCartao]').datepicker();
         });
     </script>
-
-    <h1>Cadastro novo cartão</h1>
+    
+    <h1>
+    <%=request.getAttribute("fraseCartao")%>
+    </h1>
+    
     <form method="POST" action='CartaoController' name="frmAddCartao">                        
             
         CPF : <input type="text" name="cpf" readonly

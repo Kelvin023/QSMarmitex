@@ -37,7 +37,7 @@
                             <td><c:out value="${cartao.numeroCartao}" /></td>
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${cartao.dtValCartao}" /></td>                                        
                             <td><c:out value="${cartao.cvvCartao}" /></td>                    
-                            <td><a href="CartaoController?action=edit&cd_cartao=<c:out value="${cartao.cd_cartao}"/>">Update</a></td>
+                            <td><a href="CartaoController?action=edit&cd_cartao=<c:out value="${cartao.cd_cartao}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Update</a></td>
                             <td><a href="CartaoController?action=delete&cd_cartao=<c:out value="${cartao.cd_cartao}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Delete</a></td>
                         </tr>
                     </c:forEach>
@@ -46,10 +46,7 @@
             </c:otherwise>
             </c:choose> 
         <p><a href="CartaoController?action=insert&cpf=<%=(String)request.getAttribute("cpf")%>">Add Novo Cartao</a></p>
-        <!--FAZER UM BOTAO OU <a> pra retornar a tela anterior.
-        PARA ISSO, DEVEMOS CRIAR MAIS UMA CONDIÇÃO NO CONTROLLER PARA RETORNAR SEM PERDER OS DADOS
-        USAR O FORWARD = telaCliente-->
-        
+                
         <a href="CartaoController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar ao Cardapio</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>

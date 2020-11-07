@@ -25,7 +25,7 @@ public class AcompanhamentoDao {
                 ps.setString(1, acompanhamento.getNomeAcompanhamento());
                 ps.setDouble(2, acompanhamento.getPrecoAcompanhemento());
                 ps.setString(3, acompanhamento.getTamanho());
-                ps.setBlob(4, acompanhamento.getFoto());
+                /*ps.setBlob(4, acompanhamento.getFoto());*/
              
                 ps.executeUpdate();
                 ps.close();
@@ -59,7 +59,7 @@ public class AcompanhamentoDao {
             preparedStatement.setString(1, acompanhamento.getNomeAcompanhamento());
             preparedStatement.setString(2, acompanhamento.getTamanho());
             preparedStatement.setDouble(3, acompanhamento.getPrecoAcompanhemento());
-            preparedStatement.setBlob(4, acompanhamento.getFoto());                   
+            /*preparedStatement.setBlob(4, acompanhamento.getFoto());*/                   
             System.out.println("Nome do Acompanhamento = " + acompanhamento.getNomeAcompanhamento());
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -81,7 +81,7 @@ public class AcompanhamentoDao {
                 acompanhamento.setNomeAcompanhamento(rs.getString("nomeAcompanhamento"));
                 acompanhamento.setTamanho(rs.getString("cd_tamanho"));
                 acompanhamento.setPrecoAcompanhemento(rs.getDouble("precoAcompanhamento"));
-                acompanhamento.setFoto(rs.getBlob("foto"));
+                /*acompanhamento.setFoto(rs.getBlob("foto"));*/
                 listaDeAcompanhamentos.add(acompanhamento);
             }
             
@@ -90,6 +90,4 @@ public class AcompanhamentoDao {
         }   
         return listaDeAcompanhamentos;
     }
-}
-    
 }
