@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Cartoes</title>
+        <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>

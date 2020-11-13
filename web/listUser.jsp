@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Show All Users</title>
+        <link rel="shortcut icon" href="img/icone.png">
     </head>
 <body>
     <c:import url="includes/cabecalho.jsp"/>       

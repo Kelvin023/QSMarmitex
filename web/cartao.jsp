@@ -10,6 +10,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
 <title>Novo Cartao</title>
+<link rel="shortcut icon" href="img/icone.png">
 </head>
 <body>
     <c:import url="includes/cabecalho.jsp"/>

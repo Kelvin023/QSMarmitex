@@ -20,6 +20,7 @@
                 width:300px;
             }            
         </style>
+        <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
