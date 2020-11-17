@@ -76,8 +76,10 @@ public class CartaoController extends HttpServlet {
             request.getRequestDispatcher("/cartao.jsp").forward(request, response);
         }
         
-        else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/           
-            request.setAttribute("users", udao.getUserById(request.getParameter("cpf")));
+        else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/             
+            String cpf = request.getParameter("cpf");
+            System.out.println("CPF que veio la do botao de voltar do listar cartoes: " + cpf);
+            request.setAttribute("users", udao.getUserById(cpf));
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
 

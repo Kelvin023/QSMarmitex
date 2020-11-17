@@ -38,6 +38,7 @@ public class LoginController extends HttpServlet {
             request.setAttribute("loginError","Usuário ou senha inválidos!");
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else if(checkLogin.getEmail() != null && checkLogin.getSenha() != null){
+            //CRIAR SESSION AQUI
             int cdPerfilUsuario = dao.pegaCodPerfilUsuario(email, senha);
             switch(cdPerfilUsuario){
                 case 1:

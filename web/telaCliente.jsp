@@ -22,29 +22,64 @@
         <c:import url="includes/cabecalho.jsp"/>                
         Bem vindo à tela de CLIENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>!                       
         <c:choose>
-            <c:when test="${not empty users.email}">
+            <c:when test="${not empty users.email}">                
                 <p style="color: blue; font-family: monospace; font-size: 20px;">E-mail logado: ${users.email}</p>
             </c:when>              
-            <c:otherwise>
+            <c:otherwise>                
                 <p style="color: green; font-family: monospace; font-size: 20px;">E-mail logado: <%=request.getAttribute("email")%></p>
             </c:otherwise>
         </c:choose>                                                                               
         
+        <c:choose>
+            <c:when test="${not empty users.cpf}">                
+                <p style="color: blue; font-family: monospace; font-size: 20px;">CPF logado: ${users.cpf}</p>
+            </c:when>              
+            <c:otherwise>                
+                <p style="color: green; font-family: monospace; font-size: 20px;">CPF logado: <%=request.getAttribute("cpf")%></p>
+            </c:otherwise>
+        </c:choose>                 
                 
+                
+        <c:if test="${not empty mensagem}">
+            <h2 style="color: darkorchid">
+                <%=request.getAttribute("mensagem")%>
+            </h2>
+        </c:if>
+
+        
         <!--CARDÁPIO-->
         <hr>
         <form method="POST" action='PedidoController'>
             <h2>Escondidinho Fitness<span style="font-size: 15px"> - Mostrar os ingredientes e preço</span></h2>            
             <label>Quantidade</label>
-            <input id="qtd" type="number" name="quantidade" min="1" max="5">
+            <input id="qtd" type="number" name="quantidade" min="1" max="5" required>
             <br>
             <label>Tamanho</label>
-             <select name="tamanho">
+            <select name="tamanho" required>
+                <option value=""> - </option>
                 <option value="pequeno">Pequeno</option>
                 <option value="medio">Médio</option>
                 <option value="grande">Grande</option>                
               </select>
             <br><br>
+            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    <input type="text" name="email" value="${users.email}" hidden><br>            
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+            <c:when test="${not empty users.cpf}">                
+                <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+            </c:when>              
+            <c:otherwise>                
+                <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+            </c:otherwise>
+        </c:choose>
+            <input id="qtd" type="text" name="preco" value="18.90" hidden>
             <input type="submit" value="Efetuar pedido">
         </form>
         <hr>

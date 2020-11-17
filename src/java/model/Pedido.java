@@ -6,7 +6,7 @@ public class Pedido {
     private int cd_numeroPedido;
     private String cpf;
     private int qtd_marmita;
-    private int valorPedido;
+    private Float valorPedido;
     private Date dt_pedido;
 
     public int getCd_numeroPedido() {
@@ -33,13 +33,13 @@ public class Pedido {
         this.qtd_marmita = qtd_marmita;
     }
 
-    public int getValorPedido() {
+    public Float getValorPedido() {
         return valorPedido;
     }
 
-    public void setValorPedido(int valorPedido) {
+    public void setValorPedido(Float valorPedido) {
         this.valorPedido = valorPedido;
-    }
+    }    
 
     public Date getDt_pedido() {
         return dt_pedido;
