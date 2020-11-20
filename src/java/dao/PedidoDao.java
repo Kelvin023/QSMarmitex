@@ -41,5 +41,27 @@ public class PedidoDao {
     }
     
     //FAZER FUNCAO DE LISTAR PEDIDOS PRA O CLIENTE PODER VER QUAIS OS PEDIDOS DELE
+    public List<Pedido> getPedidoByCpf(String cpf) {
+        System.out.println("Entrei na getPedidoByCpf com o CPF: " + cpf);
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "select * from tb_pedido where cpf = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido"));                
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
     
 }

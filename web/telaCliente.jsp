@@ -68,6 +68,15 @@
             </c:otherwise>
         </c:choose>                       
         <br>
+        <c:choose>            
+            <c:when test="${not empty users.email}">    
+                <a style="color: red" href="PedidoController?action=listPedido&cpf=<c:out value="${users.cpf}"/>">Pedidos</a>                
+            </c:when>                          
+            <c:otherwise>  
+                <a style="color: green" href="PedidoController?action=listPedido&cpf=<%=(String)request.getAttribute("cpf")%>">Pedidos</a>                
+            </c:otherwise>
+        </c:choose>
+        <br>
         <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
                 
         
@@ -86,6 +95,8 @@
                     </tr>
                 </tbody>
             </table>
+            <br>
+            <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="pequeno" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
@@ -103,8 +114,7 @@
                 <c:otherwise>                
                     <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
                 </c:otherwise>
-            </c:choose>
-            <input type="submit" value="Efetuar pedido">
+            </c:choose>            
         </form>
         
         <!--
@@ -143,8 +153,7 @@
             <input type="submit" value="Efetuar pedido">
         </form>
         <hr>            
-        -->
-        <br><br><br><br><br>
+        -->        
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

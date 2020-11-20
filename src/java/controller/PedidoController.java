@@ -19,7 +19,28 @@ public class PedidoController extends HttpServlet {
         super();
         dao = new PedidoDao();
         udao = new UserDao();
-    } 
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String forward="";        
+        String action = request.getParameter("action");                                
+        
+        if (action.equalsIgnoreCase("listPedido")){            
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("pedidos", dao.getPedidoByCpf(cpf));
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/listPedido.jsp").forward(request, response);
+        }                         
+        else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/             
+            String cpf = request.getParameter("cpf");
+            System.out.println("CPF que veio la do botao de voltar do listar pedidos: " + cpf);
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
+        }       
+    }
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
