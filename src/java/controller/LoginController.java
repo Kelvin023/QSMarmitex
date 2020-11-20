@@ -1,5 +1,6 @@
 package controller;
 
+import dao.MarmitaDao;
 import dao.UserDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,14 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.User;
+//import model.Marmita;
 
 @WebServlet(name = "logincontrol", urlPatterns = {"/logincontrol"})
 public class LoginController extends HttpServlet {
     private final UserDao dao;
+    //private final MarmitaDao mdao;
 
     public LoginController() {
         super();
         dao = new UserDao();
+        //mdao = new MarmitaDao();
     }          
 
 
@@ -53,7 +57,8 @@ public class LoginController extends HttpServlet {
                 case 3:
                     System.out.println("Cliente");
                     request.setAttribute("email", email);        
-                    request.setAttribute("cpf", checkLogin.getCpf());        
+                    request.setAttribute("cpf", checkLogin.getCpf()); 
+                    //request.setAttribute("cardapio", mdao.getAllMarmitas());
                     request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
                     break;
                 case 4:

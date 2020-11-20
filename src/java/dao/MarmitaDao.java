@@ -78,19 +78,19 @@ public class MarmitaDao {
     public List<Marmita> getAllMarmitas() {
         List<Marmita> listaDeMarmita = new ArrayList<Marmita>();
         try {
-            String SQL = "select*from tb_marmita";
+            String SQL = "select * from tb_marmita";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 Marmita marmita = new Marmita();
-                marmita.setFoto(rs.getBlob("foto")); 
+                //marmita.setFoto(rs.getBlob("foto")); 
                 marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
                 marmita.setIngredientes(rs.getString("ds_ingredientes"));
+                marmita.setTamanho(rs.getInt("cd_tamanho"));
                 marmita.setNomeProduto(rs.getString("nomeMarmita"));
                 marmita.setNumeroMarmita(rs.getInt("cd_nr_numero"));
-                marmita.setPreco(rs.getShort("preco"));
-                marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));
-                marmita.setTamanho(rs.getInt("cd_tamanho"));
+                //marmita.setPreco(rs.getShort("preco"));                
+                //marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));                
                 listaDeMarmita.add(marmita);
             }
         } catch (SQLException e) {
@@ -115,7 +115,8 @@ public class MarmitaDao {
                 marmita.setNumeroMarmita(rs.getInt("cd_nr_marmita"));
                 marmita.setPreco(rs.getShort("preco"));
                 marmita.setTamanho(rs.getInt("cd_tamanho"));
-                marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));            }
+                marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));            
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar registro de usuário.");

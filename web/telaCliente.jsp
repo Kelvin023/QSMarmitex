@@ -8,7 +8,10 @@
         <title>QS MARMITEX</title>
         <style>
             #qtd{
-                width:40px;
+                width:40px;                
+             }
+             .itemCardapio{
+                 text-align: center;                
              }
              
              #btnSair{
@@ -46,9 +49,66 @@
             </h2>
         </c:if>
 
+        <c:choose>           
+            <c:when test="${not empty users.email}">
+                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Editar</a>
+            </c:when>                          
+            <c:otherwise>                                
+                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Editar</a>
+            </c:otherwise>
+        </c:choose>
+        <br>        
+       
+        <c:choose>            
+            <c:when test="${not empty users.email}">    
+                <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
+            </c:when>                          
+            <c:otherwise>  
+                <a style="color: green" href="CartaoController?action=listCartao&cpf=<%=(String)request.getAttribute("cpf")%>">Cartões</a>                
+            </c:otherwise>
+        </c:choose>                       
+        <br>
+        <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+                
         
         <!--CARDÁPIO-->
-        <hr>
+        <h1>CARDÁPIO</h1>
+        
+        <form method="POST" action='PedidoController'>
+            <table border="1">
+                <thead>
+                    <th colspan="2">ESCONDIDINHO FITNESS PEQUENO</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                        <td class="itemCardapio">Preço: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="text" name="tamanho" value="pequeno" hidden><br>            
+            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    <input type="text" name="email" value="${users.email}" hidden><br>            
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${not empty users.cpf}">                
+                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <input type="submit" value="Efetuar pedido">
+        </form>
+        
+        <!--
+        <hr>        
         <form method="POST" action='PedidoController'>
             <h2>Escondidinho Fitness<span style="font-size: 15px"> - Mostrar os ingredientes e preço</span></h2>            
             <label>Quantidade</label>
@@ -72,40 +132,18 @@
                 </c:otherwise>
             </c:choose>
             <c:choose>
-            <c:when test="${not empty users.cpf}">                
-                <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-            </c:when>              
-            <c:otherwise>                
-                <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-            </c:otherwise>
-        </c:choose>
+                <c:when test="${not empty users.cpf}">                
+                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
             <input id="qtd" type="text" name="preco" value="18.90" hidden>
             <input type="submit" value="Efetuar pedido">
         </form>
-        <hr>
-        
-        <br><br>
-              
-        <c:choose>           
-            <c:when test="${not empty users.email}">
-                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Editar</a>
-            </c:when>                          
-            <c:otherwise>                                
-                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Editar</a>
-            </c:otherwise>
-        </c:choose>
-        <br>        
-       
-        <c:choose>            
-            <c:when test="${not empty users.email}">    
-                <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
-            </c:when>                          
-            <c:otherwise>  
-                <a style="color: green" href="CartaoController?action=listCartao&cpf=<%=(String)request.getAttribute("cpf")%>">Cartões</a>                
-            </c:otherwise>
-        </c:choose>                       
-        <br><br><br><br>
-        <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+        <hr>            
+        -->
         <br><br><br><br><br>
         <c:import url="includes/rodape.jsp"/>
     </body>
