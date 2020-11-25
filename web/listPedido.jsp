@@ -37,7 +37,7 @@
                             <td><c:out value="<%=(String)request.getAttribute("cpf")%>" /></td>                   
                             <td><c:out value="${pedido.qtd_marmita}" /></td>
                             <td><c:out value="${pedido.valorPedido}" /></td>                                                                            
-                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>                                                                    
+                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>
                         </tr>
                     </c:forEach>
                     </tbody>            

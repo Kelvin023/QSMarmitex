@@ -32,7 +32,13 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("pedidos", dao.getPedidoByCpf(cpf));
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/listPedido.jsp").forward(request, response);
-        }                         
+        } 
+        else if (action.equalsIgnoreCase("listallPedidos")){            
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("pedidos", dao.getAllPedidos());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
+        }
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/             
             String cpf = request.getParameter("cpf");
             System.out.println("CPF que veio la do botao de voltar do listar pedidos: " + cpf);

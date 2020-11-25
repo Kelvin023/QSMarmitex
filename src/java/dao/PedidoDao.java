@@ -64,4 +64,30 @@ public class PedidoDao {
         return listaDePedidos;
     }
     
+    //LISTAR TODOS OS PEDIDOS PARA QUE O ADM POSSA VISUALIZAR TODOS ESSES PEDIDOS 
+    public List<Pedido> getAllPedidos() {
+        System.out.println("Entrei na getAllPedidos!!");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "select * from tb_pedido";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
+    //FAZER MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
+    
 }

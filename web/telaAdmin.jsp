@@ -28,6 +28,8 @@
         <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
         <a href="UserController?action=listUser&cpf=<%=(String)request.getAttribute("cpf")%>">Usuários</a>
         <br>
+        <a href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">RELATÓRIO DE PEDIDOS</a>
+        <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
