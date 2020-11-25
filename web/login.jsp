@@ -41,7 +41,7 @@
             <h1 style="font-family: monospace; text-shadow: 1px 1px 3px black;">LOGIN</h1>
             <form method="POST" action='logincontrol'>
                 E-mail:
-                <input type="text" name="email" required="true" autofocus="true">
+                <input type="text" name="email" required="true" autocomplete="on">
                 <br><br>
                 Senha: 
                 <input type="password" name="senha" required="true">

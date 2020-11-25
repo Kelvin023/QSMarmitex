@@ -50,6 +50,7 @@ public class UserController extends HttpServlet {
         } else if (action.equalsIgnoreCase("listUser")){
             forward = LIST_USER;
             String cpf = request.getParameter("cpf");
+            System.out.println("CPF vindo da tela anterior: " + cpf);
             request.setAttribute("cpf", cpf);
             request.setAttribute("users", dao.getAllUsers());
         } else if (action.equalsIgnoreCase("insert")){
@@ -60,7 +61,10 @@ public class UserController extends HttpServlet {
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/ 
             System.out.println("Estou na voltar do UserController");                                
                 System.out.println("Quero voltar com o perfil de ADM, logo devo voltar pra coisas do ADM");
-                request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
+                String cpf = request.getParameter("cpf");
+                System.out.println("CPF vindo da tela anterior: " + cpf);
+                request.setAttribute("cpf", cpf);
+                request.setAttribute("users", dao.getUserById(cpf));
                 request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);                    
         }
 

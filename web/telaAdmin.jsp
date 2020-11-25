@@ -12,8 +12,17 @@
         <c:import url="includes/cabecalho.jsp"/>
         <h1>Tela ADMIN</h1>
         <h3>
-            Bem vindo à tela de ADM! <br>
-            Usuário logado: <%=request.getAttribute("email") %> <br>
+            Bem vindo à tela de ADM! <br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    Usuário logado: ${users.email}<br>
+                </c:when>              
+                <c:otherwise>                
+                    Usuário logado: <%=request.getAttribute("email") %><br>
+                </c:otherwise>
+            </c:choose>
+            
+            
             CPF do ADMIN logado: <%=request.getAttribute("cpf") %>
         </h3>
         <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
