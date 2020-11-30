@@ -43,6 +43,12 @@
         </c:choose>                 
                 
                 
+        <c:if test="${not empty naoTemCartao}">
+            <h2 style="color: darkorchid">
+                <%=request.getAttribute("naoTemCartao")%>
+            </h2>
+        </c:if>
+                
         <c:if test="${not empty mensagem}">
             <h2 style="color: darkorchid">
                 <%=request.getAttribute("mensagem")%>

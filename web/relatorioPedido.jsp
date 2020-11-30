@@ -15,13 +15,15 @@
         
         <!--FILTROS DE PERÍODO-->        
         <span style="font-size: 20px; font-weight: bold">PERÍODO: </span>
-        <label>Data início</label>
-        <input type="date" name="dtinicio">
-        <label>Data fim</label>
-        <input type="date" name="dtfim">
-        
-        <button>APLICAR FILTRO</button>
-        <br><br><br>
+        <form method="POST" action="RelatorioPedidoController">
+            <label>Data início</label>
+            <input type="date" name="dtinicio" required>
+            <label>Data fim</label>
+            <input type="date" name="dtfim" required>
+
+            <button type="submit">APLICAR FILTRO</button>            
+        </form>        
+        <br><br>
         
     <table border=1>
         <thead>

@@ -87,7 +87,33 @@ public class PedidoDao {
         }   
         return listaDePedidos;
     }
+    //FAZER MÉTODO PARA CAPTURAR A MARMITA MAIS VENDIDA
+    
+    
     
     //FAZER MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
-    
+    public List<Pedido> getAllPedidosByPeriodo(String dtinicio, String dtfim) {
+        System.out.println("Entrei na getAllPedidosByPeriodo!!");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "select * from tb_pedido where dt_pedido between ? and ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ps.setString(1, dtinicio);
+            ps.setString(2, dtfim);
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
 }

@@ -8,17 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.PedidoDao;
 import dao.UserDao;
+import dao.CartaoDao;
+import java.util.List;
+import model.Cartao;
 import model.Pedido;
 
 @WebServlet(name = "PedidoController", urlPatterns = {"/PedidoController"})
 public class PedidoController extends HttpServlet {
     private final PedidoDao dao;
     private final UserDao udao;
+    private final CartaoDao cdao;
     
     public PedidoController() {
         super();
         dao = new PedidoDao();
         udao = new UserDao();
+        cdao = new CartaoDao();
     }
     
     @Override
@@ -74,11 +79,29 @@ public class PedidoController extends HttpServlet {
         response.getWriter().println("Preço da única marmita disponível até o momento: " + preco);
         response.getWriter().println("CPF  do cliente: " + cpf);
         
+        //VERIFICANDO SE O USUARIO QUE ESTÁ EFETUANDO O PEDIDO, POSSUI CARTAO PARA PAGAR E CONCLUIR O PEDIDO
+        List<Cartao> cartoes = cdao.getCartaoByCpf(cpf);
+        if (cartoes.isEmpty()){
+            request.setAttribute("cpf", cpf);        
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("naoTemCartao", "Usuario em questão não possui cartao cadastrado!\nFavor cadastrar cartao para efetuar um pedido!");
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
+        }
+        else{
+            dao.addPedido(pedido);
+            request.setAttribute("cpf", cpf);        
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
+        }
+        
+        /*
         dao.addPedido(pedido);
         request.setAttribute("cpf", cpf);        
         request.setAttribute("users", udao.getUserById(cpf));
         request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
         request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
+        */
         
     }
 }

@@ -90,7 +90,7 @@ public class UserController extends HttpServlet {
                 dt_nascimento = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dt_nascimento"));
             }
             else{
-                dt_nascimento = null;
+                dt_nascimento = null    ;
             }
                 
             user.setDt_nascimento(dt_nascimento);
