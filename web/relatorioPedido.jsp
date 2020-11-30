@@ -32,7 +32,8 @@
                 <th>CPF</th>
                 <th>QTD DE MARMITA</th>                
                 <th>VALOR DO PEDIDO</th>
-                <th>DATA DE REALIZAÇÃO DO PEDIDO</th>                                
+                <th>DATA DE REALIZAÇÃO DO PEDIDO</th>  
+                <th>STATUS DO PEDIDO</th>                            
             </tr>
         </thead>
         <tbody>
@@ -42,12 +43,24 @@
                     <td><c:out value="${pedidos.cpf}" /></td>                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
                     <td><c:out value="${pedidos.valorPedido}" /></td>                                        
-                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>
+                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>                   
+                    
+                    <c:choose>
+                        <c:when test="${pedidos.st_pedido == 0}">                                    
+                            <td>EM PRODUÇÃO</td>
+                        </c:when> 
+                        <c:when test="${pedidos.st_pedido == 1}">                                    
+                            <td>EM TRANSPORTE</td>
+                        </c:when>    
+                        <c:otherwise>                                    
+                            <td>ENTREGUE - (FINALIZADO)</td>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
             </c:forEach>
         </tbody>
     </table>                       
-        <br>
+        <br>             
         
         EXIBIR MARMITA MAIS VENDIDA
         <br><br><br>

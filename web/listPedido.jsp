@@ -28,6 +28,7 @@
                             <th>QUANTIDADE</th>
                             <th>VALOR TOTAL DO PEDIDO</th>
                             <th>DATA QUE O PEDIDO FOI EFETUADO</th>                            
+                            <th>STATUS DO PEDIDO</th>                            
                         </tr>
                     </thead>    
                     <tbody>
@@ -37,7 +38,20 @@
                             <td><c:out value="<%=(String)request.getAttribute("cpf")%>" /></td>                   
                             <td><c:out value="${pedido.qtd_marmita}" /></td>
                             <td><c:out value="${pedido.valorPedido}" /></td>                                                                            
-                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>
+                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>                            
+                            
+                            <c:choose>
+                                <c:when test="${pedido.st_pedido == 0}">                                    
+                                    <td>EM PRODUÇÃO</td>
+                                </c:when> 
+                                <c:when test="${pedido.st_pedido == 1}">                                    
+                                    <td>EM TRANSPORTE</td>
+                                </c:when>    
+                                <c:otherwise>                                    
+                                    <td>ENTREGUE - (FINALIZADO)</td>
+                                </c:otherwise>
+                            </c:choose>
+                            
                         </tr>
                     </c:forEach>
                     </tbody>            

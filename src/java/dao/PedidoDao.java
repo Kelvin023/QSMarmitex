@@ -55,6 +55,7 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                pedido.setSt_pedido(rs.getInt("st_pedido"));                
                 listaDePedidos.add(pedido);
             }
             
@@ -78,7 +79,8 @@ public class PedidoDao {
                 pedido.setCpf(rs.getString("cpf"));
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
-                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                pedido.setDt_pedido(rs.getDate("dt_pedido")); 
+                pedido.setSt_pedido(rs.getInt("st_pedido"));                
                 listaDePedidos.add(pedido);
             }
             
