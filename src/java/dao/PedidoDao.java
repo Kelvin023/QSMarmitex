@@ -54,7 +54,7 @@ public class PedidoDao {
                 pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido"));                
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
-                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
                 pedido.setSt_pedido(rs.getInt("st_pedido"));                
                 listaDePedidos.add(pedido);
             }
@@ -79,7 +79,7 @@ public class PedidoDao {
                 pedido.setCpf(rs.getString("cpf"));
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
-                pedido.setDt_pedido(rs.getDate("dt_pedido")); 
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
                 pedido.setSt_pedido(rs.getInt("st_pedido"));                
                 listaDePedidos.add(pedido);
             }
@@ -98,10 +98,12 @@ public class PedidoDao {
         System.out.println("Entrei na getAllPedidosByPeriodo!!");
         List<Pedido> listaDePedidos = new ArrayList<Pedido>();
         try {
-            String SQL = "select * from tb_pedido where dt_pedido between ? and ?";
+            String SQL = "select * from tb_pedido where DATE(dt_pedido) between ? and ?";
             PreparedStatement ps = connection.prepareStatement(SQL);            
             ps.setString(1, dtinicio);
             ps.setString(2, dtfim);
+            System.out.println("Data de inicio do periodo dentro da getAllPedidosByPeriodo: " + dtinicio);
+            System.out.println("Data de fim do periodo dentro da getAllPedidosByPeriodo: " + dtfim);
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {
                 Pedido pedido = new Pedido();
@@ -109,7 +111,8 @@ public class PedidoDao {
                 pedido.setCpf(rs.getString("cpf"));
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
-                pedido.setDt_pedido(rs.getDate("dt_pedido"));                                                
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setSt_pedido(rs.getInt("st_pedido"));                
                 listaDePedidos.add(pedido);
             }
             

@@ -8,7 +8,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Relatorio Pedido</title>
         <link rel="shortcut icon" href="img/icone.png">
+        <style>
+            #btnZerar{
+                width: 160px;
+                height: 40px;
+                line-height: 40px;
+                padding: 10px 5px;
+                background-color: #000;
+                color: #FFF;
+                border-radius: 5px;
+                text-decoration: none;
+                text-align: center;
+                font-weight: bold;
+                font-family: Arial;
+            }            
+        </style>
     </head>
+    
+    
     <body>
         <c:import url="includes/cabecalho.jsp"/>
         <h1>Relatório de pedidos</h1>
@@ -25,6 +42,10 @@
         </form>        
         <br><br>
         
+        <a id="btnZerar" href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">
+            Zerar filtro
+        </a>
+        <br><br>
     <table border=1>
         <thead>
             <tr>
@@ -42,9 +63,9 @@
                     <td><c:out value="${pedidos.cd_numeroPedido}" /></td>
                     <td><c:out value="${pedidos.cpf}" /></td>                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
-                    <td><c:out value="${pedidos.valorPedido}" /></td>                                        
-                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>                   
-                    
+                    <td><c:out value="${pedidos.valorPedido}" /></td> 
+                    <!--<td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>-->
+                    <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                     
                     <c:choose>
                         <c:when test="${pedidos.st_pedido == 0}">                                    
                             <td>EM PRODUÇÃO</td>

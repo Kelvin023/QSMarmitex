@@ -38,10 +38,14 @@ public class RelatorioPedidoController extends HttpServlet {
         String dtinicio = request.getParameter("dtinicio");
         String dtfim = request.getParameter("dtfim");
         String cpf = request.getParameter("cpf");
-        System.out.println("Data inicio: " + dtinicio);
-        System.out.println("Data fim: " + dtfim);
+        System.out.println("Entrei na RelatorioPedidoController com os valores de periodo abaixo: ");
+        System.out.println("Data de inicio com o tipo puro(sem transformar para String: " + request.getParameter("dtinicio"));
+        System.out.println("Data de fim com o tipo puro(sem transformar para String: " + request.getParameter("dtfim"));
+        System.out.println("Data inicio sendo String: " + dtinicio);
+        System.out.println("Data fim sendo String: " + dtfim);
         
                
+        //request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
         request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
         request.setAttribute("cpf", cpf);  
         request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);

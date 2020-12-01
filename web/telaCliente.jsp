@@ -97,7 +97,7 @@
                 <tbody>
                     <tr>
                         <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
+                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
                     </tr>
                 </tbody>
             </table>
