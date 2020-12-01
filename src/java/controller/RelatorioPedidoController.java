@@ -26,28 +26,22 @@ public class RelatorioPedidoController extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        /*try {
-            //request.getParameter("dtinicio");
-            Date dtinicio = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dtinicio"));
-            Date dtfim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dtfim"));
-        } catch (ParseException ex) {
-            Logger.getLogger(RelatorioPedidoController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            throws ServletException, IOException {        
         
         String dtinicio = request.getParameter("dtinicio");
         String dtfim = request.getParameter("dtfim");
         String cpf = request.getParameter("cpf");
         System.out.println("Entrei na RelatorioPedidoController com os valores de periodo abaixo: ");
-        System.out.println("Data de inicio com o tipo puro(sem transformar para String: " + request.getParameter("dtinicio"));
-        System.out.println("Data de fim com o tipo puro(sem transformar para String: " + request.getParameter("dtfim"));
-        System.out.println("Data inicio sendo String: " + dtinicio);
-        System.out.println("Data fim sendo String: " + dtfim);
+        System.out.println("Data inicio: " + dtinicio);
+        System.out.println("Data fim: " + dtfim);
+        System.out.println("CPF: " + cpf);
         
                
         //request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
         request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
         request.setAttribute("cpf", cpf);  
+        request.setAttribute("dtinicio", dtinicio);  
+        request.setAttribute("dtfim", dtfim);          
         request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
     }
 }

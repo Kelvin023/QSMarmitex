@@ -37,15 +37,19 @@
             <input type="date" name="dtinicio" required>
             <label>Data fim</label>
             <input type="date" name="dtfim" required>
-
+            <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>
             <button type="submit">APLICAR FILTRO</button>            
         </form>        
-        <br><br>
+        <br>
         
         <a id="btnZerar" href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">
             Zerar filtro
         </a>
-        <br><br>
+        <br><br>        
+        <c:if test="${not empty dtinicio}">                
+            <h2>#Filtro Utilizado# Data início: <%=request.getAttribute("dtinicio")%>  ***  Data fim: <%=request.getAttribute("dtfim")%></h2>
+        </c:if>                                 
+                
     <table border=1>
         <thead>
             <tr>
