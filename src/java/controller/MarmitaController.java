@@ -19,6 +19,8 @@ public class MarmitaController extends HttpServlet {
     private static final String LIST_MARMITA = "/listMarmita.jsp";
     private final MarmitaDao dao;
 
+    MarmitaDao marmita = new MarmitaDao(); 
+    
     public MarmitaController() {
         super();
         dao = new MarmitaDao();
@@ -65,20 +67,27 @@ public class MarmitaController extends HttpServlet {
         //criar mensgem de sucesso
         String mensagemSucesso ="";
         
-        mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";
         
-        request.setAttribute("mensagemSucesso", mensagemSucesso);
         //mostrar mensagem de sucesso
-        //request.getDispatcherType("jsp/addmarmita.jsp").FORWARD(request,response);
-        Marmita marmita = new Marmita();
-        int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
 
+       
+        marmita.incluirMarmita(/*request.getParameter("foto"),*/
+                               request.getParameter("nomeMarmita"),
+                               request.getParameter("grpoMarmita"), 
+                               request.getParameter("ingredientes"), 
+                               request.getParameter("preco"));
+        //int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
+
+        mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";
+        request.setAttribute("mensagemSucesso", mensagemSucesso);
+       // request.getDispatcherType("jsp/addmarmita.jsp").FORWARD(request,response);
         
-        marmita.setFoto("foto");
-        marmita.setGrupoMarmita(request.getIntHeader("grupoMarmita"));
-        marmita.setIngredientes("ingredientes");
+        /*marmita.setFoto("foto");
         marmita.setNomeProduto("nomeMarmita");
+        marmita.setGrupoMarmita(request.getIntHeader("grupoMarmita"));
+        marmita.setIngredientes("ingredientes");    
         marmita.setPreco("preco");
+        */
 
         /* if(dao.marmitaExist  (request.getParameter(Integer.parseInt("cd_nr_marmita")))){
             dao.updateMarmita(marmita);
