@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import model.Marmita;
 import util.DbUtil;
 
@@ -22,10 +24,23 @@ public class MarmitaDao {
 
     public void addMarmita(Marmita marmita) {
         System.out.println("Entrei na addMarmita!");
-        try {
+        
+        try{
+            PreparedStatement ps = connection.prepareStatement("insert into tb_marmita(foto, nomeMarmita, cd_grupoMarmita, cd_produto, preco) values (?,?,?,?,?)");
+            
+            ps.setBlob(1,marmita.getFoto());
+            ps.setString(2,marmita.getNomeProduto());
+            ps.setInt(3,marmita.getGrupoMarmita());
+            ps.setString(4,marmita.getIngredientes());
+            ps.setFloat(5,marmita.getPreco());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MarmitaDao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        /*try {
             String SQL = "INSERT INTO tb_marmita(cd_nr_marmita, cd_grupoMarmita, ds_ingredientes, cd_tamanho, preco, nomeMarmita,foto, st_cardapio) VALUES"
                     + "(?,?,?,?,?,?,?,?)";
-            try (PreparedStatement ps = connection.prepareStatement(SQL)) {
+            PreparedStatement ps = connection.prepareStatement(SQL)
                 ps.setInt(1, marmita.getNumeroMarmita());
                 ps.setInt(2, marmita.getGrupoMarmita());
                 ps.setString(3, marmita.getIngredientes());
@@ -34,10 +49,11 @@ public class MarmitaDao {
                 ps.setString(6, marmita.getNomeProduto());
                 ps.setBlob(7, marmita.getFoto());
                 ps.setBoolean(8, marmita.isStatusCardapio());
-            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        */
     }
 
     public void deleteMarmita(int numeroMarmita) {
@@ -60,7 +76,7 @@ public class MarmitaDao {
             ps.setInt(1, marmita.getGrupoMarmita());
             ps.setString(2, marmita.getIngredientes());
             ps.setInt(3, marmita.getTamanho());
-            ps.setShort(4, marmita.getPreco());
+            ps.setFloat(4, marmita.getPreco());
             ps.setString(5, marmita.getNomeProduto());
             ps.setBlob(6, marmita.getFoto());
             ps.setBoolean(7, marmita.isStatusCardapio());
@@ -137,4 +153,10 @@ public class MarmitaDao {
         }
         return false;
     }
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("qsmarmitexPU");
+    
+    public void incluirMarmita (/*Blob foto,*/ String nomeMarmita, String gupoMarmita, String ingredientes, String preco){
+        System.out.println("Implementar cadastro de marmita: "+nomeMarmita+", "+gupoMarmita+", "+ingredientes+", "+preco);
+    }
+    
 }
