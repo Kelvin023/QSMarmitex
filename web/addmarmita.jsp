@@ -31,12 +31,12 @@
     <h1>Cadastro de marmita</h1>
     <div class="header">
         <ul>
-            <li><a href="jsp/cardapio.jsp">Menu</a></li>
-            <li><a href="jsp/listmarmita.jsp">Marmitas</a></li>
+            <li><a href="cardapio.jsp">Menu</a></li>
+            <li><a href="listmarmita.jsp">Marmitas</a></li>
             <li><a href="contact.asp">Acompanhamentos</a></li>
-            <li><a href="jsp/listUser">Usuários</a></li>
-            <li><a href="jsp/relatorioPedido">Relatórios</a></li>
-            <li><a href="jsp/listPedido">Carrinho</a></li>
+            <li><a href="listUser">Usuários</a></li>
+            <li><a href="relatorioPedido">Relatórios</a></li>
+            <li><a href="listPedido">Carrinho</a></li>
         </ul>
     </div>
     
