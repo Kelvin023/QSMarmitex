@@ -3,6 +3,7 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,8 +12,8 @@ import javax.persistence.Table;
 public class Marmita extends Produto{
     
     @Id
-    @GeneratedValue
-    @Column(name="cd_nr_marmita")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="cd_nr_marmita"/*, length = */, nullable = false)
     private int numeroMarmita;
     @Column(name="cd_grupoMarmita")
     private int grupoMarmita;
@@ -55,7 +56,7 @@ public class Marmita extends Produto{
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 31;
         return hash;
     }
 

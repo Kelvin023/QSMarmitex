@@ -8,7 +8,7 @@ public abstract class Produto {
     private String nomeProduto;
     @Column(name="cd_tamanho")
     private int tamanho;
-    private short preco;
+    private float preco;
     @Column(name="ds_ingredientes")
     private String ingredientes;
     private Blob foto;
@@ -34,13 +34,15 @@ public abstract class Produto {
         this.tamanho = tamanho;
     }
 
-    public short getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(short preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
+
+   
 
     public String getIngredientes() {
         return ingredientes;
