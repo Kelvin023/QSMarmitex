@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,7 +83,20 @@ public class MarmitaDao {
     public List<Marmita> getAllMarmitas() {
         List<Marmita> listaDeMarmita = new ArrayList<Marmita>();
         try {
-            String SQL = "select * from tb_marmita";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from tb_marmita");
+            
+            while (rs.next()){
+                Marmita marmita = new Marmita();
+                marmita.setFoto(rs.getBlob("foto"));
+                marmita.setNomeProduto(rs.getString("nomeMarmita"));
+                marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
+                marmita.setIngredientes(rs.getString("ingredientes"));
+                marmita.setPreco(rs.getFloat("preco"));
+                
+                listaDeMarmita.add(marmita);
+            }
+            /*String SQL = "select * from tb_marmita";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -97,6 +111,7 @@ public class MarmitaDao {
                 //marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));                
                 listaDeMarmita.add(marmita);
             }
+            */
         } catch (SQLException e) {
             throw new RuntimeException("Falha ao listar marmitas em MarmitaDao.", e);
         }
