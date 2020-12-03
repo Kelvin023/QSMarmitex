@@ -23,60 +23,64 @@ public class MarmitaController extends HttpServlet {
         super();
         dao = new MarmitaDao();
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String forward="";        
+        String forward = "";
         String action = request.getParameter("action");
-        
-        if (action.equalsIgnoreCase("delete")){
-            String numeroMarmita = request.getParameter("numeroMarmita");            
+
+        if (action.equalsIgnoreCase("delete")) {
+            String numeroMarmita = request.getParameter("numeroMarmita");
             dao.deleteMarmita(Integer.parseInt("numeroMarmita"));
             forward = LIST_MARMITA;
-            request.setAttribute("marmita", dao.getAllMarmitas());    
-        } else if (action.equalsIgnoreCase("edit")){
+            request.setAttribute("marmita", dao.getAllMarmitas());
+        } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             String numeroMarmita = request.getParameter("numeroMarmita");
             int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
             Marmita marmita = dao.getMarmitaById(cd_nr_marmita);
-            request.setAttribute("cd_nr_marmita", cd_nr_marmita);        
+            request.setAttribute("cd_nr_marmita", cd_nr_marmita);
             request.setAttribute("marmita", marmita);
-        } else if (action.equalsIgnoreCase("listMarmita")){
+        } else if (action.equalsIgnoreCase("listMarmita")) {
             forward = LIST_MARMITA;
             request.setAttribute("marmitas", dao.getAllMarmitas());
         } else {
             int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
             forward = INSERT_OR_EDIT;
-            request.setAttribute("cd_nr_marmita",cd_nr_marmita );        
+            request.setAttribute("cd_nr_marmita", cd_nr_marmita);
         }
-        
-         RequestDispatcher view = request.getRequestDispatcher(forward);
+
+        RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //criar mensgem de sucesso
+        String mensagemSucesso ="";
+        
+        mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";
+        
+        request.setAttribute("mensagemSucesso", mensagemSucesso);
+        //mostrar mensagem de sucesso
+        //request.getDispatcherType("jsp/addmarmita.jsp").FORWARD(request,response);
         Marmita marmita = new Marmita();
         int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
+
         
         marmita.setFoto("foto");
-        marmita.setGrupoMarmita(request.getIntHeader("cd_grupoMarmita"));
-        marmita.setIngredientes("cd_ingredientes");
-        marmita.setNomeProduto ("nomeMarmita");
-        marmita.setNumeroMarmita("cd_nr_marmita");
+        marmita.setGrupoMarmita(request.getIntHeader("grupoMarmita"));
+        marmita.setIngredientes("ingredientes");
+        marmita.setNomeProduto("nomeMarmita");
         marmita.setPreco("preco");
-        marmita.setStatusCardapio("st_cardapio");
-        marmita.setTamanho(request.getIntHeader("cd_tamanho"));
-        
-        
-       /* if(dao.marmitaExist  (request.getParameter(Integer.parseInt("cd_nr_marmita")))){
+
+        /* if(dao.marmitaExist  (request.getParameter(Integer.parseInt("cd_nr_marmita")))){
             dao.updateMarmita(marmita);
         }else{ 
             dao.addMarmita(marmita);
@@ -91,10 +95,9 @@ public class MarmitaController extends HttpServlet {
             System.out.println("Novo ADM cadastrado com sucesso!");
             request.setAttribute("marmitas", dao.getAllMarmitas());
             request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        } */          
+        } */
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";
