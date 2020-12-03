@@ -128,11 +128,11 @@ public class MarmitaDao {
 
             if (rs.next()) {
                 marmita.setFoto(rs.getBlob("foto"));
+                marmita.setNomeProduto(rs.getString("nomeMarmita"));
                 marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
                 marmita.setIngredientes(rs.getString("ds_ingredientes"));
-                marmita.setNomeProduto(rs.getString("nomeMarmita"));
-                marmita.setNumeroMarmita(rs.getInt("cd_nr_marmita"));
                 marmita.setPreco(rs.getShort("preco"));
+                marmita.setNumeroMarmita(rs.getInt("cd_nr_marmita"));
                 marmita.setTamanho(rs.getInt("cd_tamanho"));
                 marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));            
             }
@@ -142,7 +142,7 @@ public class MarmitaDao {
         }
         return marmita;
     }
-    public boolean marmitaExist(int cd_nr_marmita ) {
+    /*public boolean marmitaExist(int cd_nr_marmita ) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_usuario where cpf=?");
             preparedStatement.setInt(1, cd_nr_marmita);
@@ -155,11 +155,5 @@ public class MarmitaDao {
             throw new RuntimeException("Erro de SQL.", e);
         }
         return false;
-    }
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("qsmarmitexPU");
-    
-    public void incluirMarmita (/*Blob foto,*/ String nomeMarmita, String gupoMarmita, String ingredientes, String preco){
-        System.out.println("Implementar cadastro de marmita: "+nomeMarmita+", "+gupoMarmita+", "+ingredientes+", "+preco);
-    }
-    
+    }   */
 }
