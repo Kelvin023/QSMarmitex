@@ -16,7 +16,7 @@ import model.Marmita;
 public class MarmitaController extends HttpServlet {
 
     private static final String INSERT_OR_EDIT = "/marmita.jsp";
-    private static final String LIST_MARMITA = "/listMarmita.jsp";
+    private static final String LIST_MARMITA = "/listmarmita.jsp";
     private final MarmitaDao dao;
 
     MarmitaDao marmita = new MarmitaDao(); 
@@ -71,7 +71,7 @@ public class MarmitaController extends HttpServlet {
         //mostrar mensagem de sucesso
 
        
-        marmita.incluirMarmita(/*request.getParameter("foto"),*/
+        marmita.addMarmita(/*request.getParameter("foto"),*/
                                request.getParameter("nomeMarmita"),
                                request.getParameter("grpoMarmita"), 
                                request.getParameter("ingredientes"), 
