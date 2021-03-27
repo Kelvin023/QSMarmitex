@@ -45,6 +45,7 @@ public class UserController extends HttpServlet {
             String cpf = request.getParameter("cpf");
             int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             User user = dao.getUserById(cpf);
+            request.setAttribute("cpfLogado", cpf);        
             request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
             request.setAttribute("user", user);
         } else if (action.equalsIgnoreCase("listUser")){
@@ -54,9 +55,12 @@ public class UserController extends HttpServlet {
             request.setAttribute("cpf", cpf);
             request.setAttribute("users", dao.getAllUsers());
         } else if (action.equalsIgnoreCase("insert")){
+            String cpfLogado = request.getParameter("cpfLogado");
             int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             forward = INSERT_OR_EDIT;
-            request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
+            System.out.println("Estamos indo para a tela de preenchimento dos campos -> CPF do logado: " + cpfLogado);
+            request.setAttribute("cpfLogado", cpfLogado);
+            request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);               
         }
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/ 
             System.out.println("Estou na voltar do UserController");                                
@@ -76,6 +80,7 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
         int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
+        String cpfLogado = request.getParameter("cpfLogado");
         
         user.setCd_perfilUsuario(cdPerfilUsuario);
         user.setCpf(request.getParameter("cpf"));
@@ -104,17 +109,26 @@ public class UserController extends HttpServlet {
             dao.addUser(user);
         } 
         
-        //Se ele for cliente, manda os dados dele pra página de cliente
-        if (cdPerfilUsuario == 3) {
-            System.out.println("Cliente cadastrado com sucesso!");
-            request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
-            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
-        }
-        //Se ele for ADM, manda os dados dele pra página de ADM
-        if (cdPerfilUsuario==1) {
-            System.out.println("Novo ADM cadastrado com sucesso!");
-            request.setAttribute("users", dao.getAllUsers());
-            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        }                
+        //--->capturar qual o cdperfilusuario com base no cpf, pra saber em qual tela deverá continuar: Cliente ou ADM        
+        System.out.println("cdPerfilUsuario vindo do POST = " + cdPerfilUsuario);
+        System.out.println("CPF do usuario logado = " + cpfLogado);
+        int cdPerfilUsuarioLogado = dao.pegaCdPerfilUsuarioCpfLogado(cpfLogado);
+        switch(cdPerfilUsuarioLogado){
+                //Se ele for ADM, manda os dados dele pra página de ADM        
+                case 1:
+                    System.out.println("CdPerfilLogado = " + cdPerfilUsuarioLogado);
+                    System.out.println("Novo cadastro efetuado com sucesso!");
+                    request.setAttribute("users", dao.getAllUsers());
+                    request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
+                    break;   
+                    
+                //Se ele for cliente, manda os dados dele pra página de cliente
+                case 3:
+                    System.out.println("CdPerfil = " + cdPerfilUsuarioLogado);
+                    System.out.println("Cliente cadastrado com sucesso!");
+                    request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
+                    request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
+                    break;                
+            }                           
     }
 }

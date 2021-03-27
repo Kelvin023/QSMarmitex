@@ -88,7 +88,7 @@
         
         <!--CARDÁPIO-->
         <h1>CARDÁPIO</h1>
-        
+        <!--ESCONDIDINHO PEQUENIO-->
         <form method="POST" action='PedidoController'>
             <table border="1">
                 <thead>
@@ -123,21 +123,22 @@
             </c:choose>            
         </form>
         
-        <!--
-        <hr>        
+        <!--ESCONDIDINHO MÉDIO-->
         <form method="POST" action='PedidoController'>
-            <h2>Escondidinho Fitness<span style="font-size: 15px"> - Mostrar os ingredientes e preço</span></h2>            
-            <label>Quantidade</label>
-            <input id="qtd" type="number" name="quantidade" min="1" max="5" required>
+            <table border="1">
+                <thead>
+                    <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
-            <label>Tamanho</label>
-            <select name="tamanho" required>
-                <option value=""> - </option>
-                <option value="pequeno">Pequeno</option>
-                <option value="medio">Médio</option>
-                <option value="grande">Grande</option>                
-              </select>
-            <br><br>
+            <input type="submit" value="Efetuar pedido">
+            <input type="text" name="tamanho" value="medio" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
@@ -154,12 +155,118 @@
                 <c:otherwise>                
                     <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
                 </c:otherwise>
-            </c:choose>
-            <input id="qtd" type="text" name="preco" value="18.90" hidden>
-            <input type="submit" value="Efetuar pedido">
+            </c:choose>            
         </form>
-        <hr>            
-        -->        
+            
+        <!--ESCONDIDINHO GRANDE-->
+        <form method="POST" action='PedidoController'>
+            <table border="1">
+                <thead>
+                    <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="24.90" hidden>R$ 24,90</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <input type="submit" value="Efetuar pedido">
+            <input type="text" name="tamanho" value="grande" hidden><br>            
+            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    <input type="text" name="email" value="${users.email}" hidden><br>            
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${not empty users.cpf}">                
+                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>            
+        </form>
+            
+            
+        <!--SALADA PEQUENA-->
+        <form method="POST" action='PedidoController'>
+            <table border="1">
+                <thead>
+                    <th colspan="2">SALADA AMERICANA PEQUENA</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="19.90" hidden>R$ 19,90</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <input type="submit" value="Efetuar pedido">
+            <input type="text" name="tamanho" value="pequeno" hidden><br>            
+            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    <input type="text" name="email" value="${users.email}" hidden><br>            
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${not empty users.cpf}">                
+                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>            
+        </form>
+            
+            
+            
+        <!--SALADA MÉDIA-->
+        <form method="POST" action='PedidoController'>
+            <table border="1">
+                <thead>
+                    <th colspan="2">SALADA AMERICANA PEQUENA</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="23.90" hidden>R$ 23,90</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <input type="submit" value="Efetuar pedido">
+            <input type="text" name="tamanho" value="medio" hidden><br>            
+            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
+            <c:choose>
+                <c:when test="${not empty users.email}">                
+                    <input type="text" name="email" value="${users.email}" hidden><br>            
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${not empty users.cpf}">                
+                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
+                </c:when>              
+                <c:otherwise>                
+                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
+                </c:otherwise>
+            </c:choose>            
+        </form>
+            
+        
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,8 +35,8 @@
 
     <div class="header">
         <ul>
-            <li><a href="jsp/cardapio.jsp">Menu</a></li>
-            <li><a href="jsp/listmarmita.jsp">Marmitas</a></li>
+            <li><a href="cardapio.jsp">Menu</a></li>
+            <li><a href="listmarmita.jsp">Marmitas</a></li>
             <li><a href="contact.asp">Acompanhamentos</a></li>
             <li><a href="about.asp">Usuários</a></li>
             <li><a href="about.asp">Relatórios</a></li>

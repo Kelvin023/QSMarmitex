@@ -190,4 +190,25 @@ public class UserDao {
         }                   
         return codigo;
     }
+    
+    public int pegaCdPerfilUsuarioCpfLogado(String cpfLogado){
+        int codigo = 0;
+        try {
+            String SQL = "SELECT cd_perfilUsuario FROM tb_usuario WHERE cpf = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, cpfLogado);            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                codigo = rs.getInt("cd_perfilUsuario");                
+                System.out.println("USUARIO EXISTE!!! Segue o codigo do Perfil do usuario logado: " + codigo);
+            }else{
+                System.out.println("USUARIO NAO EXISTE! FAZER CADASTRO!");
+            }            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL", e);            
+        }                   
+        return codigo;
+    }
 }

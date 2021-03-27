@@ -52,7 +52,9 @@
             type="text" name="senha" autocomplete="off"
             value="<c:out value="${user.senha}" />"/><br/> 
         <input type="text" name="cd_perfilUsuario" hidden="true"
-               value="<%=request.getAttribute("cdPerfilUsuario")%>"/><br><br>
+               value="<%=request.getAttribute("cdPerfilUsuario")%>"/>
+        <input type="text" name="cpfLogado" hidden="true"
+               value="<%=request.getAttribute("cpfLogado")%>"/><br><br>
         <input type="submit" value="Submit" />
     </form>              
 

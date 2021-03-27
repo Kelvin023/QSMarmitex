@@ -32,7 +32,11 @@
                         <c:when test="${user.cd_perfilUsuario == 1}">
                             <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>ADM</td>
-                        </c:when>              
+                        </c:when>    
+                        <c:when test="${user.cd_perfilUsuario == 4}">
+                            <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
+                            <td>ENTREGADOR</td>
+                        </c:when>    
                         <c:otherwise>
                             <!--<td>CLIENTE - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>CLIENTE</td>
@@ -45,21 +49,15 @@
                     <td><c:out value="${user.email}" /></td>
                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${user.dt_nascimento}" /></td>                    
                     <!--<td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>">Update</a></td>-->
-                             
-                <c:if test="${user.cd_perfilUsuario == 1}">                
-                    <td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=1">Update</a></td>
-                </c:if>              
-                <c:if test="${user.cd_perfilUsuario == 3}">                    
-                    <td><a style="pointer-events: none; color: gray" href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=3">Update</a></td>
-                </c:if>               
+                    <td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=<c:out value="${user.cd_perfilUsuario}"/>">Update</a></td>
                     
                     <td><a href="UserController?action=delete&cpf=<c:out value="${user.cpf}"/>">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="UserController?action=insert&cd_perfilUsuario=1">Add Novo ADM</a></p>
-    <br>
+    <p><a href="UserController?action=insert&cd_perfilUsuario=1&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo ADM</a></p>
+    <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Entregador</a></p>
     <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
     <br><br><br><br><br><br>    
     <c:import url="includes/rodape.jsp"/>
