@@ -71,14 +71,14 @@ public class MarmitaController extends HttpServlet {
         //mostrar mensagem de sucesso
 
        
-        marmita.incluirMarmita(/*request.getParameter("foto"),*/
+        /*marmita.incluirMarmita(request.getParameter("foto"),
                                request.getParameter("nomeMarmita"),
                                request.getParameter("grpoMarmita"), 
                                request.getParameter("ingredientes"), 
                                request.getParameter("preco"));
         //int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
 
-        mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";
+        /*mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";*/
         request.setAttribute("mensagemSucesso", mensagemSucesso);
        // request.getDispatcherType("jsp/addmarmita.jsp").FORWARD(request,response);
         
