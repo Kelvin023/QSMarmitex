@@ -67,6 +67,13 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("cpf", checkLogin.getCpf()); 
                     request.getRequestDispatcher("/telaEntregador.jsp").forward(request, response);
                     break;
+                    
+                case 5:
+                    System.out.println("Cozinheiro");
+                    request.setAttribute("email", email);        
+                    request.setAttribute("cpf", checkLogin.getCpf()); 
+                    request.getRequestDispatcher("/telaCozinheiro.jsp").forward(request, response);
+                    break;
             }
             /*request.setAttribute("email", email);        
             request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);*/

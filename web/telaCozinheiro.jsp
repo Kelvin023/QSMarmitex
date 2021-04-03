@@ -5,14 +5,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tela ENTREGADOR</title>
+        <title>Tela Cozinha</title>
         <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Tela ENTREGADOR</h1>
+        <h1>Tela Cozinheiro - Produção</h1>
         <h3>
-            Bem vindo à tela de ENTREGADOR! <br>            
+            Bem vindo à tela de Cozinheiro! <br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
                     Usuário logado: ${users.email}<br>
@@ -23,11 +23,11 @@
             </c:choose>
             
             
-            CPF do ENTREGADOR logado: <%=request.getAttribute("cpf") %>
-        </h3>
-                       
-        <a href="PedidoController?action=listallPedidosEntrega&cpf=<%=(String)request.getAttribute("cpf")%>">LISTA DE ENTREGAS A SEREM CUMPRIDAS</a>
-        <br>
+            CPF do Cozinheiro logado: <%=request.getAttribute("cpf") %>
+        </h3>              
+        <a href="PedidoController?action=listallPedidosProducao&cpf=<%=(String)request.getAttribute("cpf")%>">PEDIDOS</a>
+        <br>       
+        
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>

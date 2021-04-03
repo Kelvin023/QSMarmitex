@@ -64,12 +64,23 @@ public class UserController extends HttpServlet {
         }
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/ 
             System.out.println("Estou na voltar do UserController");                                
-                System.out.println("Quero voltar com o perfil de ADM, logo devo voltar pra coisas do ADM");
+                //System.out.println("Quero voltar com o perfil de ADM, logo devo voltar pra coisas do ADM");
                 String cpf = request.getParameter("cpf");
                 System.out.println("CPF vindo da tela anterior: " + cpf);
                 request.setAttribute("cpf", cpf);
-                request.setAttribute("users", dao.getUserById(cpf));
-                request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);                    
+                int cdPerfilUsuarioLogado = dao.pegaCdPerfilUsuarioCpfLogado(cpf);
+                if (cdPerfilUsuarioLogado == 1) {
+                    request.setAttribute("users", dao.getUserById(cpf));
+                    request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);                    
+                }    
+                if (cdPerfilUsuarioLogado == 4) {
+                    request.setAttribute("users", dao.getUserById(cpf));
+                    request.getRequestDispatcher("/telaEntregador.jsp").forward(request, response);                    
+                } 
+                if (cdPerfilUsuarioLogado == 5) {
+                    request.setAttribute("users", dao.getUserById(cpf));
+                    request.getRequestDispatcher("/telaCozinheiro.jsp").forward(request, response);                    
+                }                
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);

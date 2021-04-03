@@ -44,6 +44,34 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
         }
+        else if (action.equalsIgnoreCase("listallPedidosProducao")){//PEDIDOS PARA O COZINHEIRO PRODUZIR            
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("pedidos", dao.getAllPedidosProd());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/telaPedidosCozinheiro.jsp").forward(request, response);
+        }
+        else if (action.equalsIgnoreCase("atualizaPedidosProd")){//ATUALIZA OS PEDIDOS QUE FORAM PRODUZIDOS          
+            String cpf = request.getParameter("cpf");
+            String cd_numeroPedido = request.getParameter("cd_numeroPedido");            
+            dao.updateSttsPedidoProd(cd_numeroPedido);
+            request.setAttribute("pedidos", dao.getAllPedidosProd());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/telaPedidosCozinheiro.jsp").forward(request, response);
+        }
+        else if (action.equalsIgnoreCase("listallPedidosEntrega")){//PEDIDOS PARA O ENTREGADOR FAZER O DELIVERY            
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("pedidos", dao.getAllPedidosEntrega());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/telaPedidosEntregador.jsp").forward(request, response);
+        }
+        else if (action.equalsIgnoreCase("atualizaPedidosEntrega")){//ATUALIZA OS PEDIDOS QUE FORAM ENTREGUES          
+            String cpf = request.getParameter("cpf");
+            String cd_numeroPedido = request.getParameter("cd_numeroPedido");            
+            dao.updateSttsPedidoEntrega(cd_numeroPedido);
+            request.setAttribute("pedidos", dao.getAllPedidosEntrega());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/telaPedidosEntregador.jsp").forward(request, response);
+        }
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/             
             String cpf = request.getParameter("cpf");
             System.out.println("CPF que veio la do botao de voltar do listar pedidos: " + cpf);
@@ -62,6 +90,7 @@ public class PedidoController extends HttpServlet {
         String email = request.getParameter("email");
         Float preco = Float.parseFloat(request.getParameter("preco"));        
         String cpf = request.getParameter("cpf");
+        String frmpgmt = request.getParameter("frmpgmt");
         
         pedido.setCpf(cpf);
         pedido.setQtd_marmita(quantidade);
@@ -72,6 +101,7 @@ public class PedidoController extends HttpServlet {
         System.out.println("Email: " + email);
         System.out.println("Preço: " + preco);
         System.out.println("CPF: " + cpf);
+        System.out.println("Forma de pagamento: " + frmpgmt);
         
         response.getWriter().println("Quantidade selecionada: " + quantidade);
         response.getWriter().println("Tamanho selecionado: " + tamanho);

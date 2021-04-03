@@ -102,6 +102,10 @@
                 </tbody>
             </table>
             <br>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
+            <label for="male">Dinheiro</label>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
+            <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="pequeno" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
@@ -137,6 +141,10 @@
                 </tbody>
             </table>
             <br>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
+            <label for="male">Dinheiro</label>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
+            <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="medio" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
@@ -172,6 +180,10 @@
                 </tbody>
             </table>
             <br>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
+            <label for="male">Dinheiro</label>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
+            <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="grande" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
@@ -208,6 +220,10 @@
                 </tbody>
             </table>
             <br>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
+            <label for="male">Dinheiro</label>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
+            <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="pequeno" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
@@ -245,6 +261,10 @@
                 </tbody>
             </table>
             <br>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
+            <label for="male">Dinheiro</label>
+            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
+            <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="medio" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            

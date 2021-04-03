@@ -89,7 +89,91 @@ public class PedidoDao {
         }   
         return listaDePedidos;
     }
-    //FAZER MÉTODO PARA CAPTURAR A MARMITA MAIS VENDIDA
+    //FAZER MÉTODO PARA CAPTURAR A MARMITA MAIS VENDIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    //ATUALIZA O STATUS DO PEDIDO DA TELA DO COZINHEIRO
+    public void updateSttsPedidoProd(String cd_numeroPedido) {
+        System.out.println("Entrei na updateSttsPedidoProd!!");
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update tb_pedido set st_pedido = 1 where cd_numeroPedido = ?");            
+            preparedStatement.setString(1, cd_numeroPedido);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Status do pedido atualizado com sucesso!");            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar usuário!");
+        }
+    }
+    
+    //ATUALIZA O STATUS DO PEDIDO DA TELA DO ENTREGADOR
+    public void updateSttsPedidoEntrega(String cd_numeroPedido) {
+        System.out.println("Entrei na updateSttsPedidoEntrega!!");
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update tb_pedido set st_pedido = 2 where cd_numeroPedido = ?");            
+            preparedStatement.setString(1, cd_numeroPedido);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Status do pedido atualizado com sucesso!");            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar usuário!");
+        }
+    }
+    
+    //LISTA TODOS OS PEDIDOS EM PRODUÇÃO, PARA QUE O COZINHEIRO POSSA FAZER ESSAS MARMITAS 
+    public List<Pedido> getAllPedidosProd() {
+        System.out.println("Entrei na getAllPedidosProd!!");
+        List<Pedido> listaPedidosProd = new ArrayList<Pedido>();
+        try {
+            String SQL = "select * from tb_pedido where st_pedido = 0";
+            PreparedStatement ps = connection.prepareStatement(SQL);                        
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                listaPedidosProd.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaPedidosProd;
+    }
+    
+    //LISTA TODOS OS PEDIDOS EM TRANSPORTE, PARA QUE O ENTREGADOR POSSA FAZER OS DELIVERYS
+    public List<Pedido> getAllPedidosEntrega() {
+        System.out.println("Entrei na getAllPedidosEntrega!!");
+        List<Pedido> listaPedidosEntrega = new ArrayList<Pedido>();
+        try {
+            String SQL = "select * from tb_pedido where st_pedido = 1";
+            PreparedStatement ps = connection.prepareStatement(SQL);                        
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                listaPedidosEntrega.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaPedidosEntrega;
+    }
     
     
     
