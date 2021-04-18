@@ -71,7 +71,7 @@ public class MarmitaController extends HttpServlet {
         //mostrar mensagem de sucesso
 
        
-        /*marmita.incluirMarmita(request.getParameter("foto"),
+        /*marmita.addMarmita(/*request.getParameter("foto"),
                                request.getParameter("nomeMarmita"),
                                request.getParameter("grpoMarmita"), 
                                request.getParameter("ingredientes"), 
