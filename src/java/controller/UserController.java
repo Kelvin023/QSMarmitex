@@ -121,6 +121,16 @@ public class UserController extends HttpServlet {
         } 
         
         //--->capturar qual o cdperfilusuario com base no cpf, pra saber em qual tela deverá continuar: Cliente ou ADM        
+        if(cpfLogado.equals("null") || cpfLogado.isEmpty()){                
+            System.out.println("Valor do CPF inicializado na tela de cadastro: " + request.getParameter("cpf")); 
+            cpfLogado = request.getParameter("cpf");
+            System.out.println("Novo valor do CPF que era null -> " + cpfLogado);
+        }
+        else{
+            System.out.println("O SISTEMA NAO RECONHECE cpfLogado como null");
+            System.out.println("Valor do cpfLogado eh "+cpfLogado+", mas mesmo assim nao consigo fazer ele cair no if do null");
+        }                    
+        
         System.out.println("cdPerfilUsuario vindo do POST = " + cdPerfilUsuario);
         System.out.println("CPF do usuario logado = " + cpfLogado);
         int cdPerfilUsuarioLogado = dao.pegaCdPerfilUsuarioCpfLogado(cpfLogado);

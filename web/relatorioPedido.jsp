@@ -56,6 +56,7 @@
                 <th>CODIGO DO PEDIDO</th>
                 <th>CPF</th>
                 <th>QTD DE MARMITA</th>                
+                <th>MARMITA SOLICITADA</th>                
                 <th>VALOR DO PEDIDO</th>
                 <th>DATA DE REALIZAÇÃO DO PEDIDO</th>  
                 <th>STATUS DO PEDIDO</th>                            
@@ -67,7 +68,24 @@
                     <td><c:out value="${pedidos.cd_numeroPedido}" /></td>
                     <td><c:out value="${pedidos.cpf}" /></td>                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
-                    <td><c:out value="${pedidos.valorPedido}" /></td> 
+                    <c:choose>
+                        <c:when test="${pedidos.cd_marmita == 1}">                
+                            <td>SALADA AMERICANA PEQUENA</td> 
+                        </c:when>              
+                        <c:when test="${pedidos.cd_marmita == 2}">                
+                            <td>SALADA AMERICANA MÉDIA</td> 
+                        </c:when>
+                        <c:when test="${pedidos.cd_marmita == 3}">                
+                            <td>ESCONDIDINHO FITNESS PEQUENO</td>
+                        </c:when>
+                        <c:when test="${pedidos.cd_marmita == 4}">                
+                            <td>ESCONDIDINHO FITNESS MÉDIO</td>
+                        </c:when>
+                        <c:otherwise>                
+                            <td>ESCONDIDINHO FITNESS GRANDE</td>
+                        </c:otherwise>
+                    </c:choose>
+                    <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedidos.valorPedido * pedidos.qtd_marmita}"/></td>                            
                     <!--<td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>-->
                     <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                     
                     <c:choose>

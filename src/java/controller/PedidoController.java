@@ -87,6 +87,7 @@ public class PedidoController extends HttpServlet {
         Pedido pedido = new Pedido();
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));                      
         String tamanho = request.getParameter("tamanho");
+        String cd_marmita = request.getParameter("cd_marmita");
         String email = request.getParameter("email");
         Float preco = Float.parseFloat(request.getParameter("preco"));        
         String cpf = request.getParameter("cpf");
@@ -98,32 +99,36 @@ public class PedidoController extends HttpServlet {
         
         System.out.println("Quantidade: " + quantidade);
         System.out.println("Tamanho: " + tamanho);
+        System.out.println("Tamanho: " + cd_marmita);
         System.out.println("Email: " + email);
         System.out.println("Preço: " + preco);
         System.out.println("CPF: " + cpf);
-        System.out.println("Forma de pagamento: " + frmpgmt);
-        
-        response.getWriter().println("Quantidade selecionada: " + quantidade);
-        response.getWriter().println("Tamanho selecionado: " + tamanho);
-        response.getWriter().println("E-mail do cliente solicitante: " + email);
-        response.getWriter().println("Preço da única marmita disponível até o momento: " + preco);
-        response.getWriter().println("CPF  do cliente: " + cpf);
+        System.out.println("Forma de pagamento: " + frmpgmt);        
         
         //VERIFICANDO SE O USUARIO QUE ESTÁ EFETUANDO O PEDIDO, POSSUI CARTAO PARA PAGAR E CONCLUIR O PEDIDO
-        List<Cartao> cartoes = cdao.getCartaoByCpf(cpf);
-        if (cartoes.isEmpty()){
-            request.setAttribute("cpf", cpf);        
-            request.setAttribute("users", udao.getUserById(cpf));
-            request.setAttribute("naoTemCartao", "Usuario em questão não possui cartao cadastrado!\nFavor cadastrar cartao para efetuar um pedido!");
-            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
-        }
-        else{
+        if (frmpgmt.equalsIgnoreCase("Dinheiro")){
             dao.addPedido(pedido);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
-            request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
-            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
+            request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador estará munido de troco!");
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
+        else{
+            List<Cartao> cartoes = cdao.getCartaoByCpf(cpf);
+            if (cartoes.isEmpty()){
+                request.setAttribute("cpf", cpf);        
+                request.setAttribute("users", udao.getUserById(cpf));
+                request.setAttribute("naoTemCartao", "Usuario em questão não possui cartao cadastrado!\nFavor cadastrar cartao para efetuar um pedido!");
+                request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
+            }
+            else{
+                dao.addPedido(pedido);
+                request.setAttribute("cpf", cpf);        
+                request.setAttribute("users", udao.getUserById(cpf));
+                request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
+                request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
+            }
+        }    
         
         /*
         dao.addPedido(pedido);

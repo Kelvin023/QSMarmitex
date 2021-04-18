@@ -108,6 +108,7 @@
             <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
             <input type="text" name="tamanho" value="pequeno" hidden><br>            
+            <input type="text" name="cd_marmita" value="3" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
@@ -146,7 +147,8 @@
             <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
             <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="medio" hidden><br>            
+            <input type="text" name="tamanho" value="medio" hidden><br>   
+            <input type="text" name="cd_marmita" value="4" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
@@ -170,7 +172,7 @@
         <form method="POST" action='PedidoController'>
             <table border="1">
                 <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
+                    <th colspan="2">ESCONDIDINHO FITNESS GRANDE</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -185,7 +187,8 @@
             <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
             <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="grande" hidden><br>            
+            <input type="text" name="tamanho" value="grande" hidden><br>    
+            <input type="text" name="cd_marmita" value="5" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
@@ -225,7 +228,8 @@
             <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
             <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="pequeno" hidden><br>            
+            <input type="text" name="tamanho" value="pequeno" hidden><br>  
+            <input type="text" name="cd_marmita" value="1" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
@@ -251,7 +255,7 @@
         <form method="POST" action='PedidoController'>
             <table border="1">
                 <thead>
-                    <th colspan="2">SALADA AMERICANA PEQUENA</th>
+                    <th colspan="2">SALADA AMERICANA MÉDIA</th>
                 </thead>
                 <tbody>
                     <tr>
@@ -266,7 +270,8 @@
             <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
             <label for="female">Cartão</label><br>
             <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="medio" hidden><br>            
+            <input type="text" name="tamanho" value="medio" hidden><br>    
+            <input type="text" name="cd_marmita" value="2" hidden><br>            
             <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                

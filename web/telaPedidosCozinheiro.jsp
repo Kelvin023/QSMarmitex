@@ -39,6 +39,7 @@
                 <th>QTD DE MARMITA</th>                
                 <th>VALOR DO PEDIDO</th>
                 <th>DATA DE REALIZAÇÃO DO PEDIDO</th>  
+                <th>MARMITA A SER PRODUZIDA</th>  
                 <th>STATUS DO PEDIDO</th>
                 <th>ACTION</th>
             </tr>
@@ -49,9 +50,25 @@
                     <td><c:out value="${pedidos.cd_numeroPedido}" /></td>
                     <td><c:out value="${pedidos.cpf}" /></td>                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
-                    <td><c:out value="${pedidos.valorPedido}" /></td> 
-                    <!--<td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedidos.dt_pedido}"/></td>-->
+                    <td><c:out value="${pedidos.valorPedido}" /></td>                     
                     <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                                                                
+                    <c:choose>
+                        <c:when test="${pedidos.cd_marmita == 1}">                
+                            <td>SALADA AMERICANA PEQUENA</td> 
+                        </c:when>              
+                        <c:when test="${pedidos.cd_marmita == 2}">                
+                            <td>SALADA AMERICANA MÉDIA</td> 
+                        </c:when>
+                        <c:when test="${pedidos.cd_marmita == 3}">                
+                            <td>ESCONDIDINHO FITNESS PEQUENO</td>
+                        </c:when>
+                        <c:when test="${pedidos.cd_marmita == 4}">                
+                            <td>ESCONDIDINHO FITNESS MÉDIO</td>
+                        </c:when>
+                        <c:otherwise>                
+                            <td>ESCONDIDINHO FITNESS GRANDE</td>
+                        </c:otherwise>
+                    </c:choose>
                     <td>EM PRODUÇÃO</td>      
                     <td><a href="PedidoController?action=atualizaPedidosProd&cpf=<%=request.getAttribute("cpf")%>&cd_numeroPedido=<c:out value="${pedidos.cd_numeroPedido}"/>">OK</a></td>
                 </tr>

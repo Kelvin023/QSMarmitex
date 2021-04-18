@@ -24,7 +24,7 @@
                     <thead>
                         <tr>
                             <th>NUMERO DO PEDIDO</th>
-                            <th>CPF</th>
+                            <th>MARMITA SOLICITADA</th>
                             <th>QUANTIDADE</th>
                             <th>VALOR TOTAL DO PEDIDO</th>
                             <th>DATA QUE O PEDIDO FOI EFETUADO</th>                            
@@ -35,10 +35,26 @@
                         <c:forEach items="${pedidos}" var="pedido">
                         <tr>                                                            
                             <td style="text-transform: uppercase;"><c:out value="${pedido.cd_numeroPedido}" /></td>                    
-                            <td><c:out value="<%=(String)request.getAttribute("cpf")%>" /></td>                   
+                            <c:choose>
+                                <c:when test="${pedido.cd_marmita == 1}">                
+                                    <td>SALADA AMERICANA PEQUENA</td> 
+                                </c:when>              
+                                <c:when test="${pedido.cd_marmita == 2}">                
+                                    <td>SALADA AMERICANA MÉDIA</td> 
+                                </c:when>
+                                <c:when test="${pedido.cd_marmita == 3}">                
+                                    <td>ESCONDIDINHO FITNESS PEQUENO</td>
+                                </c:when>
+                                <c:when test="${pedido.cd_marmita == 4}">                
+                                    <td>ESCONDIDINHO FITNESS MÉDIO</td>
+                                </c:when>
+                                <c:otherwise>                
+                                    <td>ESCONDIDINHO FITNESS GRANDE</td>
+                                </c:otherwise>
+                            </c:choose>
                             <td><c:out value="${pedido.qtd_marmita}" /></td>
-                            <td><c:out value="${pedido.valorPedido}" /></td>                                                                            
-                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>                            
+                            <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedido.valorPedido * pedido.qtd_marmita}"/></td>                                                                                                        
+                            <td>R$<fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>                            
                             
                             <c:choose>
                                 <c:when test="${pedido.st_pedido == 0}">                                    

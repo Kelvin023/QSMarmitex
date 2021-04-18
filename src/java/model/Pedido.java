@@ -8,6 +8,7 @@ public class Pedido {
     private Float valorPedido;
     private Date dt_pedido;
     private int st_pedido;   
+    private int cd_marmita;
 
     public int getCd_numeroPedido() {
         return cd_numeroPedido;
@@ -55,5 +56,14 @@ public class Pedido {
 
     public void setDt_pedido(Date dt_pedido) {
         this.dt_pedido = dt_pedido;
-    }        
+    }       
+
+    public int getCd_marmita() {
+        return cd_marmita;
+    }
+
+    public void setCd_marmita(int cd_marmita) {
+        this.cd_marmita = cd_marmita;
+    }
+    
 }

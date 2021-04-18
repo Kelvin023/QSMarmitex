@@ -23,8 +23,8 @@ public class PedidoDao {
         System.out.println("Entrei na addPedido!!");
         System.out.println("CPF utilizado como FK para identificar quem está realizando o pedido: "+pedido.getCpf());
         try {
-            String SQL = "INSERT INTO tb_pedido(cpf,qtd_marmita,valorPedido) VALUES"
-                    + "(?, ?, ?)";
+            String SQL = "INSERT INTO tb_pedido(cpf,qtd_marmita,valorPedido, st_pedido) VALUES"
+                    + "(?, ?, ?, 0)";
             try (PreparedStatement ps = connection.prepareStatement(SQL)) {
                 ps.setString(1, pedido.getCpf());                
                 ps.setInt(2, pedido.getQtd_marmita());
@@ -40,7 +40,7 @@ public class PedidoDao {
         }
     }
     
-    //FAZER FUNCAO DE LISTAR PEDIDOS PRA O CLIENTE PODER VER QUAIS OS PEDIDOS DELE
+    //FUNCAO DE LISTAR PEDIDOS PRA O CLIENTE PODER VER QUAIS OS PEDIDOS DELE
     public List<Pedido> getPedidoByCpf(String cpf) {
         System.out.println("Entrei na getPedidoByCpf com o CPF: " + cpf);
         List<Pedido> listaDePedidos = new ArrayList<Pedido>();
@@ -55,7 +55,8 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
-                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                pedido.setSt_pedido(rs.getInt("st_pedido")); 
+                pedido.setCd_marmita(rs.getInt("cd_marmita")); 
                 listaDePedidos.add(pedido);
             }
             
@@ -80,7 +81,8 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
-                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                pedido.setSt_pedido(rs.getInt("st_pedido")); 
+                pedido.setCd_marmita(rs.getInt("cd_marmita"));
                 listaDePedidos.add(pedido);
             }
             
@@ -140,7 +142,8 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
-                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                pedido.setSt_pedido(rs.getInt("st_pedido"));  
+                pedido.setCd_marmita(rs.getInt("cd_marmita"));
                 listaPedidosProd.add(pedido);
             }
             
@@ -165,7 +168,8 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
-                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                pedido.setSt_pedido(rs.getInt("st_pedido"));  
+                pedido.setCd_marmita(rs.getInt("cd_marmita"));
                 listaPedidosEntrega.add(pedido);
             }
             
