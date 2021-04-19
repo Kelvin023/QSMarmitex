@@ -5,22 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login QS Marmitex</title>                
-        <style>
-            #erro{
-                background-color: lightsalmon;
-                color: darkred;
-                border:solid thick darkred; 
-                border-radius: 1em; 
-                border-width:3px; 
-                padding-left:9px; 
-                padding-top:6px; 
-                padding-bottom:6px; 
-                margin:2px; 
-                width:300px;
-            }            
-        </style>
+        <title>QS Marmitex - Login</title>                
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
@@ -35,20 +23,25 @@
                 <h2 hidden="true" style="color: red"><%=request.getAttribute("loginError")%></h2>
             </c:otherwise>
         </c:choose>                 
-        
-        <div style="margin-left: 40%;">
-            <img src="img/welcome.jpg">            
-            <h1 style="font-family: monospace; text-shadow: 1px 1px 3px black;">LOGIN</h1>
+        <!--<img src="img/welcome.jpg">--> 
+        <div id="login-container">
+                     
+            <h1>Login</h1>
             <form method="POST" action='logincontrol'>
-                E-mail:
-                <input type="text" name="email" required="true" autocomplete="on">
-                <br><br>
-                Senha: 
-                <input type="password" name="senha" required="true">
-                <br><br>
-                <!--<input type="submit" value="Cadastrar">-->
-                <input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">
-                <input type="submit" value="Logar">
+                
+                <label for="email">E-mail</label>
+                <input type="text" name="email" required="true" autocomplete="on" placeholder="Digite seu e-mail" id="email">
+                
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" required="true" placeholder="Digite a sua senha" id="senha"> 
+                <a href="" id="forgot-pass">Esqueceu a senha?</a>
+                <input type="submit" value="Login">
+                
+                <div id="registrar-container"> 
+                    <p>Ainda não tem uma conta?</p>
+                    <!--<input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">-->
+                    <a href="user.jsp">Registrar</a>
+                </div>
             </form>
         </div>
         

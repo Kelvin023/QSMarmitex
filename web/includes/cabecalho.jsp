@@ -3,10 +3,9 @@
         background-color: black;        
     }
     #intro{
-        font-family: initial;
         color: white;
         text-shadow:  1px 1px 1px black;  
-        margin-left: 30%;
+        text-align: center;
     }
 </style>
 

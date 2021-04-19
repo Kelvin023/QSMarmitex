@@ -2,17 +2,20 @@
     #rodape{
         background-color: black;
         color: white;
+        bottom: 0;
+        position: relative;
+        width:100%;
     }
     
     li{
-        font-family: sans-serif;
         font-size: 20px;
         margin-top: 10px;
         text-shadow: 0px 1px 1px white;
+        
     }
     
     h3{
-        margin-left: 40%;
+        text-align: center;
     }
 </style>
 
