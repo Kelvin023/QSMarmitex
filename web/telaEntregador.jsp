@@ -28,6 +28,15 @@
                        
         <a href="PedidoController?action=listallPedidosEntrega&cpf=<%=(String)request.getAttribute("cpf")%>">LISTA DE ENTREGAS A SEREM CUMPRIDAS</a>
         <br>
+        <c:choose>           
+            <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
+                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=4">Editar</a>
+            </c:when>                          
+            <c:otherwise> <!--Veio direto do login-->                               
+                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=4">Editar</a>
+            </c:otherwise>
+        </c:choose>
+        <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>

@@ -14,10 +14,10 @@
         <h3>
             Bem vindo à tela de Cozinheiro! <br>            
             <c:choose>
-                <c:when test="${not empty users.email}">                
+                <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->                
                     Usuário logado: ${users.email}<br>
                 </c:when>              
-                <c:otherwise>                
+                <c:otherwise>  <!--Veio direto do login-->              
                     Usuário logado: <%=request.getAttribute("email") %><br>
                 </c:otherwise>
             </c:choose>
@@ -27,7 +27,15 @@
         </h3>              
         <a href="PedidoController?action=listallPedidosProducao&cpf=<%=(String)request.getAttribute("cpf")%>">PEDIDOS</a>
         <br>       
-        
+        <c:choose>           
+            <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
+                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=5">Editar</a>
+            </c:when>                          
+            <c:otherwise> <!--Veio direto do login-->                               
+                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=5">Editar</a>
+            </c:otherwise>
+        </c:choose>
+        <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>

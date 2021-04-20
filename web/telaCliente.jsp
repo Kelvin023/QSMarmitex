@@ -25,19 +25,19 @@
         <c:import url="includes/cabecalho.jsp"/>                
         Bem vindo à tela de CLIENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>!                       
         <c:choose>
-            <c:when test="${not empty users.email}">                
+            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->               
                 <p style="color: blue; font-family: monospace; font-size: 20px;">E-mail logado: ${users.email}</p>
             </c:when>              
-            <c:otherwise>                
+            <c:otherwise> <!--Veio direto do login-->               
                 <p style="color: green; font-family: monospace; font-size: 20px;">E-mail logado: <%=request.getAttribute("email")%></p>
             </c:otherwise>
         </c:choose>                                                                               
         
         <c:choose>
-            <c:when test="${not empty users.cpf}">                
+            <c:when test="${not empty users.cpf}">  <!--Veio da tela do UPDATE-->              
                 <p style="color: blue; font-family: monospace; font-size: 20px;">CPF logado: ${users.cpf}</p>
             </c:when>              
-            <c:otherwise>                
+            <c:otherwise> <!--Veio direto do login-->               
                 <p style="color: green; font-family: monospace; font-size: 20px;">CPF logado: <%=request.getAttribute("cpf")%></p>
             </c:otherwise>
         </c:choose>                 
@@ -56,29 +56,29 @@
         </c:if>
 
         <c:choose>           
-            <c:when test="${not empty users.email}">
+            <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
                 <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Editar</a>
             </c:when>                          
-            <c:otherwise>                                
+            <c:otherwise> <!--Veio direto do login-->                               
                 <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Editar</a>
             </c:otherwise>
         </c:choose>
         <br>        
        
         <c:choose>            
-            <c:when test="${not empty users.email}">    
+            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
                 <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
             </c:when>                          
-            <c:otherwise>  
+            <c:otherwise>  <!--Veio direto do login--> 
                 <a style="color: green" href="CartaoController?action=listCartao&cpf=<%=(String)request.getAttribute("cpf")%>">Cartões</a>                
             </c:otherwise>
         </c:choose>                       
         <br>
         <c:choose>            
-            <c:when test="${not empty users.email}">    
+            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
                 <a style="color: red" href="PedidoController?action=listPedido&cpf=<c:out value="${users.cpf}"/>">Pedidos</a>                
             </c:when>                          
-            <c:otherwise>  
+            <c:otherwise>  <!--Veio direto do login--> 
                 <a style="color: green" href="PedidoController?action=listPedido&cpf=<%=(String)request.getAttribute("cpf")%>">Pedidos</a>                
             </c:otherwise>
         </c:choose>
