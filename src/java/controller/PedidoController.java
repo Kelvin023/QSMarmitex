@@ -121,12 +121,14 @@ public class PedidoController extends HttpServlet {
                 request.setAttribute("naoTemCartao", "Usuario em questão não possui cartao cadastrado!\nFavor cadastrar cartao para efetuar um pedido!");
                 request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
             }
-            else{
+            else{//DAQUI, DEVERÁ IR À TELA DE PAGAMENTO
                 dao.addPedido(pedido);
                 request.setAttribute("cpf", cpf);        
                 request.setAttribute("users", udao.getUserById(cpf));
+                request.setAttribute("cartaouser", cdao.getCartaoByCpf(cpf));
                 request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
-                request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
+                request.getRequestDispatcher("/telaPagamento.jsp").forward(request, response); 
+                //request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
             }
         }    
         
