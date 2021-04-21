@@ -9,6 +9,8 @@ public class Pedido {
     private Date dt_pedido;
     private int st_pedido;   
     private int cd_marmita;
+    private String nomeUsuario;
+    private String endereco;
 
     public int getCd_numeroPedido() {
         return cd_numeroPedido;
@@ -65,5 +67,22 @@ public class Pedido {
     public void setCd_marmita(int cd_marmita) {
         this.cd_marmita = cd_marmita;
     }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     
 }
