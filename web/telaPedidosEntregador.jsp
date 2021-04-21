@@ -36,10 +36,12 @@
             <tr>
                 <th>CODIGO DO PEDIDO</th>
                 <th>CPF SOLICITANTE</th>
+                <th>NOME SOLICITANTE</th>
+                <th>ENDEREÇO DE ENTREGA</th>
+                <th>MARMITA A SER ENTREGUE</th>  
                 <th>QTD DE MARMITA</th>                
                 <th>VALOR DO PEDIDO</th>
-                <th>DATA DE REALIZAÇÃO DO PEDIDO</th>  
-                <th>MARMITA A SER ENTREGUE</th>  
+                <th>DATA DE REALIZAÇÃO DO PEDIDO</th>                  
                 <th>STATUS DO PEDIDO</th>
                 <th>ACTION</th>
             </tr>
@@ -49,9 +51,8 @@
                 <tr>                                                            
                     <td><c:out value="${pedidos.cd_numeroPedido}" /></td>
                     <td><c:out value="${pedidos.cpf}" /></td>                    
-                    <td><c:out value="${pedidos.qtd_marmita}" /></td>
-                    <td><c:out value="${pedidos.valorPedido}" /></td>                     
-                    <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                                                                
+                    <td><c:out value="${pedidos.nomeUsuario}" /></td>                    
+                    <td><c:out value="${pedidos.endereco}" /></td>   
                     <c:choose>
                         <c:when test="${pedidos.cd_marmita == 1}">                
                             <td>SALADA AMERICANA PEQUENA</td> 
@@ -69,6 +70,9 @@
                             <td>ESCONDIDINHO FITNESS GRANDE</td>
                         </c:otherwise>
                     </c:choose>
+                    <td><c:out value="${pedidos.qtd_marmita}" /></td>
+                    <td><c:out value="${pedidos.valorPedido}" /></td>                     
+                    <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                                                                                    
                     <td>EM TRANSPORTE</td>      
                     <td><a href="PedidoController?action=atualizaPedidosEntrega&cpf=<%=request.getAttribute("cpf")%>&cd_numeroPedido=<c:out value="${pedidos.cd_numeroPedido}"/>">OK</a></td>
                 </tr>
