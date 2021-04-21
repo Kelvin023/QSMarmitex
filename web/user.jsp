@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
 
             $(function () {
                 
@@ -61,7 +61,7 @@
                     })
                     
 
-            </script> 
+            </script> -->
     <title>QS Marmitex - Cadastro</title>
     <link rel="shortcut icon" href="img/icone.png">
     <link rel="stylesheet" href="css/estilo.css">
