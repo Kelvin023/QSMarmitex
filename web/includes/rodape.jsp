@@ -3,7 +3,7 @@
         background-color: black;
         color: white;
         bottom: 0;
-        position: relative;
+        position: fixed;
         width:100%;
     }
     

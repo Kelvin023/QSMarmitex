@@ -13,7 +13,8 @@
 <link rel="shortcut icon" href="img/icone.png">
 </head>
 <body>
-    <c:import url="includes/cabecalho.jsp"/>
+    <c:import url="includes/cabecalho.jsp"/>  
+    <c:import url="includes/rodape.jsp"/>  
     <script>
         $(function() {
             $('input[name=dtValCartao]').datepicker();
@@ -50,6 +51,6 @@
         <input type="submit" value="Submit" />
     </form>
     <br><br><br><br><br><br>    
-    <c:import url="includes/rodape.jsp"/>        
+          
 </body>
 </html>

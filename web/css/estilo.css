@@ -10,6 +10,10 @@
     border: none;
 }
 
+html, body {
+    height: 100%;    
+}
+
 body {
     background-image: url(../imagens/background-login.jpg);
     background-size: cover; 
@@ -28,9 +32,10 @@ a:hover {
     color: #08558B;
 }
 
-/*container Login*/
+/*container*/
 
 #login-container {
+    
     background-color: #FFF;
     width: 400px;
     margin-left: auto;
@@ -48,11 +53,15 @@ form{
     margin-bottom: 40px;
 }
 
+
+
 label, input{
     display: block;
     width: 100%;
     text-align: left;
+    
 }
+
 
 label{
     font-weight: bold;  
@@ -86,6 +95,7 @@ input[type="submit"]{
     color: #FFF;
     background-color: #B22222;
     cursor: pointer;
+    
 }
 
 input[type="submit"]:hover {

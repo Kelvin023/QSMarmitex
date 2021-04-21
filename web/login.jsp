@@ -12,6 +12,7 @@
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
+        <c:import url="includes/rodape.jsp"/>   
        
         <c:choose>
             <c:when test="${not empty loginError}">
@@ -28,12 +29,13 @@
                      
             <h1>Login</h1>
             <form method="POST" action='logincontrol'>
-                
+               
                 <label for="email">E-mail</label>
                 <input type="text" name="email" required="true" autocomplete="on" placeholder="Digite seu e-mail" id="email">
-                
+
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" required="true" placeholder="Digite a sua senha" id="senha"> 
+                
                 <a href="" id="forgot-pass">Esqueceu a senha?</a>
                 <input type="submit" value="Login">
                 
@@ -43,9 +45,11 @@
                     <a href="user.jsp">Registrar</a>
                 </div>
             </form>
+            
+            
         </div>
         
-        <br><br><br><br><br><br>    
-        <c:import url="includes/rodape.jsp"/>
+         
+        
     </body>
 </html>

@@ -1,36 +1,118 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 29/10/2020, 11:24:24
-    Author     : Ju
-*/
-body{
-    margin:0;
+
+/*geral*/
+
+* {
+    margin: 0;
     padding: 0;
-    background: antiquewhite;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color: #323232;
+    border: none;
 }
 
-.search-box{
-    position: absolute;
-    top:50%;
-    transform: translate(-50%,-50%);
-    background: graytext;
-    height: 40px;
-    border-radius: 40px;
-    padding: 10px;
+html, body {
+    height: 100%;    
 }
-.search-btn{
-    color: ghostwhite;
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: darkorange;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body {
+    background-image: url(../imagens/background-login.jpg);
+    background-size: cover; 
+
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+
+#container {
+    
+    background-color: #FFF;
+    width: 800px;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+    margin-top: 10vh;
+    border-radius: 10px;
+    text-align: center;
+}
+/*barra de navegação*/
+
+ul{
+  margin: 0;
+  padding: 0; 
+  list-style: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background: #B22222;
+}
+
+ul, li{
+    float: left;
+}
+
+ul, a {
+    font-size: 1.0em;
+    display: block;
+    padding: 0.4em 1.33em;
+    text-align: center;
+    line-height: 2.0em;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #FFF;
+    
+}
+
+ul, a:hover {
+    color: #8B0000;
+}
+
+.voltar{
+    color: #B22222;
+}
+
+form{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+
+label, input{
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+label{
+    font-weight: bold; 
+    text-align: left;
+}
+.foto {
+    border-bottom: none;
+}
+input {
+    border-bottom: 2px solid #323232;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+input:focus {
+    border-bottom: 2px solid #08558B;
+}
+
+input[type="submit"]{
+    margin-top: 40px; 
+    text-align: center;
+    background-color: #B22222;
+    color: #FFF;
+    border: none;
+    border-radius: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #8B0000;
+    transition: 0.5s;
 }
 

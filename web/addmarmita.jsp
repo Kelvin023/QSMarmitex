@@ -4,57 +4,51 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de marmita</title>
-        <style>
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
-            li {
-                float: left;
-            }
-
-            li a {
-                display: block;
-                padding: 18px;
-                background-color: #dddddd;
-            }
-            .header {
-                border: 1px solid red;
-                padding: 36px;
-            }
-
-        </style>
+        <link rel="stylesheet" href="css/estiloMarmita.css">
     </head>
     <body>
-    <c:import url="includes/cabecalho.jsp"/>
-    <h1>Cadastro de marmita</h1>
-    <div class="header">
-        <ul>
-            <li><a href="cardapio.jsp">Menu</a></li>
-            <li><a href="listmarmita.jsp">Marmitas</a></li>
-            <li><a href="contact.asp">Acompanhamentos</a></li>
-            <li><a href="listUser">Usuários</a></li>
-            <li><a href="relatorioPedido">Relatórios</a></li>
-            <li><a href="listPedido">Carrinho</a></li>
-        </ul>
-    </div>
-    
-    <br/>
-    ${mensagemSucesso}
-    <fieldset>
-        <legend>Inclusão de marmita</legend>
-        <form action="${pageContext.request.contextPath}/marmita" method="post">
-            Foto: <input type="file" name="foto" placeholder="Insira a foto aqui"/><br/><br/>
-            Nome: <input type="text" size="150" name="nomeMarmita" placeholder="O nome da marmita"/><br/><br/>
-            Grupo: <input type="text" name="grupoMarmita" placeholder="O grupo da marmita"/><br/><br/>
-            Ingredientes: <input type="text" size="100" name="ingredientes" placeholder="Os principais ingredientes da marmita"/><br/><br/>
-            Preço: <input type="text" name="preco"/><br/><br/>
-            <input type="submit" value="Cadastrar" name="cadastrar"/>
-        </form>
-    </fieldset>
-    <br/>
-    <a href="${pageContext.request.contextPath}/jsp/listmarmita.jsp">Voltar</a>
-    <c:import url="includes/rodape.jsp"/>
-</body>
+        
+        
+        <div id="container">
+            <c:import url="includes/cabecalho.jsp"/>  
+            <c:import url="includes/rodape.jsp"/> 
+            <div>
+                <ul>
+                    <li><a href="cardapio.jsp">Menu </a> </li> 
+                    <li><a href="listmarmita.jsp">Marmitas</a> </li> 
+                    <li><a href="contact.asp">Acompanhamentos</a> </li> 
+                    <li><a href="listUser">Usuários</a> </li> 
+                    <li><a href="relatorioPedido">Relatórios</a> </li> 
+                    <li><a href="listPedido">Carrinho</a></li>
+                </ul>
+            </div>
+            <h1>Cadastro de marmita</h1>
+            
+            ${mensagemSucesso}
+            <fieldset>
+                
+                <form action="${pageContext.request.contextPath}/marmita" method="post">
+                    <label for="foto">Foto</label> 
+                    <input class="foto" type="file" name="foto" placeholder="Insira a foto aqui"/><br/><br/>
+                    
+                    <label for="nomeMarmita">Nome</label>
+                    <input type="text" size="150" name="nomeMarmita" placeholder="Digite o nome da marmita"/><br/><br/>
+                    
+                    <label for="grupoMarmita">Grupo</label>
+                    <input type="text" name="grupoMarmita" placeholder="Digite o grupo da marmita"/><br/><br/>
+                    
+                    <label for="ingredientes">Ingredientes</label>
+                    <input type="text" size="100" name="ingredientes" placeholder="Digite os principais ingredientes da marmita"/><br/><br/>
+                    
+                    <label for="preco">Preço</label>
+                    <input type="text" name="preco" placeholder="Digite o preço da marmita"/>
+                    
+                    <input type="submit" value="Cadastrar Marmita" name="cadastrar"/>
+                </form>
+            </fieldset>
+            
+            <a class="voltar" href="${pageContext.request.contextPath}/jsp/listmarmita.jsp">Voltar</a>
+        </div>
+        
+    </body>
 </html>

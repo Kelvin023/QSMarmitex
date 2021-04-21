@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link type="text/css"
         href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
@@ -81,55 +81,60 @@
                 <c:when test="${not empty user.cpf}">
                     <label for="cpf">CPF</label>
                     <input type="text" name="cpf" placeholder="Digite seu CPF" id="cpf" class="form-control" onkeypress="$(this).mask('000.000.000-00');" readonly 
-                           value="<c:out value="${user.cpf}"  />" /> <br /> 
+                           value="<c:out value="${user.cpf}"  />" /> 
                 </c:when>              
                 <c:otherwise>                                
-                    <label for="cpf">CPF</label>
+                    <label  for="cpf">CPF</label>
                     <input type="text" name="cpf" placeholder="Digite seu CPF" id="cpf" class="form-control" onkeypress="$(this).mask('000.000.000-00');"
-                           value="<c:out value="${user.cpf}" />" /> <br />
+                           value="<c:out value="${user.cpf}" />" /> 
                 </c:otherwise>
             </c:choose>
-
-
-                <label for="nomeUsuario"> Nome</label> 
-                <input type="text" name="nomeUsuario" placeholder="Digite seu Nome Completo "
-                       value="<c:out value="${user.nomeUsuario}" />" /> 
+                <label for="senha">Senha </label>
+                <input type="password" name="senha" autocomplete="off" placeholder="Digite sua Senha"
+                       value="<c:out value="${user.senha}" />"/>
                 
-                <label for="telefoneUsuario"> Telefone</label>
-                <input type="text" name="telefoneUsuario" placeholder="Digite seu N?mero de Telefone" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');"
-                       value="<c:out value="${user.telefoneUsuario}" />" /> 
-
-                <label for="endereco"> Endere?o</label> 
-                <input type="text" name="endereco" placeholder="Digite seu Endere?o"
-                       value="<c:out value="${user.endereco}" />" /> 
-
                 <label for="email"> E-mail</label>
                 <input type="text" name="email" placeholder="Digite seu E-mail  "
                        value="<c:out value="${user.email}" />" /> 
+                
+                <label for="nomeUsuario"> Nome</label> 
+                <input type="text" name="nomeUsuario" placeholder="Digite seu Nome Completo "
+                       value="<c:out value="${user.nomeUsuario}" />" /> 
+                  
+                <label for="telefoneUsuario"> Telefone</label>
+                <input type="text" name="telefoneUsuario" placeholder="Digite seu Número de Telefone" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');"
+                       value="<c:out value="${user.telefoneUsuario}" />" /> 
+
+                <label for="endereco"> Endereço</label> 
+                <input type="text" name="endereco" placeholder="Digite seu Endereço"
+                       value="<c:out value="${user.endereco}" />" /> 
 
                 <label for="dt_nascimento"> Data Nascimento</label>
                 <input type="text" placeholder="Digite sua Data de Nascimento" name="dt_nascimento" 
                        data-date-format="dd/MM/yyyy" class="form-control" onkeypress="$(this).mask('00/00/0000');"
                        value="<fmt:formatDate pattern="dd/MM/yyyy" 
                        value="${user.dt_nascimento}" />" /> <br />   
-                
-                <label for="senha">Senha </label>
-                <input type="text" name="senha" autocomplete="off" placeholder="Digite sua Senha"
-                       value="<c:out value="${user.senha}" />"/>
-                
+
                 <!--<input type="text" name="cd_perfilUsuario" hidden="true"
                    value="<%=request.getAttribute("cdPerfilUsuario")%>"/>
                 
                 <input type="text" name="cpfLogado" hidden="true"
                    value="<%=request.getAttribute("cpfLogado")%>"/>-->
                 
-                <input type="submit" value="Submit" id="botao" />
+                <input type="submit" value="Cadastar" id="botao" />
+                
+                    <div id="registrar-container"> 
+                        <p>Já tem uma conta?</p>
+                        <!--<input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">-->
+                        <a href="login.jsp">Logar</a>
+                    </div>
+                
         </form>              
 
-        <!--<a href="UserController?action=voltar&cpf=<c:out value="${user.cpf}" />&cd_perfilUsuario=3">Retornar ao Cardapio</a>        -->
-          
-    
+        <!--<a href="UserController?action=voltar&cpf=<c:out value="${user.cpf}" />&cd_perfilUsuario=3">Retornar ao Cardapio</a>        -->            
     </div>
-    <c:import url="includes/rodape.jsp"/>        
+ 
+        
+    <c:import url="includes/rodape.jsp"/>  
 </body>
 </html>
