@@ -12,7 +12,7 @@
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <c:import url="includes/rodape.jsp"/>   
+          
        
         <c:choose>
             <c:when test="${not empty loginError}">
@@ -48,8 +48,22 @@
             
             
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         
-         
+        
+         <c:import url="includes/rodape.jsp"/> 
         
     </body>
 </html>

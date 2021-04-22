@@ -1,17 +1,22 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de marmita</title>
+        <title>QS Marmitex - Cadastro Marmita</title>
         <link rel="stylesheet" href="css/estiloMarmita.css">
     </head>
     <body>
+        <div>
+            <c:import url="includes/cabecalho.jsp"/> 
+        </div>
+         
         
         
         <div id="container">
-            <c:import url="includes/cabecalho.jsp"/>  
-            <c:import url="includes/rodape.jsp"/> 
+            
             <div>
                 <ul>
                     <li><a href="cardapio.jsp">Menu </a> </li> 
@@ -49,6 +54,8 @@
             
             <a class="voltar" href="${pageContext.request.contextPath}/jsp/listmarmita.jsp">Voltar</a>
         </div>
-        
+        <div>
+            <c:import url="includes/rodape.jsp"/> 
+        </div>
     </body>
 </html>
