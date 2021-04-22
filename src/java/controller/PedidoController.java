@@ -99,7 +99,7 @@ public class PedidoController extends HttpServlet {
         
         System.out.println("Quantidade: " + quantidade);
         System.out.println("Tamanho: " + tamanho);
-        System.out.println("Tamanho: " + cd_marmita);
+        System.out.println("Codigo da marmita: " + cd_marmita);
         System.out.println("Email: " + email);
         System.out.println("Preço: " + preco);
         System.out.println("CPF: " + cpf);
@@ -107,7 +107,7 @@ public class PedidoController extends HttpServlet {
         
         //VERIFICANDO SE O USUARIO QUE ESTÁ EFETUANDO O PEDIDO, POSSUI CARTAO PARA PAGAR E CONCLUIR O PEDIDO
         if (frmpgmt.equalsIgnoreCase("Dinheiro")){
-            dao.addPedido(pedido);
+            dao.addPedido(pedido, cd_marmita);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
             request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador estará munido de troco!");
@@ -122,23 +122,17 @@ public class PedidoController extends HttpServlet {
                 request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
             }
             else{//DAQUI, DEVERÁ IR À TELA DE PAGAMENTO
-                dao.addPedido(pedido);
+                dao.addPedido(pedido, cd_marmita);
                 request.setAttribute("cpf", cpf);        
                 request.setAttribute("users", udao.getUserById(cpf));
+                //request.setAttribute("pedido", dao.getPedidoByCpf(cpf));
+                request.setAttribute("pedidos", dao.getPedidoPgmtByCpf(cpf));
                 request.setAttribute("cartaouser", cdao.getCartaoByCpf(cpf));
                 request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
+                System.out.println("Prestes a entrar na telaPagamento");
                 request.getRequestDispatcher("/telaPagamento.jsp").forward(request, response); 
                 //request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
             }
-        }    
-        
-        /*
-        dao.addPedido(pedido);
-        request.setAttribute("cpf", cpf);        
-        request.setAttribute("users", udao.getUserById(cpf));
-        request.setAttribute("mensagem", "Seu Pedido foi registrado! Consultar na base de dados!");
-        request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);     
-        */
-        
+        }                          
     }
 }

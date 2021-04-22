@@ -19,12 +19,15 @@ public class PedidoDao {
         connection = DbUtil.getConnection();
     }
     
-    public void addPedido(Pedido pedido) {        
+    public void addPedido(Pedido pedido, String cd_marmita) {        
         System.out.println("Entrei na addPedido!!");
         System.out.println("CPF utilizado como FK para identificar quem está realizando o pedido: "+pedido.getCpf());
+        System.out.println("Codigo da marmita do pedido -> " + cd_marmita);
+        int cod_marmita = Integer.parseInt(cd_marmita);                      
+        System.out.println("Dobro do codigo da marmita do pedido, porem do tipo Integer(pra provar que eh integer) -> " + cod_marmita*2);
         try {
-            String SQL = "INSERT INTO tb_pedido(cpf,qtd_marmita,valorPedido, st_pedido) VALUES"
-                    + "(?, ?, ?, 0)";
+            String SQL = "INSERT INTO tb_pedido(cpf,qtd_marmita,valorPedido, st_pedido, cd_marmita) VALUES"
+                    + "(?, ?, ?, 0, " + cod_marmita + ")";
             try (PreparedStatement ps = connection.prepareStatement(SQL)) {
                 ps.setString(1, pedido.getCpf());                
                 ps.setInt(2, pedido.getQtd_marmita());
@@ -217,6 +220,40 @@ public class PedidoDao {
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
                 pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
+    /*FUNCAO DE LISTAR O ÚLTIMO PEDIDO REGISTRADO DO CLIENTE, 
+    O QUAL ESTÁ PRESTES A REALIZAR O PAGAMENTO(ESSES DADOS SERÃO MOSTRADOS NA TELA DE PGMT)*/
+    public List<Pedido> getPedidoPgmtByCpf(String cpf) {
+        System.out.println("Entrei na getPedidoPgmtByCpf com o CPF: " + cpf);
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "select\n" +
+            "	 cd_numeroPedido,\n" +
+            "    cd_marmita,\n" +
+            "    qtd_marmita,\n" +
+            "    dt_pedido,\n" +
+            "    valorPedido\n" +
+            "from tb_pedido\n" +
+            "where cd_numeroPedido in (select max(cd_numeroPedido) from tb_pedido) and\n" +
+            "cpf = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido"));                
+                pedido.setCd_marmita(rs.getInt("cd_marmita")); 
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));                                
                 listaDePedidos.add(pedido);
             }
             
