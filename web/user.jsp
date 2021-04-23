@@ -66,6 +66,18 @@
     <link rel="shortcut icon" href="img/icone.png">
     <link rel="stylesheet" href="css/estilo.css">
     <meta charset ="UTF-8">
+    
+    <style>
+        .tamanho{
+            width: 400px;
+            height: 88%;
+            margin-bottom: 50px;
+        }
+        
+        label, input{
+                width: 100%;       
+        }
+    </style>
 </head>
 <body>
     <c:import url="includes/cabecalho.jsp"/>
@@ -74,7 +86,7 @@
             $('input[name=dt_nascimento]').datepicker();
         });
     </script>
-    <div id="login-container">
+    <div id="container" class="tamanho">
         <h1>Cadastro</h1>
         <form method="POST" action='UserController' name="frmAddUser">                
             <c:choose>

@@ -34,10 +34,9 @@ a:hover {
 
 /*container*/
 
-#login-container {
+#container {
     
     background-color: #FFF;
-    width: 400px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px 30px;
@@ -57,9 +56,8 @@ form{
 
 label, input{
     display: block;
-    width: 100%;
     text-align: left;
-    
+ 
 }
 
 
@@ -103,10 +101,45 @@ input[type="submit"]:hover {
     transition: 0.5s;
 }
 
-/* Registrar */
 
-#registrar-container, p{
-    margin-bottom: 10px;
-}    
+  
 
 
+/*Barra de Navegação*/
+
+ul{
+  margin: 0;
+  padding: 0; 
+  list-style: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background: #B22222;
+}
+
+ul, li{
+    float: left;
+}
+
+ul, a {
+    font-size: 1.0em;
+    display: block;
+    padding: 0.4em 1.33em;
+    text-align: center;
+    line-height: 2.0em;
+    border-radius: 10px;
+    
+    
+    
+}
+
+ul, a:hover {
+    color: #8B0000;
+}
+
+.voltar{
+    color: #B22222;
+}
+
+.foto {
+    border-bottom: none;
+}

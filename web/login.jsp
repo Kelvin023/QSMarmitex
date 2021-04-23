@@ -9,6 +9,21 @@
         <link rel="shortcut icon" href="img/icone.png">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
         <link rel="stylesheet" href="css/estilo.css">
+        
+        <style>
+            .tamanho{
+                width: 400px;
+                margin-bottom: 188px;
+            }
+            
+            label, input{
+                width: 100%;       
+            }
+            
+            #registrar-container, p{
+                margin-bottom: 10px;
+            } 
+        </style>
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
@@ -25,7 +40,7 @@
             </c:otherwise>
         </c:choose>                 
         <!--<img src="img/welcome.jpg">--> 
-        <div id="login-container">
+        <div id="container" class="tamanho">
                      
             <h1>Login</h1>
             <form method="POST" action='logincontrol'>
@@ -48,22 +63,10 @@
             
             
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+     
         
-        
-         <c:import url="includes/rodape.jsp"/> 
-        
+        <div >
+            <c:import url="includes/rodape.jsp"/> 
+        </div>
     </body>
 </html>

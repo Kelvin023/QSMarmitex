@@ -6,7 +6,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>QS Marmitex - Cadastro Marmita</title>
-        <link rel="stylesheet" href="css/estiloMarmita.css">
+        <link rel="stylesheet" href="css/estilo.css">
+        
+        <style>
+            .tamanho {
+                width: 800px;
+                height: 90%;
+                margin-bottom: 80px;
+               
+            }
+            
+            label, input{
+                width: 100%;  
+            }
+            ul, a{
+                color: #FFF;
+                text-decoration: none;
+            }
+            
+        </style>
     </head>
     <body>
         <div>
@@ -15,7 +33,7 @@
          
         
         
-        <div id="container">
+        <div id="container" class="tamanho">
             
             <div>
                 <ul>
