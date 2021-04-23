@@ -114,6 +114,14 @@ public class PedidoController extends HttpServlet {
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
         else{
+            dao.addPedido(pedido, cd_marmita);
+            request.setAttribute("cpf", cpf);        
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador levará a maquininha de cartão para efetuar o pagamento!");
+            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
+        }
+        /*
+        else{
             List<Cartao> cartoes = cdao.getCartaoByCpf(cpf);
             if (cartoes.isEmpty()){
                 request.setAttribute("cpf", cpf);        
@@ -133,6 +141,7 @@ public class PedidoController extends HttpServlet {
                 request.getRequestDispatcher("/telaPagamento.jsp").forward(request, response); 
                 //request.getRequestDispatcher("/telaCliente.jsp").forward(request, response); 
             }
-        }                          
+        } 
+        */
     }
 }

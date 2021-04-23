@@ -65,6 +65,7 @@
         </c:choose>
         <br>        
        
+        <%--
         <c:choose>            
             <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
                 <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
@@ -74,6 +75,8 @@
             </c:otherwise>
         </c:choose>                       
         <br>
+        --%>
+        
         <c:choose>            
             <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
                 <a style="color: red" href="PedidoController?action=listPedido&cpf=<c:out value="${users.cpf}"/>">Pedidos</a>                
