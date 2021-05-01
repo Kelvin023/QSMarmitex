@@ -73,6 +73,10 @@ public class UserController extends HttpServlet {
                     request.setAttribute("users", dao.getUserById(cpf));
                     request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);                    
                 }    
+                if (cdPerfilUsuarioLogado == 2) {
+                    request.setAttribute("users", dao.getUserById(cpf));
+                    request.getRequestDispatcher("/telaAtendente.jsp").forward(request, response);                    
+                }
                 if (cdPerfilUsuarioLogado == 4) {
                     request.setAttribute("users", dao.getUserById(cpf));
                     request.getRequestDispatcher("/telaEntregador.jsp").forward(request, response);                    
