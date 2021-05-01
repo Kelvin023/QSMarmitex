@@ -97,6 +97,16 @@ public class UserController extends HttpServlet {
         int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
         String cpfLogado = request.getParameter("cpfLogado");
         
+        System.out.println("cdPerfilUsuario a ser cadastrado -> " + cdPerfilUsuario);
+        System.out.println("cpfLogado -> " + cpfLogado);
+        System.out.println("cpf digitado a ser cadastrado -> " + request.getParameter("cpf"));
+        System.out.println("nome digitado a ser cadastrado -> " + request.getParameter("nomeUsuario"));
+        System.out.println("telefone digitado a ser cadastrado -> " + request.getParameter("telefoneUsuario"));
+        System.out.println("endereco digitado a ser cadastrado -> " + request.getParameter("endereco"));
+        System.out.println("email digitado a ser cadastrado -> " + request.getParameter("email"));
+        System.out.println("senha digitada a ser cadastrada -> " + request.getParameter("senha"));
+        System.out.println("dt nascimento digitada a ser cadastrada -> " + request.getParameter("dt_nascimento"));
+        
         user.setCd_perfilUsuario(cdPerfilUsuario);
         user.setCpf(request.getParameter("cpf"));
         user.setNomeUsuario(request.getParameter("nomeUsuario"));

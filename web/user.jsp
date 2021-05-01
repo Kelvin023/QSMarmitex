@@ -127,11 +127,11 @@
                        value="<fmt:formatDate pattern="dd/MM/yyyy" 
                        value="${user.dt_nascimento}" />" /> <br />   
 
-                <!--<input type="text" name="cd_perfilUsuario" hidden="true"
+                <input type="text" name="cd_perfilUsuario" hidden="true"
                    value="<%=request.getAttribute("cdPerfilUsuario")%>"/>
                 
                 <input type="text" name="cpfLogado" hidden="true"
-                   value="<%=request.getAttribute("cpfLogado")%>"/>-->
+                   value="<%=request.getAttribute("cpfLogado")%>"/>
                 
                 <input type="submit" value="Cadastar" id="botao" />
                 

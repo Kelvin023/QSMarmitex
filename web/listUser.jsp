@@ -33,10 +33,18 @@
                             <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>ADM</td>
                         </c:when>    
+                        <c:when test="${user.cd_perfilUsuario == 2}">
+                            <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
+                            <td>ATENDENTE</td>
+                        </c:when>     
                         <c:when test="${user.cd_perfilUsuario == 4}">
                             <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>ENTREGADOR</td>
-                        </c:when>    
+                        </c:when>  
+                        <c:when test="${user.cd_perfilUsuario == 5}">
+                            <!--<td>ADM - <c:out value="${user.cd_perfilUsuario}"/></td>-->
+                            <td>COZINHEIRO</td>
+                        </c:when>     
                         <c:otherwise>
                             <!--<td>CLIENTE - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>CLIENTE</td>

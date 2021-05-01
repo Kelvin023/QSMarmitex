@@ -23,6 +23,17 @@
             #registrar-container, p{
                 margin-bottom: 10px;
             } 
+            #btnCadastro{
+                cursor: pointer;
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;                
+            }  
         </style>
     </head>
     <body>
@@ -56,8 +67,8 @@
                 
                 <div id="registrar-container"> 
                     <p>Ainda não tem uma conta?</p>
-                    <!--<input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">-->
-                    <a href="user.jsp">Registrar</a>
+                    <input id="btnCadastro" type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">
+                    <!--<a href="user.jsp">Registrar</a>-->
                 </div>
             </form>
             
