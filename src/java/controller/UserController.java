@@ -95,17 +95,7 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
         int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
-        String cpfLogado = request.getParameter("cpfLogado");
-        
-        System.out.println("cdPerfilUsuario a ser cadastrado -> " + cdPerfilUsuario);
-        System.out.println("cpfLogado -> " + cpfLogado);
-        System.out.println("cpf digitado a ser cadastrado -> " + request.getParameter("cpf"));
-        System.out.println("nome digitado a ser cadastrado -> " + request.getParameter("nomeUsuario"));
-        System.out.println("telefone digitado a ser cadastrado -> " + request.getParameter("telefoneUsuario"));
-        System.out.println("endereco digitado a ser cadastrado -> " + request.getParameter("endereco"));
-        System.out.println("email digitado a ser cadastrado -> " + request.getParameter("email"));
-        System.out.println("senha digitada a ser cadastrada -> " + request.getParameter("senha"));
-        System.out.println("dt nascimento digitada a ser cadastrada -> " + request.getParameter("dt_nascimento"));
+        String cpfLogado = request.getParameter("cpfLogado");                
         
         user.setCd_perfilUsuario(cdPerfilUsuario);
         user.setCpf(request.getParameter("cpf"));
@@ -155,7 +145,13 @@ public class UserController extends HttpServlet {
                     System.out.println("Novo cadastro efetuado com sucesso!");
                     request.setAttribute("users", dao.getAllUsers());
                     request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-                    break;   
+                    break;  
+                    
+                case 2:
+                    System.out.println("CdPerfil = " + cdPerfilUsuarioLogado);                    
+                    request.setAttribute("users", dao.getUserById(request.getParameter("cpf")));
+                    request.getRequestDispatcher("/telaAtendente.jsp").forward(request, response);
+                    break; 
                     
                 //Se ele for cliente, manda os dados dele pra página de cliente
                 case 3:
