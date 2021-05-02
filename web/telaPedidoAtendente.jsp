@@ -5,12 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tela Atendente</title>
+        <title>Tela Pedido Atendente</title>
         <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Tela Atendente</h1>
+        <h1>Tela para que o(a) atendente possa realizar pedido via telefone ou chat</h1>
         <h3>
             Bem vindo à tela de Atendente! <br>            
             <c:choose>
