@@ -102,11 +102,8 @@
                 </tr>
             </c:forEach>
         </tbody>
-    </table>                       
-        <br>             
-        
-        EXIBIR MARMITA MAIS VENDIDA
-        <br><br><br>
+    </table>                                                       
+        <br><br>
         <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
         <br>
         <a href="login.jsp">Sair</a>

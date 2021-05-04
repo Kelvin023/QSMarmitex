@@ -44,6 +44,13 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
         }
+        else if (action.equalsIgnoreCase("listPedidosMon")){//MOSTRA OS PEDIDOS MAIS VENDIDOS, MENOS VENDIDOS, CLIENTE QUE MAIS COMPROU, QUE MENOS COMPROU......          
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("pedidos", dao.getAllPedidos());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
+        }
         else if (action.equalsIgnoreCase("listallPedidosProducao")){//PEDIDOS PARA O COZINHEIRO PRODUZIR            
             String cpf = request.getParameter("cpf");
             request.setAttribute("pedidos", dao.getAllPedidosProd());
@@ -71,7 +78,13 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("pedidos", dao.getAllPedidosEntrega());
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/telaPedidosEntregador.jsp").forward(request, response);
-        }
+        } 
+        else if (action.equalsIgnoreCase("voltarTelaAdm")){//RETORNA TELA ADM        
+            String cpf = request.getParameter("cpf");
+            System.out.println("CPF que veio la do botao de voltar do listar pedidos: " + cpf);
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
+        } 
         else{/*CASO DE RETORNO À TELA ANTERIOR SEM PERDER OS DADOS*/             
             String cpf = request.getParameter("cpf");
             System.out.println("CPF que veio la do botao de voltar do listar pedidos: " + cpf);

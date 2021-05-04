@@ -5,14 +5,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tela ADMIN</title>
+        <title>Tela Monitoramento</title>
         <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
         <h1>Tela ADMIN</h1>
         <h3>
-            Bem vindo à tela de ADM! <br>            
+            Tela de Monitoramento - Auxílio Tomada de Decisão <br>            
             <c:choose>
                 <c:when test="${not empty users.email}">                
                     Usuário logado: ${users.email}<br>
@@ -22,22 +22,15 @@
                 </c:otherwise>
             </c:choose>
             
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    CPF do ADMIN logado ${users.cpf}<br>
-                </c:when>              
-                <c:otherwise>                
-                    CPF do ADMIN logado: <%=request.getAttribute("cpf") %><br>
-                </c:otherwise>
-            </c:choose>
-            <!--CPF do ADMIN logado: <%=request.getAttribute("cpf") %>-->
+            
+            CPF do ADMIN logado: <%=request.getAttribute("cpf") %>
         </h3>
-        <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
-        <a href="UserController?action=listUser&cpf=<%=(String)request.getAttribute("cpf")%>">Usuários</a>
+                                      
+        
+        CRIAR CAMPOS HTML MOSTRANDO OS DADOS DE:
+        MARMITA MAIS VENDIDA, MARMITA MENOS VENDIDA, CLIENTE QUE MAIS COMPRA, TOTAL FATURADO POR PERÍODO
         <br>
-        <a href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">RELATÓRIO DE PEDIDOS</a>
-        <br>
-        <a href="PedidoController?action=listPedidosMon&cpf=<%=(String)request.getAttribute("cpf")%>">MONITORAMENTO</a>
+        <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
