@@ -62,6 +62,39 @@
                 </c:forEach>
             </tbody>
         </table>  
+        <br>
+        <table border=1>
+            <thead>
+                <tr>
+                    <th>MARMITA MENOS VENDIDA</th>                    
+                    <th>QUANTIDADE VENDIDA</th>                                                       
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${pedidosmenos}" var="pedidos">
+                    <tr>                                                                                                                                    
+                        <c:choose>
+                            <c:when test="${pedidos.cd_marmita == 1}">                
+                                <td>SALADA AMERICANA PEQUENA</td> 
+                            </c:when>              
+                            <c:when test="${pedidos.cd_marmita == 2}">                
+                                <td>SALADA AMERICANA MÉDIA</td> 
+                            </c:when>
+                            <c:when test="${pedidos.cd_marmita == 3}">                
+                                <td>ESCONDIDINHO FITNESS PEQUENO</td>
+                            </c:when>
+                            <c:when test="${pedidos.cd_marmita == 4}">                
+                                <td>ESCONDIDINHO FITNESS MÉDIO</td>
+                            </c:when>
+                            <c:otherwise>                
+                                <td>ESCONDIDINHO FITNESS GRANDE</td>
+                            </c:otherwise>
+                        </c:choose>  
+                        <td><c:out value="${pedidos.qtd_marmita}" /></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         
         
         <br>

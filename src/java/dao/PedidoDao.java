@@ -95,7 +95,7 @@ public class PedidoDao {
         return listaDePedidos;
     }
     
-    //FAZER MÉTODO PARA CAPTURAR A MARMITA MAIS VENDIDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //MÉTODO PARA CAPTURAR A MARMITA MAIS VENDIDA
     public List<Pedido> getMarmitaMaisVendida() {
         System.out.println("Entrei na getMarmitaMaisVendida!!");
         List<Pedido> listaDePedidos = new ArrayList<Pedido>();
@@ -111,6 +111,38 @@ public class PedidoDao {
                         "    GROUP BY cd_marmita    \n" +
                         ")AS X\n" +
                         "ORDER BY qtd_marmita DESC\n" +
+                        "limit 1;";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();                
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));                
+                pedido.setCd_marmita(rs.getInt("cd_marmita"));
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
+    //MÉTODO PARA CAPTURAR A MARMITA MENOS VENDIDA
+    public List<Pedido> getMarmitaMenosVendida() {
+        System.out.println("Entrei na getMarmitaMenosVendida!!");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "SELECT \n" +
+                        "*\n" +
+                        "FROM\n" +
+                        "(\n" +
+                        "    Select \n" +
+                        "        cd_marmita,        \n" +
+                        "        SUM(qtd_marmita) AS qtd_marmita \n" +
+                        "    FROM tb_pedido \n" +
+                        "    GROUP BY cd_marmita    \n" +
+                        ")AS X\n" +
+                        "ORDER BY qtd_marmita asc\n" +
                         "limit 1;";
             PreparedStatement ps = connection.prepareStatement(SQL);            
             ResultSet rs = ps.executeQuery();                        
