@@ -47,7 +47,7 @@ public class PedidoController extends HttpServlet {
         else if (action.equalsIgnoreCase("listPedidosMon")){//MOSTRA OS PEDIDOS MAIS VENDIDOS, MENOS VENDIDOS, CLIENTE QUE MAIS COMPROU, QUE MENOS COMPROU......          
             String cpf = request.getParameter("cpf");
             request.setAttribute("users", udao.getUserById(cpf));
-            request.setAttribute("pedidos", dao.getAllPedidos());
+            request.setAttribute("pedidos", dao.getMarmitaMaisVendida());
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
         }
