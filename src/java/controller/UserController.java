@@ -36,9 +36,12 @@ public class UserController extends HttpServlet {
         
 
         if (action.equalsIgnoreCase("delete")){
+            String cpfLogado = request.getParameter("cpfLogado");
             String cpf = request.getParameter("cpf");            
             dao.deleteUser(cpf);
             forward = LIST_USER;
+            System.out.println("Valor do cpfLogado para voltar a tela de lista de usuarios: " + cpfLogado);
+            request.setAttribute("cpf", cpfLogado);        
             request.setAttribute("users", dao.getAllUsers());    
         } else if (action.equalsIgnoreCase("edit")){
             forward = INSERT_OR_EDIT;

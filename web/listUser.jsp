@@ -12,6 +12,7 @@
 <body>
     <c:import url="includes/cabecalho.jsp"/>       
     <h1>CPF do Admin logado: <%=(String)request.getAttribute("cpf")%></h1>
+    
     <table border=1>
         <thead>
             <tr>
@@ -59,7 +60,7 @@
                     <!--<td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>">Update</a></td>-->
                     <td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=<c:out value="${user.cd_perfilUsuario}"/>">Update</a></td>
                     
-                    <td><a href="UserController?action=delete&cpf=<c:out value="${user.cpf}"/>">Delete</a></td>
+                    <td><a href="UserController?action=delete&cpfLogado=<%=(String)request.getAttribute("cpf")%>&cpf=<c:out value="${user.cpf}"/>">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>

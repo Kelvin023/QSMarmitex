@@ -31,8 +31,7 @@
                 </c:otherwise>
             </c:choose>
             <!--CPF do ADMIN logado: <%=request.getAttribute("cpf") %>-->
-        </h3>
-        <!--ANTES DE USAR A listUser, TEM INICIALIZAR O PARAMETRO LISTA DELA PRIMEIRO!!!-->
+        </h3>        
         <a href="UserController?action=listUser&cpf=<%=(String)request.getAttribute("cpf")%>">Usuários</a>
         <br>
         <a href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">RELATÓRIO DE PEDIDOS</a>
