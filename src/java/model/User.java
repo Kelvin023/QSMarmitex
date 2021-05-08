@@ -11,6 +11,7 @@ public class User {
     private String email;
     private String senha;
     private Date dt_nascimento;
+    private int qtd_usuario;
     
     
     public String getCpf() {
@@ -76,6 +77,16 @@ public class User {
     public void setDt_nascimento(Date dt_nascimento) {
         this.dt_nascimento = dt_nascimento;
     }
+
+    public int getQtd_usuario() {
+        return qtd_usuario;
+    }
+
+    public void setQtd_usuario(int qtd_usuario) {
+        this.qtd_usuario = qtd_usuario;
+    }
+    
+    
     
     @Override
     public String toString() {

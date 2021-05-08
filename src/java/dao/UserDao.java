@@ -211,4 +211,28 @@ public class UserDao {
         }                   
         return codigo;
     }
+    
+    /*QUANTIDADE DE USUÁRIOS CADASTRADOS NO SISTEMA*/
+    public List<User> getQtdUsuariosSistema() {
+        List<User> listaQtdUsuario = new ArrayList<User>();
+        try {
+            String SQL = "select \n" +
+                    "	cd_perfilUsuario, \n" +
+                    "	count(cd_perfilUsuario) as qtd_usuario\n" +
+                    "from tb_usuario\n" +
+                    "group by cd_perfilUsuario;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                User user = new User();                
+                user.setCd_perfilUsuario(rs.getInt("cd_perfilUsuario"));                                                             
+                user.setQtd_usuario(rs.getInt("qtd_usuario"));                                                             
+                listaQtdUsuario.add(user);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pessoas em UserDAO.", e);
+        }   
+        return listaQtdUsuario;
+    }
 }

@@ -69,7 +69,7 @@
     
     <style>
         .tamanho{
-            width: 400px;
+            width: 22%;
             height: 88%;
             margin-bottom: 50px;
         }

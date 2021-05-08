@@ -28,7 +28,7 @@
                                       
         
         CRIAR CAMPOS HTML MOSTRANDO OS DADOS DE:
-        MARMITA MAIS VENDIDA, MARMITA MENOS VENDIDA, CLIENTE QUE MAIS COMPRA, TOTAL FATURADO POR PERÍODO
+        CLIENTE QUE MAIS COMPRA, TOTAL FATURADO POR PERÍODO
         <br>
         <table border=1>
             <thead>
@@ -95,6 +95,43 @@
                 </c:forEach>
             </tbody>
         </table>
+        <br>     
+        <table border=1>
+            <thead>
+                <tr>
+                    <td colspan="2" align="center" style="font-weight: bold">QTD USUÁRIOS CADASTRADOS NO SISTEMA</td>
+                </tr>
+                <tr>
+                    <th>TIPO USUÁRIO</th>                    
+                    <th>NÚMERO USUÁRIOS CADASTRADOS</th>                                                       
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${qtdusers}" var="qtdusers">
+                    <tr>                                                                                                                                    
+                        <c:choose>
+                            <c:when test="${qtdusers.cd_perfilUsuario == 1}">                
+                                <td>ADMINISTRADOR</td> 
+                            </c:when>              
+                            <c:when test="${qtdusers.cd_perfilUsuario == 2}">                
+                                <td>ATENDENTE</td> 
+                            </c:when>
+                            <c:when test="${qtdusers.cd_perfilUsuario == 3}">                
+                                <td>CLIENTE</td>
+                            </c:when>
+                            <c:when test="${qtdusers.cd_perfilUsuario == 4}">                
+                                <td>ENTREGADOR</td>
+                            </c:when>
+                            <c:otherwise>                
+                                <td>COZINHEIRO</td>
+                            </c:otherwise>
+                        </c:choose>  
+                        <td><c:out value="${qtdusers.qtd_usuario}" /></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
         
         
         <br>

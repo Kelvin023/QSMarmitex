@@ -47,6 +47,7 @@ public class PedidoController extends HttpServlet {
         else if (action.equalsIgnoreCase("listPedidosMon")){//MOSTRA OS PEDIDOS MAIS VENDIDOS, MENOS VENDIDOS, CLIENTE QUE MAIS COMPROU, QUE MENOS COMPROU......          
             String cpf = request.getParameter("cpf");
             request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("qtdusers", udao.getQtdUsuariosSistema());
             request.setAttribute("pedidos", dao.getMarmitaMaisVendida());
             request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());
             request.setAttribute("cpf", cpf);  
