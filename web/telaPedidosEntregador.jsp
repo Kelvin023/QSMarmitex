@@ -40,7 +40,7 @@
                 <th>ENDEREÇO DE ENTREGA</th>
                 <th>MARMITA A SER ENTREGUE</th>  
                 <th>QTD DE MARMITA</th>                
-                <th>VALOR DO PEDIDO</th>
+                <th>VALOR A SER COBRADO</th>
                 <th>DATA DE REALIZAÇÃO DO PEDIDO</th>                  
                 <th>STATUS DO PEDIDO</th>
                 <th>ACTION</th>
@@ -71,7 +71,7 @@
                         </c:otherwise>
                     </c:choose>
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
-                    <td><c:out value="${pedidos.valorPedido}" /></td>                     
+                    <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedidos.valorPedido * pedidos.qtd_marmita}"/></td>                     
                     <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                                                                                    
                     <td>EM TRANSPORTE</td>      
                     <td><a href="PedidoController?action=atualizaPedidosEntrega&cpf=<%=request.getAttribute("cpf")%>&cd_numeroPedido=<c:out value="${pedidos.cd_numeroPedido}"/>">OK</a></td>
