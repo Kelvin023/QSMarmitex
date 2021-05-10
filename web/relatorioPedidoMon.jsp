@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,11 +25,7 @@
             
             
             CPF do ADMIN logado: <%=request.getAttribute("cpf") %>
-        </h3>
-                                      
-        
-        CRIAR CAMPOS HTML MOSTRANDO OS DADOS DE:
-        TOTAL FATURADO POR PERÍODO
+        </h3>                                                    
         <br>
         <table border=1>
             <thead>
@@ -160,7 +157,28 @@
                 </c:forEach>
             </tbody>
         </table>
-        
+        <br>
+        <table border=1>
+            <thead>
+                <tr>
+                    <td colspan="3" align="center" style="font-weight: bold">TOTAL FATURADO POR PERÍODO</td>
+                </tr>
+                <tr>
+                    <th>MES</th>                    
+                    <th>ANO</th>                                                       
+                    <th>TOTAL FATURADO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${totfaturado}" var="pedidos">
+                    <tr>                                                                                                                                                            
+                        <td><c:out value="${pedidos.mes_particao}" /></td>
+                        <td><c:out value="${pedidos.ano_particao}" /></td>
+                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedidos.vlr_total_pedido}"/></td>                                             
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         
         <br>
         <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>

@@ -11,6 +11,9 @@ public class Pedido {
     private int cd_marmita;
     private String nomeUsuario;
     private String endereco;
+    private Float vlr_total_pedido;
+    private int ano_particao;
+    private int mes_particao;
 
     public int getCd_numeroPedido() {
         return cd_numeroPedido;
@@ -83,6 +86,32 @@ public class Pedido {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public int getAno_particao() {
+        return ano_particao;
+    }
+
+    public void setAno_particao(int ano_particao) {
+        this.ano_particao = ano_particao;
+    }
+
+    public int getMes_particao() {
+        return mes_particao;
+    }
+
+    public void setMes_particao(int mes_particao) {
+        this.mes_particao = mes_particao;
+    }
+
+    public Float getVlr_total_pedido() {
+        return vlr_total_pedido;
+    }
+
+    public void setVlr_total_pedido(Float vlr_total_pedido) {
+        this.vlr_total_pedido = vlr_total_pedido;
+    }
+    
+    
     
     
 }
