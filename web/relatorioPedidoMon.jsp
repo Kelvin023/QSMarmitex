@@ -28,7 +28,7 @@
                                       
         
         CRIAR CAMPOS HTML MOSTRANDO OS DADOS DE:
-        CLIENTE QUE MAIS COMPRA, TOTAL FATURADO POR PERÍODO
+        TOTAL FATURADO POR PERÍODO
         <br>
         <table border=1>
             <thead>
@@ -131,7 +131,35 @@
                 </c:forEach>
             </tbody>
         </table>
-
+        <br>
+        <table border=1>
+            <thead>
+                <tr>
+                    <td colspan="3" align="center" style="font-weight: bold">STATUS FIDELIDADE</td>
+                </tr>
+                <tr>
+                    <th>NOME USUÁRIO</th>                    
+                    <th>QUANTIDADE PEDIDOS</th>
+                    <th>PROXIMO PEDIDO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${qtdpedidos}" var="pedidos">                    
+                    <tr>                                       
+                        <td><c:out value="${pedidos.nomeUsuario}" /></td>
+                        <td><c:out value="${pedidos.qtd_pedidos}" /></td>
+                        <c:choose>
+                            <c:when test="${pedidos.qtd_pedidos == 10}">                
+                                <td>GRATUITO</td> 
+                            </c:when>                                          
+                            <c:otherwise>                
+                                <td>NAO GRATUITO</td>
+                            </c:otherwise>
+                        </c:choose>                          
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         
         
         <br>

@@ -12,6 +12,7 @@ public class User {
     private String senha;
     private Date dt_nascimento;
     private int qtd_usuario;
+    private int qtd_pedidos;
     
     
     public String getCpf() {
@@ -85,9 +86,15 @@ public class User {
     public void setQtd_usuario(int qtd_usuario) {
         this.qtd_usuario = qtd_usuario;
     }
-    
-    
-    
+
+    public int getQtd_pedidos() {
+        return qtd_pedidos;
+    }
+
+    public void setQtd_pedidos(int qtd_pedidos) {
+        this.qtd_pedidos = qtd_pedidos;
+    }     
+        
     @Override
     public String toString() {
         return "User [cpf=" + cpf + ", cd_perfilUsuario=" + cd_perfilUsuario

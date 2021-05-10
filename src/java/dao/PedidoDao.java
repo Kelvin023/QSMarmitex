@@ -324,5 +324,5 @@ public class PedidoDao {
             throw new RuntimeException("Falha ao listar pedidos.", e);
         }   
         return listaDePedidos;
-    }
+    }        
 }

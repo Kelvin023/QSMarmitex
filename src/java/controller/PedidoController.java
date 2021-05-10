@@ -48,6 +48,7 @@ public class PedidoController extends HttpServlet {
             String cpf = request.getParameter("cpf");
             request.setAttribute("users", udao.getUserById(cpf));
             request.setAttribute("qtdusers", udao.getQtdUsuariosSistema());
+            request.setAttribute("qtdpedidos", udao.getQtdPedidosByCliente());
             request.setAttribute("pedidos", dao.getMarmitaMaisVendida());
             request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());
             request.setAttribute("cpf", cpf);  

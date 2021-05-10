@@ -235,4 +235,31 @@ public class UserDao {
         }   
         return listaQtdUsuario;
     }
+    
+    //TABELA DE FIDELIDADE -> NUMERO DE PEDIDOS POR CLIENTE
+    public List<User> getQtdPedidosByCliente() {
+        System.out.println("Entrei na getQtdPedidosByCliente");
+        List<User> listaDePedidos = new ArrayList<User>();
+        try {
+            String SQL = "select 	\n" +
+                        "    u.nomeUsuario,\n" +
+                        "    count(p.cd_numeroPedido) as qtd_pedidos\n" +                                                
+                        "from tb_pedido as p\n" +
+                        "inner join tb_usuario as u\n" +
+                        "on p.cpf = u.cpf\n" +
+                        "group by u.cpf;";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                User user = new User();
+                user.setNomeUsuario(rs.getString("nomeUsuario"));
+                user.setQtd_pedidos(rs.getInt("qtd_pedidos"));                                
+                listaDePedidos.add(user);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
 }
