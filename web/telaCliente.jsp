@@ -86,6 +86,15 @@
             </c:otherwise>
         </c:choose>
         <br>
+        <c:choose>            
+            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
+                <a style="color: red" href="UserController?action=deleteClienteTelaCliente&cpf=<c:out value="${users.cpf}"/>">Deletar Conta</a>                
+            </c:when>                          
+            <c:otherwise>  <!--Veio direto do login--> 
+                <a style="color: green" href="UserController?action=deleteClienteTelaCliente&cpf=<%=(String)request.getAttribute("cpf")%>">Deletar Conta</a>                
+            </c:otherwise>
+        </c:choose>
+        <br>
         <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
                 
         

@@ -21,6 +21,7 @@ public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String INSERT_OR_EDIT = "/user.jsp";
     private static final String LIST_USER = "/listUser.jsp";
+    private static final String TELA_LOGIN = "/login.jsp";
     private final UserDao dao;
 
     public UserController() {
@@ -35,6 +36,11 @@ public class UserController extends HttpServlet {
         //int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
         
 
+        if (action.equalsIgnoreCase("deleteClienteTelaCliente")){            
+            String cpf = request.getParameter("cpf");            
+            dao.deleteUser(cpf);
+            forward = TELA_LOGIN;                                    
+        }
         if (action.equalsIgnoreCase("delete")){
             String cpfLogado = request.getParameter("cpfLogado");
             String cpf = request.getParameter("cpf");            
