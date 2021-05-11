@@ -27,7 +27,7 @@
         </h3>              
         <a href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">LISTA GERAL DE PEDIDOS</a>
         <br>
-        <a href="#">REALIZAR PEDIDO</a>
+        <a href="PedidoController?action=atendenteRealizaPedido&cpf=<%=(String)request.getAttribute("cpf")%>">REALIZAR PEDIDO</a>
         <br>
         <c:choose>           
             <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 

@@ -14,6 +14,8 @@ public class Pedido {
     private Float vlr_total_pedido;
     private int ano_particao;
     private int mes_particao;
+    private String nm_cliente_temp;
+    private String ds_endereco_cliente_temp;
 
     public int getCd_numeroPedido() {
         return cd_numeroPedido;
@@ -109,6 +111,22 @@ public class Pedido {
 
     public void setVlr_total_pedido(Float vlr_total_pedido) {
         this.vlr_total_pedido = vlr_total_pedido;
+    }
+
+    public String getNm_cliente_temp() {
+        return nm_cliente_temp;
+    }
+
+    public void setNm_cliente_temp(String nm_cliente_temp) {
+        this.nm_cliente_temp = nm_cliente_temp;
+    }
+
+    public String getDs_endereco_cliente_temp() {
+        return ds_endereco_cliente_temp;
+    }
+
+    public void setDs_endereco_cliente_temp(String ds_endereco_cliente_temp) {
+        this.ds_endereco_cliente_temp = ds_endereco_cliente_temp;
     }
     
     

@@ -44,6 +44,12 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
         }
+        else if (action.equalsIgnoreCase("atendenteRealizaPedido")){            
+            String cpf = request.getParameter("cpf");            
+            request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/atendenteRealizaPedido.jsp").forward(request, response);
+        }
         else if (action.equalsIgnoreCase("listPedidosMon")){//MOSTRA OS PEDIDOS MAIS VENDIDOS, MENOS VENDIDOS, CLIENTE QUE MAIS COMPROU, QUE MENOS COMPROU......          
             String cpf = request.getParameter("cpf");
             request.setAttribute("users", udao.getUserById(cpf));
