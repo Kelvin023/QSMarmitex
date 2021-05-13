@@ -12,8 +12,9 @@
         
         <style>
             .tamanho{
-                width: 400px;
-                margin-bottom: 188px;
+                width: 20vw;
+                height: fit-content;
+                margin-bottom: 8.6%;
             }
             
             label, input{
@@ -32,7 +33,8 @@
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-                font-size: 16px;                
+                font-size: 1rem;   
+                border-radius: 30px;
             }  
         </style>
     </head>

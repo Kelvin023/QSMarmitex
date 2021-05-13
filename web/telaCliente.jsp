@@ -7,6 +7,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>QS MARMITEX</title>
         <style>
+            .tamanho{
+                width: 45vw;
+                height: fit-content;
+            }
             #qtd{
                 width:40px;                
              }
@@ -20,9 +24,11 @@
              }
         </style>
         <link rel="shortcut icon" href="img/icone.png">
+        <!--<link rel="stylesheet" href="css/estilo.css">-->
     </head>
     <body>
-        <c:import url="includes/cabecalho.jsp"/>                
+        <c:import url="includes/cabecalho.jsp"/>  
+        <div>
         Bem vindo à tela de CLIENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>!                       
         <c:choose>
             <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->               
@@ -302,7 +308,7 @@
                 </c:otherwise>
             </c:choose>            
         </form>
-            
+        </div>    
         <br><br><br><br><br>
         <c:import url="includes/rodape.jsp"/>
     </body>

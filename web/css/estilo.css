@@ -55,14 +55,14 @@ form{
 
 
 label, input{
-    display: block;
     text-align: left;
- 
 }
 
 
 label{
     font-weight: bold;  
+    display: block;
+    text-align: left;
 }
 
 input {

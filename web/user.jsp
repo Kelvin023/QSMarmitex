@@ -69,8 +69,8 @@
     
     <style>
         .tamanho{
-            width: 22%;
-            height: 88%;
+            width: 22vw;
+            height: fit-content;
             margin-bottom: 50px;
         }
         
@@ -147,11 +147,7 @@
         <!--<a href="UserController?action=voltar&cpf=<c:out value="${user.cpf}" />&cd_perfilUsuario=3">Retornar ao Cardapio</a>        -->            
     </div>
     
-    <br><br><br><br>
-    <br><br><br><br>
-    <br><br><br><br>
-    <br><br><br><br>
-    <br><br><br><br>
+    
     <c:import url="includes/rodape.jsp"/>  
 </body>
 </html>

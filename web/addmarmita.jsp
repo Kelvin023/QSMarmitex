@@ -10,9 +10,9 @@
         
         <style>
             .tamanho {
-                width: 800px;
-                height: 90%;
-                margin-bottom: 80px;
+                width: 42vw;
+                height: fit-content;
+                margin-bottom: 5%;
                
             }
             
