@@ -28,6 +28,7 @@
                margin-bottom: 1%;  
                width: 43%;
                float: left; 
+               border-radius: 10px;
             }
             
             .clear{
@@ -71,7 +72,16 @@
                 
             }
             
+            .nomeMmta{
+                text-align: center;
+                padding-bottom: 2%;
+                font-weight: bold;
+            }
            
+            .pedido{
+               text-align: left;
+               margin-bottom: 2%;
+            }
             
 
        
@@ -170,19 +180,14 @@
                 <!--ESCONDIDINHO PEQUENIO-->
 
                 <form method="POST" action='PedidoController'>
-                    <table border="1">
-                        <thead>
-                            <th colspan="2">ESCONDIDINHO FITNESS PEQUENO</th>
-                        </thead>
+                    
                         
-                        <tbody>
-                            <tr>
-                                <td >Quantidade: <input type="number" name="quantidade" min="1" max="5" required></td>
-                                <td >Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p >Metodo de pagamento:</p>
+                    <p class="nomeMmta">ESCONDIDINHO FITNESS PEQUENO<p>
+                    <p class="pedido">Quantidade: <input  type="number" name="quantidade" min="1" max="5" required></p>
+                  
+                    <p class="pedido">Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</p> 
+                   
+                    <p style="margin-top:5%">Metodo de pagamento:</p>
                     <br>
                     <div>
                    <!-- <label for="male">Dinheiro</label>-->
@@ -221,18 +226,12 @@
                 <!--ESCONDIDINHO MÉDIO-->
                 
                 <form method="POST" action='PedidoController'>
-                    <table border="1">
-                        <thead>
-                            <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                                <td >Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                     <p >Metodo de pagamento:</p>   
+                    
+                    <p class="nomeMmta">ESCONDIDINHO FITNESS MÉDIO<p>
+                    <p class="pedido">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></p>
+                    <p class="pedido">Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</p> 
+                    
+                    <p style="margin-top:5%">Metodo de pagamento:</p>   
                     <br>
                     <div>
                         <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
@@ -272,25 +271,19 @@
                 <!--ESCONDIDINHO GRANDE-->
                 
                 <form method="POST" action='PedidoController'>
-                    <table border="1">
-                        <thead>
-                            <th colspan="2">ESCONDIDINHO FITNESS GRANDE</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                                <td >Preço por unidade: <input type="text" name="preco" value="24.90" hidden>R$ 24,90</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p >Metodo de pagamento:</p>  
+                    
+                    <p class="nomeMmta">ESCONDIDINHO FITNESS GRANDE</p>
+                    <p class="pedido">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></p>
+                    <p class="pedido">Preço por unidade: <input type="text" name="preco" value="24.90" hidden>R$ 24,90</p>
+                       
+                    <p style="margin-top:5%">Metodo de pagamento:</p>  
                     <br>
                     <div>
                         <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
                         <!--<label for="male">Dinheiro</label>-->
                     </div>
                     <div>
-                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <input type="radio"  name="frmpgmt" value="cartao">Cartão
                         <!--<label for="female">Cartão</label>-->
                     </div>
                     <input type="submit" value="Efetuar pedido">
@@ -320,25 +313,19 @@
                 <!--SALADA PEQUENA-->
                 
                 <form method="POST" action='PedidoController'>
-                    <table border="1">
-                        <thead>
-                            <th colspan="2">SALADA AMERICANA PEQUENA</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                                <td >Preço por unidade: <input type="text" name="preco" value="19.90" hidden>R$ 19,90</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                     <p >Metodo de pagamento:</p>  
+                   
+                    <p class="nomeMmta">SALADA AMERICANA PEQUENA</p>
+                    <p class="pedido">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></p>
+                    <p class="pedido">Preço por unidade: <input type="text" name="preco" value="19.90" hidden>R$ 19,90</p>
+                                              
+                     <p style="margin-top:5%">Metodo de pagamento:</p>  
                     <br>
                     <div>
                         <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
                         <!--<label for="male">Dinheiro</label>-->
                     </div>
                     <div>
-                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <input type="radio"  name="frmpgmt" value="cartao">Cartão   
                         <!--<label for="female">Cartão</label>-->
                     </div>
                     <input type="submit" value="Efetuar pedido">
@@ -369,25 +356,19 @@
                 <!--SALADA MÉDIA-->
                 
                 <form method="POST" action='PedidoController'>
-                    <table border="1">
-                        <thead>
-                            <th colspan="2">SALADA AMERICANA MÉDIA</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                                <td >Preço por unidade: <input type="text" name="preco" value="23.90" hidden>R$ 23,90</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p >Metodo de pagamento:</p>  
+                    
+                    <p class="nomeMmta">SALADA AMERICANA MÉDIA</p>
+                    <p class="pedido">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></p>
+                    <p class="pedido">Preço por unidade: <input type="text" name="preco" value="23.90" hidden>R$ 23,90</p>
+                    
+                    <p style="margin-top:5%">Metodo de pagamento:</p>  
                     <br>
                     <div>
                         <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
                         <!--<label for="male">Dinheiro</label>-->
                     </div>
                     <div>
-                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <input type="radio"  name="frmpgmt" value="cartao">Cartão
                         <!--<label for="female">Cartão</label>-->
                     </div>
                     <input type="submit" value="Efetuar pedido">
