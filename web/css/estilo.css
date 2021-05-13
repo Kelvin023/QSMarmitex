@@ -89,7 +89,7 @@ input[type="submit"]{
     height: 40px;
     border-radius: 20px;
     margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     color: #FFF;
     background-color: #B22222;
     cursor: pointer;
@@ -143,3 +143,11 @@ ul, a:hover {
 .foto {
     border-bottom: none;
 }
+
+
+
+
+  
+
+ 
+ 

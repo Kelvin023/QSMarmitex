@@ -5,311 +5,418 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>QS MARMITEX</title>
+        <title>QS Marmitex - Cliente</title>
         <style>
             .tamanho{
                 width: 45vw;
                 height: fit-content;
+                
             }
-            #qtd{
-                width:40px;                
-             }
-             .itemCardapio{
-                 text-align: center;                
-             }
-             
-             #btnSair{
-                 background-color: red;
-                 color: white;
-             }
+            #topo{
+                text-align: left;
+                margin-bottom: 3%;
+                
+            }   
+
+            #cardapio {
+               padding-top: 1%;    
+            }
+ 
+            .item {
+               border: solid 0.2px red;
+               padding: 1%;
+               margin-bottom: 1%;  
+               width: 43%;
+               float: left; 
+            }
+            
+            .clear{
+                clear: both;
+            }
+            
+           input[type="button"]{
+                text-align: center;
+                text-transform: uppercase;              
+                border: none;            
+                color: #B22222;           
+                cursor: pointer;
+                margin-top: 3%;
+                background-color: #FFF;
+
+            }
+
+            input[type="button"]:hover {
+                color: #8B0000;
+                transition: 0.5s;
+                border: none;
+            }
+            
+            .bvC{
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 2%; 
+            }
+            
+            .lista{
+                text-decoration: none;
+                color: #B22222;
+                text-align: center;
+                border: solid 0.2px #B22222;
+                width: 22%;
+                margin: 4%;  
+                padding-left:  5%;
+                font-size: 18px;
+                float: left;
+                
+            }
+            
+           
+            
+
+       
         </style>
         <link rel="shortcut icon" href="img/icone.png">
-        <!--<link rel="stylesheet" href="css/estilo.css">-->
+        <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>  
-        <div>
-        Bem vindo à tela de CLIENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>!                       
-        <c:choose>
-            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->               
-                <p style="color: blue; font-family: monospace; font-size: 20px;">E-mail logado: ${users.email}</p>
-            </c:when>              
-            <c:otherwise> <!--Veio direto do login-->               
-                <p style="color: green; font-family: monospace; font-size: 20px;">E-mail logado: <%=request.getAttribute("email")%></p>
-            </c:otherwise>
-        </c:choose>                                                                               
-        
-        <c:choose>
-            <c:when test="${not empty users.cpf}">  <!--Veio da tela do UPDATE-->              
-                <p style="color: blue; font-family: monospace; font-size: 20px;">CPF logado: ${users.cpf}</p>
-            </c:when>              
-            <c:otherwise> <!--Veio direto do login-->               
-                <p style="color: green; font-family: monospace; font-size: 20px;">CPF logado: <%=request.getAttribute("cpf")%></p>
-            </c:otherwise>
-        </c:choose>                 
+        <div id="container" class="tamanho">
+            <div id="topo">
+                <p class="bvC" >Bem vindo à tela de Cliente <span ><c:out value="${users.nomeUsuario}" /></span>! </p>    
                 
                 
-        <c:if test="${not empty naoTemCartao}">
-            <h2 style="color: darkorchid">
-                <%=request.getAttribute("naoTemCartao")%>
-            </h2>
-        </c:if>
-                
-        <c:if test="${not empty mensagem}">
-            <h2 style="color: darkorchid">
-                <%=request.getAttribute("mensagem")%>
-            </h2>
-        </c:if>
+            <c:choose>
+                <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->               
+                    <p >E-mail logado: ${users.email}</p>
+                </c:when>              
+                <c:otherwise> <!--Veio direto do login-->               
+                    <p >E-mail logado: <%=request.getAttribute("email")%></p>
+                </c:otherwise>
+            </c:choose>                                                                               
+                    <br>
+            <c:choose>
+                <c:when test="${not empty users.cpf}">  <!--Veio da tela do UPDATE-->              
+                    <p >CPF logado: ${users.cpf}</p>
+                </c:when>              
+                <c:otherwise> <!--Veio direto do login-->               
+                    <p >CPF logado: <%=request.getAttribute("cpf")%></p>
+                </c:otherwise>
+            </c:choose>                 
 
-        <c:choose>           
-            <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
-                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Editar</a>
-            </c:when>                          
-            <c:otherwise> <!--Veio direto do login-->                               
-                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Editar</a>
-            </c:otherwise>
-        </c:choose>
-        <br>        
-       
-        <%--
-        <c:choose>            
-            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
-                <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
-            </c:when>                          
-            <c:otherwise>  <!--Veio direto do login--> 
-                <a style="color: green" href="CartaoController?action=listCartao&cpf=<%=(String)request.getAttribute("cpf")%>">Cartões</a>                
-            </c:otherwise>
-        </c:choose>                       
-        <br>
-        --%>
-        
-        <c:choose>            
-            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
-                <a style="color: red" href="PedidoController?action=listPedido&cpf=<c:out value="${users.cpf}"/>">Pedidos</a>                
-            </c:when>                          
-            <c:otherwise>  <!--Veio direto do login--> 
-                <a style="color: green" href="PedidoController?action=listPedido&cpf=<%=(String)request.getAttribute("cpf")%>">Pedidos</a>                
-            </c:otherwise>
-        </c:choose>
-        <br>
-        <c:choose>            
-            <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
-                <a style="color: red" href="UserController?action=deleteClienteTelaCliente&cpf=<c:out value="${users.cpf}"/>">Deletar Conta</a>                
-            </c:when>                          
-            <c:otherwise>  <!--Veio direto do login--> 
-                <a style="color: green" href="UserController?action=deleteClienteTelaCliente&cpf=<%=(String)request.getAttribute("cpf")%>">Deletar Conta</a>                
-            </c:otherwise>
-        </c:choose>
-        <br>
-        <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+
+            <c:if test="${not empty naoTemCartao}">
+                <h2>
+                    <%=request.getAttribute("naoTemCartao")%>
+                </h2>
+            </c:if>
+
+            <c:if test="${not empty mensagem}">
+                <h2 >
+                    <%=request.getAttribute("mensagem")%>
+                </h2>
+            </c:if>
+
+            <c:choose>           
+                <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
+                    <a class="lista" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=3">Editar</a>
+                </c:when>                          
+                <c:otherwise> <!--Veio direto do login-->                               
+                    <a class="lista"href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=3">Editar</a>
+                </c:otherwise>
+            </c:choose>
+                  
+
+            <%--
+            <c:choose>            
+                <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
+                    <a style="color: red" href="CartaoController?action=listCartao&cpf=<c:out value="${users.cpf}"/>">Cartões</a>                
+                </c:when>                          
+                <c:otherwise>  <!--Veio direto do login--> 
+                    <a style="color: green" href="CartaoController?action=listCartao&cpf=<%=(String)request.getAttribute("cpf")%>">Cartões</a>                
+                </c:otherwise>
+            </c:choose>                       
+            <br>
+            --%>
+
+            <c:choose>            
+                <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
+                    <a class="lista" href="PedidoController?action=listPedido&cpf=<c:out value="${users.cpf}"/>">Pedidos</a>                
+                </c:when>                          
+                <c:otherwise>  <!--Veio direto do login--> 
+                    <a  class="lista" href="PedidoController?action=listPedido&cpf=<%=(String)request.getAttribute("cpf")%>">Pedidos</a>                
+                </c:otherwise>
+            </c:choose>
+         
+            <c:choose>            
+                <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
+                    <a  class="lista" style="width:27%"href="UserController?action=deleteClienteTelaCliente&cpf=<c:out value="${users.cpf}"/>">Deletar Conta</a>                
+                </c:when>                          
+                <c:otherwise>  <!--Veio direto do login--> 
+                    <a class="lista" style="width:27%"href="UserController?action=deleteClienteTelaCliente&cpf=<%=(String)request.getAttribute("cpf")%>">Deletar Conta</a>                
+                </c:otherwise>
+            </c:choose>
+            
+                    <hr class="clear">
+         </div> 
+         
+         <!--CARDÁPIO-->
+         
+         <div id="cardapio">
                 
+           <h1 style="margin-bottom: 4%">CARDÁPIO</h1>
+            
+             <div class="item" style="margin-right:14%"  >                 
+                <!--ESCONDIDINHO PEQUENIO-->
+
+                <form method="POST" action='PedidoController'>
+                    <table border="1">
+                        <thead>
+                            <th colspan="2">ESCONDIDINHO FITNESS PEQUENO</th>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td >Quantidade: <input type="number" name="quantidade" min="1" max="5" required></td>
+                                <td >Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p >Metodo de pagamento:</p>
+                    <br>
+                    <div>
+                   <!-- <label for="male">Dinheiro</label>-->
+                    <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
+                    </div>
+                    <div>
+                    <input type="radio"  name="frmpgmt" value="cartao">Cartão
+                    <!--<label for="female">Cartão</label>-->
+                    </div>
+                    
+                    <input type="submit" value="Efetuar pedido">
+                    <input type="text" name="tamanho" value="pequeno" hidden>           
+                    <input type="text" name="cd_marmita" value="3" hidden>           
+                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>           
+                    <c:choose>
+                        <c:when test="${not empty users.email}">                
+                            <input type="text" name="email" value="${users.email}" hidden>           
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty users.cpf}">                
+                            <input type="text" name="cpf" value="${users.cpf}" hidden>
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>            
+                </form>
+                    
+            </div>        
+             <div class="item" >
+                
+                <!--ESCONDIDINHO MÉDIO-->
+                
+                <form method="POST" action='PedidoController'>
+                    <table border="1">
+                        <thead>
+                            <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                                <td >Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <p >Metodo de pagamento:</p>   
+                    <br>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
+                        <!--<label for="male">Dinheiro</label>-->
+                    </div>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="cartao">Cartão
+                        <!--<label for="female">Cartão</label>-->
+                    </div>
+                    <input type="submit" value="Efetuar pedido">
+                    <input type="text" name="tamanho" value="medio" hidden> 
+                    <input type="text" name="cd_marmita" value="4" hidden>            
+                    <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>           
+                    <c:choose>
+                        <c:when test="${not empty users.email}">                
+                            <input type="text" name="email" value="${users.email}" hidden>            
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty users.cpf}">                
+                            <input type="text" name="cpf" value="${users.cpf}" hidden>
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>            
+                </form>
+            </div>
+                    
+             
+                    
+            <div class="item" style="margin-right:14%">  
+                
+                <!--ESCONDIDINHO GRANDE-->
+                
+                <form method="POST" action='PedidoController'>
+                    <table border="1">
+                        <thead>
+                            <th colspan="2">ESCONDIDINHO FITNESS GRANDE</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                                <td >Preço por unidade: <input type="text" name="preco" value="24.90" hidden>R$ 24,90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p >Metodo de pagamento:</p>  
+                    <br>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
+                        <!--<label for="male">Dinheiro</label>-->
+                    </div>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <!--<label for="female">Cartão</label>-->
+                    </div>
+                    <input type="submit" value="Efetuar pedido">
+                    <input type="text" name="tamanho" value="grande" hidden>  
+                    <input type="text" name="cd_marmita" value="5" hidden>       
+                    <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>          
+                    <c:choose>
+                        <c:when test="${not empty users.email}">                
+                            <input type="text" name="email" value="${users.email}" hidden>           
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty users.cpf}">                
+                            <input type="text" name="cpf" value="${users.cpf}" hidden>
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>            
+                </form>
+            </div> 
+                    
+            <div class="item" >
+                <!--SALADA PEQUENA-->
+                
+                <form method="POST" action='PedidoController'>
+                    <table border="1">
+                        <thead>
+                            <th colspan="2">SALADA AMERICANA PEQUENA</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                                <td >Preço por unidade: <input type="text" name="preco" value="19.90" hidden>R$ 19,90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <p >Metodo de pagamento:</p>  
+                    <br>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
+                        <!--<label for="male">Dinheiro</label>-->
+                    </div>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <!--<label for="female">Cartão</label>-->
+                    </div>
+                    <input type="submit" value="Efetuar pedido">
+                    <input type="text" name="tamanho" value="pequeno" hidden> 
+                    <input type="text" name="cd_marmita" value="1" hidden>           
+                    <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>            
+                    <c:choose>
+                        <c:when test="${not empty users.email}">                
+                            <input type="text" name="email" value="${users.email}" hidden>            
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty users.cpf}">                
+                            <input type="text" name="cpf" value="${users.cpf}" hidden>
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>            
+                </form>
+            </div>
+
+            <div class="item">
+                
+                <!--SALADA MÉDIA-->
+                
+                <form method="POST" action='PedidoController'>
+                    <table border="1">
+                        <thead>
+                            <th colspan="2">SALADA AMERICANA MÉDIA</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                                <td >Preço por unidade: <input type="text" name="preco" value="23.90" hidden>R$ 23,90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p >Metodo de pagamento:</p>  
+                    <br>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="dinheiro">Dinheiro
+                        <!--<label for="male">Dinheiro</label>-->
+                    </div>
+                    <div>
+                        <input type="radio"  name="frmpgmt" value="cartao">Dinheiro
+                        <!--<label for="female">Cartão</label>-->
+                    </div>
+                    <input type="submit" value="Efetuar pedido">
+                    <input type="text" name="tamanho" value="medio" hidden>   
+                    <input type="text" name="cd_marmita" value="2" hidden>            
+                    <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>            
+                    <c:choose>
+                        <c:when test="${not empty users.email}">                
+                            <input type="text" name="email" value="${users.email}" hidden>           
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty users.cpf}">                
+                            <input type="text" name="cpf" value="${users.cpf}" hidden>
+                        </c:when>              
+                        <c:otherwise>                
+                            <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden>
+                        </c:otherwise>
+                    </c:choose>            
+                </form>
+            </div>
+        </div>
+       <hr class="clear">
+       <input class="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+    </div>    
         
-        <!--CARDÁPIO-->
-        <h1>CARDÁPIO</h1>
-        <!--ESCONDIDINHO PEQUENIO-->
-        <form method="POST" action='PedidoController'>
-            <table border="1">
-                <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS PEQUENO</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
-            <label for="male">Dinheiro</label>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
-            <label for="female">Cartão</label><br>
-            <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="pequeno" hidden><br>            
-            <input type="text" name="cd_marmita" value="3" hidden><br>            
-            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
-            <c:choose>
-                <c:when test="${not empty users.email}">                
-                    <input type="text" name="email" value="${users.email}" hidden><br>            
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>            
-        </form>
-        
-        <!--ESCONDIDINHO MÉDIO-->
-        <form method="POST" action='PedidoController'>
-            <table border="1">
-                <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
-            <label for="male">Dinheiro</label>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
-            <label for="female">Cartão</label><br>
-            <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="medio" hidden><br>   
-            <input type="text" name="cd_marmita" value="4" hidden><br>            
-            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
-            <c:choose>
-                <c:when test="${not empty users.email}">                
-                    <input type="text" name="email" value="${users.email}" hidden><br>            
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>            
-        </form>
-            
-        <!--ESCONDIDINHO GRANDE-->
-        <form method="POST" action='PedidoController'>
-            <table border="1">
-                <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS GRANDE</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="24.90" hidden>R$ 24,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
-            <label for="male">Dinheiro</label>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
-            <label for="female">Cartão</label><br>
-            <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="grande" hidden><br>    
-            <input type="text" name="cd_marmita" value="5" hidden><br>            
-            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
-            <c:choose>
-                <c:when test="${not empty users.email}">                
-                    <input type="text" name="email" value="${users.email}" hidden><br>            
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>            
-        </form>
-            
-            
-        <!--SALADA PEQUENA-->
-        <form method="POST" action='PedidoController'>
-            <table border="1">
-                <thead>
-                    <th colspan="2">SALADA AMERICANA PEQUENA</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="19.90" hidden>R$ 19,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
-            <label for="male">Dinheiro</label>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
-            <label for="female">Cartão</label><br>
-            <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="pequeno" hidden><br>  
-            <input type="text" name="cd_marmita" value="1" hidden><br>            
-            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
-            <c:choose>
-                <c:when test="${not empty users.email}">                
-                    <input type="text" name="email" value="${users.email}" hidden><br>            
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>            
-        </form>
-            
-            
-            
-        <!--SALADA MÉDIA-->
-        <form method="POST" action='PedidoController'>
-            <table border="1">
-                <thead>
-                    <th colspan="2">SALADA AMERICANA MÉDIA</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="23.90" hidden>R$ 23,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
-            <label for="male">Dinheiro</label>
-            <input type="radio" id="frmpgmt" name="frmpgmt" value="cartao">
-            <label for="female">Cartão</label><br>
-            <input type="submit" value="Efetuar pedido">
-            <input type="text" name="tamanho" value="medio" hidden><br>    
-            <input type="text" name="cd_marmita" value="2" hidden><br>            
-            <input id="qtd" type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>            
-            <c:choose>
-                <c:when test="${not empty users.email}">                
-                    <input type="text" name="email" value="${users.email}" hidden><br>            
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="email" value="<%=request.getAttribute("email")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty users.cpf}">                
-                    <input type="text" name="cpf" value="${users.cpf}" hidden><br>
-                </c:when>              
-                <c:otherwise>                
-                    <input type="text" name="cpf" value="<%=request.getAttribute("cpf")%>" hidden><br>
-                </c:otherwise>
-            </c:choose>            
-        </form>
-        </div>    
-        <br><br><br><br><br>
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

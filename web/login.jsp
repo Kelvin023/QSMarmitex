@@ -14,7 +14,7 @@
             .tamanho{
                 width: 20vw;
                 height: fit-content;
-                margin-bottom: 8.6%;
+                margin-bottom: 10.2%;
             }
             
             label, input{

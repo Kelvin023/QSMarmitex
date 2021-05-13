@@ -7,7 +7,7 @@
         position: relative;
     }
     
-    .lista{
+    .listas{
         font-size: 22px;
         margin-top: 10px;
         text-shadow: 0px 1px 1px white;
@@ -23,8 +23,8 @@
 <footer>
     <div id="rodape">
         
-            <p class="lista">Projeto PIDI - System Quality Marmitex</p>            
-            <p class="lista">Para maiores informações contatar o Administrador do Sistema</p>            
+            <p class="listas">Projeto PIDI - System Quality Marmitex</p>            
+            <p class="listas">Para maiores informações contatar o Administrador do Sistema</p>            
        
 
         <h3>
