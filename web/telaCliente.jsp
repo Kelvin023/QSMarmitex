@@ -10,6 +10,8 @@
             .tamanho{
                 width: 45vw;
                 height: fit-content;
+                margin-bottom: 5%;
+                
                 
             }
             #topo{
@@ -395,9 +397,9 @@
             </div>
         </div>
        <hr class="clear">
-       <input class="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
+       <input  type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>
     </div>    
-        
+    
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

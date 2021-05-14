@@ -70,7 +70,7 @@
                 </form>
             </fieldset>
             
-            <a class="voltar" href="${pageContext.request.contextPath}/jsp/listmarmita.jsp">Voltar</a>
+            <a class="voltar" href="${pageContext.request.contextPath}/jsp/listmarmita.jsp">VOLTAR</a>
         </div>
         <div>
             <c:import url="includes/rodape.jsp"/> 

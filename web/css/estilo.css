@@ -138,12 +138,47 @@ ul, a:hover {
 
 .voltar{
     color: #B22222;
+     text-transform: uppercase;
 }
 
 .foto {
     border-bottom: none;
 }
 
+
+
+
+
+
+    .sair{
+        
+        text-decoration: none; 
+        color: #B22222;
+        border: solid 0.2px #B22222;
+        width: 20%;
+        display: inline-block;
+        border-radius: 10px;
+        cursor: pointer;
+               
+    }
+            
+    .editar{
+        
+        cursor: pointer;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        margin: 30px;
+        margin-bottom: 10%;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;   
+        border-radius: 10px;
+        width: 40%; 
+        font-weight: bold;
+
+    }
 
 
 

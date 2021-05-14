@@ -5,40 +5,81 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tela ENTREGADOR</title>
+        <title>QS Marmitax - Entregador</title>
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="css/estilo.css">
+        
+        <style>
+            .tamanho{
+               width: 40vw; 
+               height: fit-content;
+               margin-bottom: 13%;
+               
+            }
+            
+        
+            .listaEntregas{
+                text-decoration: none;
+                text-align: center;
+                
+                font-weight: bold;
+                border: none;
+                height: 40px;
+                border-radius: 10px;
+                margin-top: 30px;
+                margin-bottom: 10px;
+                color: #FFF;
+                background-color: #B22222;
+                cursor: pointer;
+                width: 40%;
+                display: inline-block;
+            }
+            
+            .entregador{
+                text-align: left;
+                font-size: 1.3em;
+                padding: 3%;
+            }
+          
+        </style>
+              
+         
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Tela ENTREGADOR</h1>
-        <h3>
-            Bem vindo à tela de ENTREGADOR! <br>            
+        <div id="container" class="tamanho">
+        
+        
+            <h2> Bem vindo à tela de entregador!  </h2> 
+            <div class="entregador">
             <c:choose>
                 <c:when test="${not empty users.email}">                
-                    Usuário logado: ${users.email}<br>
-                </c:when>              
+                    Usuário logado: ${users.email}
+                </c:when>  
+            
                 <c:otherwise>                
-                    Usuário logado: <%=request.getAttribute("email") %><br>
+                    Usuário logado: <%=request.getAttribute("email") %>
                 </c:otherwise>
             </c:choose>
+            </div>
             
-            
-            CPF do ENTREGADOR logado: <%=request.getAttribute("cpf") %>
-        </h3>
+            <p class="entregador"> CPF do entregador logado: <%=request.getAttribute("cpf") %> </p>
+        
                        
-        <a href="PedidoController?action=listallPedidosEntrega&cpf=<%=(String)request.getAttribute("cpf")%>">LISTA DE ENTREGAS A SEREM CUMPRIDAS</a>
+        <a class="listaEntregas"href="PedidoController?action=listallPedidosEntrega&cpf=<%=(String)request.getAttribute("cpf")%>">Lista de entregas</a>
         <br>
         <c:choose>           
             <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
-                <a style="color: red" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=4">Editar</a>
+                <a class="editar" href="UserController?action=edit&cpf=<c:out value="${users.cpf}"/>&cd_perfilUsuario=4">Editar</a>
             </c:when>                          
             <c:otherwise> <!--Veio direto do login-->                               
-                <a style="color: green" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=4">Editar</a>
+                <a class="editar" href="UserController?action=edit&cpf=<%=(String)request.getAttribute("cpf")%>&cd_perfilUsuario=4">Editar</a>
             </c:otherwise>
         </c:choose>
         <br>
-        <a href="login.jsp">Sair</a>
-        <br><br><br><br><br><br>    
+        <a class="sair" href="login.jsp">Sair</a>
+        
+        </div>
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
