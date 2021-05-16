@@ -46,10 +46,11 @@ public class UserController extends HttpServlet {
             Pedido pedido = pdao.checkClienteTemPedido(cpf);
             if (pedido.getCpf() == null) {
                 System.out.println("Esse usuário não efetuou nenhum pedido. PODE DAR O DROP DE BOA.");
-                //dao.deleteUser(cpf);
+                dao.deleteUser(cpf);
             }
             else{
                 System.out.println("Esse usuário em questão POSSUI PEDIDOS EFETUADOS. Tem que passar pelo processo para exclui-lo");
+                //CRIAR UMA FUNCAO COM NOME processoDelecao, para fazer o processo de delecao
             }
             //dao.deleteUser(cpf);
             forward = TELA_LOGIN;                                    
