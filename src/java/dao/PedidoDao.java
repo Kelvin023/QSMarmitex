@@ -43,6 +43,31 @@ public class PedidoDao {
         }
     }
     
+    
+    public Pedido checkClienteTemPedido(String cpf) {
+        System.out.println("Entrei na checkClienteTemPedido com o CPF: " + cpf);
+        Pedido pedido = new Pedido();
+        try {                        
+            PreparedStatement preparedStatement = connection.prepareStatement("select distinct \n" +
+            "	cpf \n" +
+            "from tb_pedido \n" +
+            "where cpf in (SELECT distinct cpf FROM tb_pedido) and \n" +
+            "cpf = ?;");
+            preparedStatement.setString(1, cpf);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                pedido.setCpf(rs.getString("cpf"));                                            
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw  new RuntimeException("Erro ao buscar registro do CPF.");
+        }        
+        return pedido;
+    }
+    
+    
+    
     //FUNCAO DE LISTAR PEDIDOS PRA O CLIENTE PODER VER QUAIS OS PEDIDOS DELE
     public List<Pedido> getPedidoByCpf(String cpf) {
         System.out.println("Entrei na getPedidoByCpf com o CPF: " + cpf);

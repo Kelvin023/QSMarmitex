@@ -1,11 +1,13 @@
 package controller;
 
 
+import dao.PedidoDao;
 import dao.UserDao;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Pedido;
 import model.User;
 
 
@@ -23,10 +26,12 @@ public class UserController extends HttpServlet {
     private static final String LIST_USER = "/listUser.jsp";
     private static final String TELA_LOGIN = "/login.jsp";
     private final UserDao dao;
+    private final PedidoDao pdao;
 
     public UserController() {
         super();
         dao = new UserDao();
+        pdao = new PedidoDao();
     }
 
     @Override
@@ -38,7 +43,15 @@ public class UserController extends HttpServlet {
 
         if (action.equalsIgnoreCase("deleteClienteTelaCliente")){            
             String cpf = request.getParameter("cpf");            
-            dao.deleteUser(cpf);
+            Pedido pedido = pdao.checkClienteTemPedido(cpf);
+            if (pedido.getCpf() == null) {
+                System.out.println("Esse usuário não efetuou nenhum pedido. PODE DAR O DROP DE BOA.");
+                //dao.deleteUser(cpf);
+            }
+            else{
+                System.out.println("Esse usuário em questão POSSUI PEDIDOS EFETUADOS. Tem que passar pelo processo para exclui-lo");
+            }
+            //dao.deleteUser(cpf);
             forward = TELA_LOGIN;                                    
         }
         if (action.equalsIgnoreCase("delete")){
