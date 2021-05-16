@@ -162,10 +162,10 @@
          
             <c:choose>            
                 <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->    
-                    <a  class="lista" style="width:27%"href="UserController?action=deleteClienteTelaCliente&cpf=<c:out value="${users.cpf}"/>">Deletar Conta</a>                
+                    <a  class="lista" style="width:27%" href="UserController?action=deleteClienteTelaCliente&cpf=<c:out value="${users.cpf}"/>">Deletar Conta</a>                
                 </c:when>                          
                 <c:otherwise>  <!--Veio direto do login--> 
-                    <a class="lista" style="width:27%"href="UserController?action=deleteClienteTelaCliente&cpf=<%=(String)request.getAttribute("cpf")%>">Deletar Conta</a>                
+                    <a class="lista" style="width:27%" href="UserController?action=deleteClienteTelaCliente&cpf=<%=(String)request.getAttribute("cpf")%>">Deletar Conta</a>                
                 </c:otherwise>
             </c:choose>
             

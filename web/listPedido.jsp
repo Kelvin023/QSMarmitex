@@ -53,7 +53,7 @@
                                 </c:otherwise>
                             </c:choose>
                             <td><c:out value="${pedido.qtd_marmita}" /></td>
-                            <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedido.valorPedido * pedido.qtd_marmita}"/></td>                                                                                                        
+                            <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedido.valorPedido * pedido.qtd_marmita}"/></td>
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${pedido.dt_pedido}" /></td>                            
                             
                             <c:choose>

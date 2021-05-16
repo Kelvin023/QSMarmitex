@@ -198,7 +198,19 @@ public class PedidoDao {
         System.out.println("Entrei na getAllPedidosProd!!");
         List<Pedido> listaPedidosProd = new ArrayList<Pedido>();
         try {
-            String SQL = "select * from tb_pedido where st_pedido = 0";
+            String SQL = "SELECT \n" +
+                "    p.cd_numeroPedido,\n" +
+                "    p.cpf,\n" +
+                "    p.qtd_marmita,\n" +                
+                "    p.valorPedido,\n" +
+                "    p.dt_pedido,\n" +
+                "    p.st_pedido,\n" +
+                "    p.cd_marmita,\n" +
+                "    u.nomeUsuario\n" +                
+                "FROM tb_pedido as p\n" +
+                "inner join tb_usuario as u\n" +
+                "on p.cpf = u.cpf\n" +
+                "where st_pedido = 0;";
             PreparedStatement ps = connection.prepareStatement(SQL);                        
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {
@@ -210,6 +222,7 @@ public class PedidoDao {
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
                 pedido.setSt_pedido(rs.getInt("st_pedido"));  
                 pedido.setCd_marmita(rs.getInt("cd_marmita"));
+                pedido.setNomeUsuario(rs.getString("nomeUsuario"));
                 listaPedidosProd.add(pedido);
             }
             
