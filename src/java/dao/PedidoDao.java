@@ -313,7 +313,7 @@ public class PedidoDao {
     
     
     
-    //FAZER MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
+    // MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
     public List<Pedido> getAllPedidosByPeriodo(String dtinicio, String dtfim) {
         System.out.println("Entrei na getAllPedidosByPeriodo!!");
         List<Pedido> listaDePedidos = new ArrayList<Pedido>();
@@ -336,6 +336,46 @@ public class PedidoDao {
             ps.setString(2, dtfim);
             System.out.println("Data de inicio do periodo dentro da getAllPedidosByPeriodo: " + dtinicio);
             System.out.println("Data de fim do periodo dentro da getAllPedidosByPeriodo: " + dtfim);
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setSt_pedido(rs.getInt("st_pedido"));  
+                pedido.setNomeUsuario(rs.getString("nomeUsuario"));
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
+    // MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
+    public List<Pedido> getallPedidosByStatus(String status) {
+        System.out.println("Entrei na getallPedidosByStatus!!");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "SELECT \n" +
+                        "    p.cd_numeroPedido,\n" +
+                        "    p.cpf,\n" +
+                        "    p.qtd_marmita,\n" +                
+                        "    p.valorPedido,\n" +
+                        "    p.dt_pedido,\n" +
+                        "    p.st_pedido,\n" +
+                        "    p.cd_marmita,\n" +
+                        "    u.nomeUsuario\n" +                
+                        "FROM tb_pedido as p\n" +
+                        "left join tb_usuario as u\n" +
+                        "on p.cpf = u.cpf\n" +
+                        "where p.st_pedido = ?";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ps.setString(1, status);            
+            System.out.println("Status dentro da getallPedidosByStatus: " + status);            
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {
                 Pedido pedido = new Pedido();

@@ -42,6 +42,20 @@
         </form>        
         <br>
         
+        <!--FILTROS DE STATUS-->        
+        <span style="font-size: 20px; font-weight: bold">STATUS </span>
+        <form method="POST" action="RelatorioPedidoController">
+           <select name="status">
+                <option value="5" selected>--</option>
+                <option value="0">EM PRODUÇÃO</option>
+                <option value="1">EM TRANSPORTE</option>
+                <option value="2">ENTREGUE - (FINALIZADO)</option>
+          </select>
+            <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>
+            <button type="submit">APLICAR FILTRO</button>            
+        </form>        
+        <br>
+        
         <a id="btnZerar" href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">
             Zerar filtro
         </a>

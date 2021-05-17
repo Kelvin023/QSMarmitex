@@ -31,17 +31,43 @@ public class RelatorioPedidoController extends HttpServlet {
         String dtinicio = request.getParameter("dtinicio");
         String dtfim = request.getParameter("dtfim");
         String cpf = request.getParameter("cpf");
+        String status = request.getParameter("status");
         System.out.println("Entrei na RelatorioPedidoController com os valores de periodo abaixo: ");
         System.out.println("Data inicio: " + dtinicio);
         System.out.println("Data fim: " + dtfim);
+        System.out.println("Valor do status, la do DropDown: " + status);
         System.out.println("CPF: " + cpf);
         
                
-        //request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
-        request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
-        request.setAttribute("cpf", cpf);  
-        request.setAttribute("dtinicio", dtinicio);  
-        request.setAttribute("dtfim", dtfim);          
-        request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
+        /*
+        SE dtinicio e dtfim <> null, então chamar a funcao getAllPedidosByPeriodo
+        SE FOREM null, chamar a nova funcao de getallPedidosByStatus
+        */
+        if (dtinicio != null && dtfim != null) {
+            request.setAttribute("pedidos", dao.getAllPedidosByPeriodo(dtinicio, dtfim));
+            request.setAttribute("cpf", cpf);  
+            request.setAttribute("dtinicio", dtinicio);  
+            request.setAttribute("dtfim", dtfim);          
+            request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
+        }                
+        
+        if (status.equals("5") ) {      
+            System.out.println("Caso onde o status vale 5!!");
+            request.setAttribute("pedidos", dao.getAllPedidos());
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);                                    
+        }
+        
+        if (status != null || status != "5") {
+            System.out.println("Caso onde o status nao eh null e eh difernete de 5!!");
+            request.setAttribute("pedidos", dao.getallPedidosByStatus(status));
+            request.setAttribute("cpf", cpf);  
+            request.setAttribute("dtinicio", dtinicio);  
+            request.setAttribute("dtfim", dtfim);          
+            request.getRequestDispatcher("/relatorioPedido.jsp").forward(request, response);
+        } 
+        
+        
+                       
     }
 }
