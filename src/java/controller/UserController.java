@@ -79,6 +79,7 @@ public class UserController extends HttpServlet {
             String cpf = request.getParameter("cpf");
             System.out.println("CPF vindo da tela anterior: " + cpf);
             request.setAttribute("cpf", cpf);
+            request.setAttribute("usuario", dao.getUserById(cpf));
             request.setAttribute("users", dao.getAllUsers());
         } else if (action.equalsIgnoreCase("insert")){
             String cpfLogado = request.getParameter("cpfLogado");

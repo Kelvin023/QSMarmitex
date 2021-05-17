@@ -11,7 +11,8 @@
     </head>
 <body>
     <c:import url="includes/cabecalho.jsp"/>       
-    <h1>CPF do Admin logado: <%=(String)request.getAttribute("cpf")%></h1>
+    <!--<h1>CPF do Admin logado: <%=(String)request.getAttribute("cpf")%></h1>-->
+    <h1>Nome do Admin logado: <c:out value="${usuario.nomeUsuario}" /></h1>
     
     <table border=1>
         <thead>
