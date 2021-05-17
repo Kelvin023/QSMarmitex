@@ -318,7 +318,19 @@ public class PedidoDao {
         System.out.println("Entrei na getAllPedidosByPeriodo!!");
         List<Pedido> listaDePedidos = new ArrayList<Pedido>();
         try {
-            String SQL = "select * from tb_pedido where DATE(dt_pedido) between ? and ?";
+            String SQL = "SELECT \n" +
+                        "    p.cd_numeroPedido,\n" +
+                        "    p.cpf,\n" +
+                        "    p.qtd_marmita,\n" +                
+                        "    p.valorPedido,\n" +
+                        "    p.dt_pedido,\n" +
+                        "    p.st_pedido,\n" +
+                        "    p.cd_marmita,\n" +
+                        "    u.nomeUsuario\n" +                
+                        "FROM tb_pedido as p\n" +
+                        "left join tb_usuario as u\n" +
+                        "on p.cpf = u.cpf\n" +
+                        "where DATE(dt_pedido) between ? and ?";
             PreparedStatement ps = connection.prepareStatement(SQL);            
             ps.setString(1, dtinicio);
             ps.setString(2, dtfim);
@@ -332,7 +344,8 @@ public class PedidoDao {
                 pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
                 pedido.setValorPedido(rs.getFloat("valorPedido"));
                 pedido.setDt_pedido(rs.getDate("dt_pedido"));
-                pedido.setSt_pedido(rs.getInt("st_pedido"));                
+                pedido.setSt_pedido(rs.getInt("st_pedido"));  
+                pedido.setNomeUsuario(rs.getString("nomeUsuario"));
                 listaDePedidos.add(pedido);
             }
             
