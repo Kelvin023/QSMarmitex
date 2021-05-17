@@ -54,7 +54,7 @@
         <thead>
             <tr>
                 <th>CODIGO DO PEDIDO</th>
-                <th>CPF</th>
+                <th>NOME CLIENTE</th>
                 <th>QTD DE MARMITA</th>                
                 <th>MARMITA SOLICITADA</th>                
                 <th>VALOR DO PEDIDO</th>
@@ -65,8 +65,17 @@
         <tbody>
             <c:forEach items="${pedidos}" var="pedidos">
                 <tr>                                                            
-                    <td><c:out value="${pedidos.cd_numeroPedido}" /></td>
-                    <td><c:out value="${pedidos.cpf}" /></td>                    
+                    <td><c:out value="${pedidos.cd_numeroPedido}" /></td>                   
+                    
+                    <c:choose>
+                        <c:when test="${not empty pedidos.cpf}">             
+                            <td><c:out value="${pedidos.nomeUsuario}" /></td>
+                        </c:when>              
+                        <c:otherwise>              
+                            <td>USUÁRIO REMOVIDO</td>
+                        </c:otherwise>
+                    </c:choose>
+                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
                     <c:choose>
                         <c:when test="${pedidos.cd_marmita == 1}">                
