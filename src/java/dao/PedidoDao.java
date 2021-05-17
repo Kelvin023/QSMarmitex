@@ -392,4 +392,60 @@ public class PedidoDao {
         }   
         return listaDePedidos;
     }
+    
+    
+    /*DESLIGA A FK PARA DELEÇÃO DO USUARIO COM PEDIDOS FEITOS*/
+    public void desligaFK() {        
+        System.out.println("Entrei na desligaFK!!");                
+        try {
+            String SQL = "ALTER TABLE qsmarmitex.tb_pedido\n" +
+                         "DROP foreign key FK_TB_USR_TB_PEDIDO;";
+            try (PreparedStatement ps = connection.prepareStatement(SQL)) {                              
+                ps.execute(SQL);
+                ps.close();                
+                System.out.println("FK desligada com sucesso!");
+            }            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Deu ruim o desligamento da FK");
+        }
+    }
+    
+    
+    //ATUALIZAÇÃO DO VALOR DA ANTIGA FK, CUJO VALOR "PAI" SERÁ DROPADO DA TABELA PAI
+    public void updatePedidosClienteExcluido(String cpf) {
+        System.out.println("Entrei na updatePedidosClienteExcluido!!");
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update qsmarmitex.tb_pedido\n" +
+                                      "set cpf = null\n" +
+                                      "where cpf = ?;");            
+            preparedStatement.setString(1, cpf);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Valor FK setado para NULL com sucesso!");            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar o valor do CPF!");
+        }
+    }
+    
+    /*RELIGANDO CONSTRAINT A FK APÓS A DELEÇÃO DO REGISTRO PAI*/
+    public void ligaFK() {        
+        System.out.println("Entrei na ligaFK!!");                
+        try {
+            String SQL = "ALTER TABLE qsmarmitex.tb_pedido\n" +
+                     "    ADD CONSTRAINT FK_TB_USR_TB_PEDIDO FOREIGN KEY (cpf)\n" +
+                     "    REFERENCES qsmarmitex.tb_usuario(cpf);";
+            try (PreparedStatement ps = connection.prepareStatement(SQL)) {                              
+                ps.execute(SQL);
+                ps.close();                
+                System.out.println("FK ligada com sucesso!");
+            }            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Deu ruim o ligamento da FK");
+        }
+    }
 }

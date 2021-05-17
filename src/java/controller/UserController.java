@@ -50,7 +50,10 @@ public class UserController extends HttpServlet {
             }
             else{
                 System.out.println("Esse usuário em questão POSSUI PEDIDOS EFETUADOS. Tem que passar pelo processo para exclui-lo");
-                //CRIAR UMA FUNCAO COM NOME processoDelecao, para fazer o processo de delecao
+                pdao.desligaFK();
+                pdao.updatePedidosClienteExcluido(cpf);
+                dao.deleteUser(cpf);
+                pdao.ligaFK();
             }
             //dao.deleteUser(cpf);
             forward = TELA_LOGIN;                                    
