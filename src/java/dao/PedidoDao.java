@@ -395,6 +395,50 @@ public class PedidoDao {
         return listaDePedidos;
     }
     
+    
+    // MÉTODO PARA CAPTURAR OS PEDIDOS POR PERIODO: DT_INICIO E DT_FIM
+    public List<Pedido> getallPedidosByStatusandPeriodo(String status, String dtinicio, String dtfim) {
+        System.out.println("Entrei na getallPedidosByStatusandPeriodo!!");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "SELECT \n" +
+                    "	 p.cd_numeroPedido,\n" +
+                    "    p.cpf,    \n" +
+                    "    u.nomeUsuario,\n" +
+                    "    p.qtd_marmita, \n" +
+                    "    p.cd_marmita,\n" +
+                    "    p.valorPedido,\n" +
+                    "    p.dt_pedido,\n" +
+                    "    p.st_pedido   \n" +
+                    "FROM tb_pedido as p\n" +
+                    "left join tb_usuario as u\n" +
+                    "on p.cpf = u.cpf\n" +
+                    "where p.st_pedido = ? and \n" +
+                    "DATE(p.dt_pedido) between ? and ?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ps.setString(1, status);            
+            ps.setString(2, dtinicio);            
+            ps.setString(3, dtfim);            
+            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setCd_numeroPedido(rs.getInt("cd_numeroPedido")); 
+                pedido.setCpf(rs.getString("cpf"));
+                pedido.setQtd_marmita(rs.getInt("qtd_marmita"));
+                pedido.setValorPedido(rs.getFloat("valorPedido"));
+                pedido.setDt_pedido(rs.getDate("dt_pedido"));
+                pedido.setSt_pedido(rs.getInt("st_pedido"));  
+                pedido.setNomeUsuario(rs.getString("nomeUsuario"));
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
     /*FUNCAO DE LISTAR O ÚLTIMO PEDIDO REGISTRADO DO CLIENTE, 
     O QUAL ESTÁ PRESTES A REALIZAR O PAGAMENTO(ESSES DADOS SERÃO MOSTRADOS NA TELA DE PGMT)*/
     public List<Pedido> getPedidoPgmtByCpf(String cpf) {

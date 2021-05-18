@@ -34,17 +34,13 @@
         <span style="font-size: 20px; font-weight: bold">PERÍODO: </span>
         <form method="POST" action="RelatorioPedidoController">
             <label>Data início</label>
-            <input type="date" name="dtinicio" required>
+            <input type="date" name="dtinicio">
             <label>Data fim</label>
-            <input type="date" name="dtfim" required>
-            <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>
-            <button type="submit">APLICAR FILTRO</button>            
-        </form>        
-        <br>
+            <input type="date" name="dtfim">
+            <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>           
         
         <!--FILTROS DE STATUS-->        
-        <span style="font-size: 20px; font-weight: bold">STATUS </span>
-        <form method="POST" action="RelatorioPedidoController">
+        <span style="font-size: 20px; font-weight: bold">STATUS </span>        
            <select name="status">
                 <option value="5" selected>--</option>
                 <option value="0">EM PRODUÇÃO</option>
