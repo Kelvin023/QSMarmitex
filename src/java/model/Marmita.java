@@ -1,84 +1,51 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
 
-@Entity
-@Table (name = "tb_marmita")
-public class Marmita extends Produto{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="cd_nr_marmita"/*, length = */, nullable = false)
-    private int numeroMarmita;
-    @Column(name="cd_grupoMarmita")
-    private int grupoMarmita;
+public class Marmita {
+    private int cd_nr_marmita;    
+    private String ds_ingredientes;
+    private Float preco;
+    private String nomeMarmita;
+    private int st_cardapio;       
 
-    public Marmita() {
+    public int getCd_nr_marmita() {
+        return cd_nr_marmita;
     }
 
-    public int getNumeroMarmita() {
-        return numeroMarmita;
+    public void setCd_nr_marmita(int cd_nr_marmita) {
+        this.cd_nr_marmita = cd_nr_marmita;
     }
 
-    public void setNumeroMarmita(int numeroMarmita) {
-        this.numeroMarmita = numeroMarmita;
+    public String getDs_ingredientes() {
+        return ds_ingredientes;
     }
 
-    public int getGrupoMarmita() {
-        return grupoMarmita;
+    public void setDs_ingredientes(String ds_ingredientes) {
+        this.ds_ingredientes = ds_ingredientes;
     }
 
-    public void setGrupoMarmita(int grupoMarmita) {
-        this.grupoMarmita = grupoMarmita;
+    public Float getPreco() {
+        return preco;
     }
 
-    public void setFoto(String foto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
 
-    public void setNumeroMarmita(String ce_nr_marmita) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getNomeMarmita() {
+        return nomeMarmita;
     }
 
-    public void setPreco(String preco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setNomeMarmita(String nomeMarmita) {
+        this.nomeMarmita = nomeMarmita;
     }
 
-    public void setStatusCardapio(String st_cardapio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+    public int getSt_cardapio() {
+        return st_cardapio;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 31;
-        return hash;
+    public void setSt_cardapio(int st_cardapio) {
+        this.st_cardapio = st_cardapio;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Marmita other = (Marmita) obj;
-        if (this.numeroMarmita != other.numeroMarmita) {
-            return false;
-        }
-        return true;
-    }
-
-    
-
-       
 }

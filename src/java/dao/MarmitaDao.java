@@ -17,37 +17,38 @@ import util.DbUtil;
 public class MarmitaDao {
 
     private final Connection connection;
-    private Object preparedStatement;
+    
 
     public MarmitaDao() {
         connection = DbUtil.getConnection();
     }
 
     public void addMarmita(Marmita marmita) {
-        System.out.println("Entrei na addMarmita!");
-        
-        try{
-            PreparedStatement ps = connection.prepareStatement("insert into tb_marmita(foto, nomeMarmita, cd_grupoMarmita, cd_produto, preco) values (?,?,?,?,?)");
-            
-            ps.setBlob(1,marmita.getFoto());
-            ps.setString(2,marmita.getNomeProduto());
-            ps.setInt(3,marmita.getGrupoMarmita());
-            ps.setString(4,marmita.getIngredientes());
-            ps.setFloat(5,marmita.getPreco());
-            
-            ps.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(MarmitaDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        System.out.println("Entrei na addMarmita!!");
+        try {
+            String SQL = "INSERT INTO tb_marmita(nomeMarmita, ds_ingredientes ,preco) VALUES"
+                    + "(?, ?, ?)";
+            try (PreparedStatement ps = connection.prepareStatement(SQL)) {
+                ps.setString(1, marmita.getNomeMarmita());
+                ps.setString(2, marmita.getDs_ingredientes());
+                ps.setFloat(3, marmita.getPreco());                
+                ps.executeUpdate();
+                ps.close();
+                System.out.println("MARMITA " + marmita.getNomeMarmita() + " inserida com sucesso!");                
+            }
+            //connection.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Deu ruim o insert da marmita");
+        }
     }
 
-    public void deleteMarmita(int numeroMarmita) {
+    public void deleteMarmita(int cd_nr_marmita) {
         try {
             PreparedStatement ps = connection
                     .prepareStatement("delete from tb_marmita where cd_nr_marmita=?");
-            ps.setInt(1, numeroMarmita);
+            ps.setInt(1, cd_nr_marmita);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,18 +59,16 @@ public class MarmitaDao {
         System.out.println("Entrei na updateMarmita!");
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("update tb_marmita set foto=?, nomeMarmita=?, cd_grupoMarmita=?, cd_produto=?, preco=?"
-                            + "where cd_nr_marmita=?");
-            ps.setBlob(1,marmita.getFoto());
-            ps.setString(2,marmita.getNomeProduto());
-            ps.setInt(3,marmita.getGrupoMarmita());
-            ps.setString(4,marmita.getIngredientes());
-            ps.setFloat(5,marmita.getPreco());
-            ps.setInt(6,marmita.getNumeroMarmita());
+                    .prepareStatement("update tb_marmita set nomeMarmita=?, ds_ingredientes=?, preco=?"
+                            + "where cd_nr_marmita=?");            
+            ps.setString(1,marmita.getNomeMarmita());
+            ps.setString(2,marmita.getDs_ingredientes());
+            ps.setFloat(3,marmita.getPreco());
+            ps.setInt(4,marmita.getCd_nr_marmita());            
             
             ps.executeUpdate();
             
-            System.out.println("Número da marmita = " + marmita.getNumeroMarmita());
+            System.out.println("Número da marmita a ser atualizada= " + marmita.getCd_nr_marmita());
             System.out.println("Marmita atualizada com sucesso!");
             
             ps.close();
@@ -88,72 +87,36 @@ public class MarmitaDao {
             
             while (rs.next()){
                 Marmita marmita = new Marmita();
-                marmita.setFoto(rs.getBlob("foto"));
-                marmita.setNomeProduto(rs.getString("nomeMarmita"));
-                marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
-                marmita.setIngredientes(rs.getString("ingredientes"));
-                marmita.setPreco(rs.getFloat("preco"));
+                marmita.setCd_nr_marmita(rs.getInt("cd_nr_marmita"));
+                marmita.setNomeMarmita(rs.getString("nomeMarmita"));
+                marmita.setDs_ingredientes(rs.getString("ds_ingredientes"));
+                marmita.setPreco(rs.getFloat("preco"));                
                 
                 listaDeMarmita.add(marmita);
-            }
-            /*String SQL = "select * from tb_marmita";
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()){
-                Marmita marmita = new Marmita();
-                //marmita.setFoto(rs.getBlob("foto")); 
-                marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
-                marmita.setIngredientes(rs.getString("ds_ingredientes"));
-                marmita.setTamanho(rs.getInt("cd_tamanho"));
-                marmita.setNomeProduto(rs.getString("nomeMarmita"));
-                marmita.setNumeroMarmita(rs.getInt("cd_nr_numero"));
-                //marmita.setPreco(rs.getShort("preco"));                
-                //marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));                
-                listaDeMarmita.add(marmita);
-            }
-            */
+            }            
         } catch (SQLException e) {
             throw new RuntimeException("Falha ao listar marmitas em MarmitaDao.", e);
         }
         return listaDeMarmita;
-    }
-        //Rever o procedimento getMarmitaById por causa - fazer sobrescrita com @param nos atributos com nome <> do BD
+    }        
     
-    public Marmita getMarmitaById(int numeroMarmita) {
+    public Marmita getMarmitaById(int cd_nr_marmita) {
         Marmita marmita = new Marmita();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_marmita where cd_nr_marmita=?");
-            preparedStatement.setInt(1, numeroMarmita);
+            preparedStatement.setInt(1, cd_nr_marmita);
             ResultSet rs = preparedStatement.executeQuery();
 
-            if (rs.next()) {
-                marmita.setFoto(rs.getBlob("foto"));
-                marmita.setNomeProduto(rs.getString("nomeMarmita"));
-                marmita.setGrupoMarmita(rs.getInt("cd_grupoMarmita"));
-                marmita.setIngredientes(rs.getString("ds_ingredientes"));
-                marmita.setPreco(rs.getShort("preco"));
-                marmita.setNumeroMarmita(rs.getInt("cd_nr_marmita"));
-                marmita.setTamanho(rs.getInt("cd_tamanho"));
-                marmita.setStatusCardapio(rs.getBoolean("st_cardapio"));            
+            if (rs.next()) {                
+                marmita.setCd_nr_marmita(rs.getInt("cd_nr_marmita"));
+                marmita.setNomeMarmita(rs.getString("nomeMarmita"));
+                marmita.setDs_ingredientes(rs.getString("ds_ingredientes"));                
+                marmita.setPreco(rs.getFloat("preco"));                                                
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar registro de usuário.");
+            throw new RuntimeException("Erro ao buscar registro de marmita solicitada.");
         }
         return marmita;
-    }
-    /*public boolean marmitaExist(int cd_nr_marmita ) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_usuario where cpf=?");
-            preparedStatement.setInt(1, cd_nr_marmita);
-            ResultSet rs = preparedStatement.executeQuery();
-                        
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro de SQL.", e);
-        }
-        return false;
-    }   */
+    }   
 }
