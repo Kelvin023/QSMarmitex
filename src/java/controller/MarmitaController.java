@@ -38,10 +38,12 @@ public class MarmitaController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equalsIgnoreCase("delete")) {
-            String numeroMarmita = request.getParameter("numeroMarmita");
-            dao.deleteMarmita(Integer.parseInt("numeroMarmita"));
+            String cpf = request.getParameter("cpf");
+            int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
+            dao.deleteMarmita(cd_nr_marmita);            
+            request.setAttribute("cpf", cpf);
+            request.setAttribute("marmitas", dao.getAllMarmitas());
             forward = LIST_MARMITA;
-            request.setAttribute("marmita", dao.getAllMarmitas());
         } 
         
         else if (action.equalsIgnoreCase("edit")) {
