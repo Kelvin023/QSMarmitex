@@ -55,10 +55,11 @@ public class MarmitaController extends HttpServlet {
             request.setAttribute("cpf", cpf);
             request.setAttribute("marmitas", dao.getAllMarmitas());
             forward = LIST_MARMITA;            
-        } else {
-            int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
+        } else {//insert
+            String cpf = request.getParameter("cpf");
+            System.out.println("Estamos indo para a tela de preenchimento da nova marmita -> CPF do logado: " + cpf);            
             forward = INSERT_OR_EDIT;
-            request.setAttribute("cd_nr_marmita", cd_nr_marmita);
+            request.setAttribute("cpf", cpf);            
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -66,53 +67,27 @@ public class MarmitaController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //criar mensgem de sucesso
-        String mensagemSucesso ="";
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {                      
+        Marmita marmita = new Marmita();
+        String cpf = request.getParameter("cpf");                
+         
+        Float preco = Float.parseFloat(request.getParameter("preco"));
+        String nomeMarmita = request.getParameter("nomeMarmita");
+        String ds_ingredientes = request.getParameter("ds_ingredientes");
         
+        marmita.setNomeMarmita(nomeMarmita);
+        marmita.setDs_ingredientes(ds_ingredientes);
+        marmita.setPreco(preco);
         
-        //mostrar mensagem de sucesso
-
-       
-        /*marmita.addMarmita(/*request.getParameter("foto"),
-                               request.getParameter("nomeMarmita"),
-                               request.getParameter("grpoMarmita"), 
-                               request.getParameter("ingredientes"), 
-                               request.getParameter("preco"));
-        //int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
-
-        /*mensagemSucesso = "Marmita "+request.getParameter("nomeMarmita")+" cadastrada com sucesso!";*/
-        request.setAttribute("mensagemSucesso", mensagemSucesso);
-       // request.getDispatcherType("jsp/addmarmita.jsp").FORWARD(request,response);
+        System.out.println("NOME DA MARMITA: " + nomeMarmita);
+        System.out.println("INGREDIENTES: " + ds_ingredientes);
+        System.out.println("PRECO: " + preco);
         
-        /*marmita.setFoto("foto");
-        marmita.setNomeProduto("nomeMarmita");
-        marmita.setGrupoMarmita(request.getIntHeader("grupoMarmita"));
-        marmita.setIngredientes("ingredientes");    
-        marmita.setPreco("preco");
-        */
-
-        /* if(dao.marmitaExist  (request.getParameter(Integer.parseInt("cd_nr_marmita")))){
-            dao.updateMarmita(marmita);
-        }else{ 
-            dao.addMarmita(marmita);
-        }
-        
-        if (cd_nr_marmita == 3) {
-            System.out.println("Cliente cadastrado com sucesso!");
-            request.setAttribute("marmitas", dao.getMarmitaById(request.getParameter("cd_nr_marmita")));
-            request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
-        }
-        if (cd_nr_marmita==1) {
-            System.out.println("Novo ADM cadastrado com sucesso!");
-            request.setAttribute("marmitas", dao.getAllMarmitas());
-            request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
-        } */
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        dao.addMarmita(marmita);
+        request.setAttribute("cpf", cpf);  
+        System.out.println("CPF do ADM Logado: " + cpf);
+        request.setAttribute("marmitas", dao.getAllMarmitas());
+        RequestDispatcher view = request.getRequestDispatcher(LIST_MARMITA);
+        view.forward(request, response);        
+    } 
 }
