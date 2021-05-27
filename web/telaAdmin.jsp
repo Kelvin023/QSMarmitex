@@ -36,7 +36,9 @@
         <br>
         <a href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">RELATÓRIO DE PEDIDOS</a>
         <br>
-        <a href="PedidoController?action=listPedidosMon&cpf=<%=(String)request.getAttribute("cpf")%>">MONITORAMENTO</a>
+        <a href="PedidoController?action=listPedidosMon&cpf=<%=(String)request.getAttribute("cpf")%>">MONITORAMENTO</a>        
+        <br>
+        <a href="MarmitaController?action=listMarmitas&cpf=<%=(String)request.getAttribute("cpf")%>">MARMITAS</a>
         <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    

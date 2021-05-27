@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Marmita;
 
-@WebServlet(name = "MarmitaController", urlPatterns = {"/marmita"})
+@WebServlet(name = "MarmitaController", urlPatterns = {"/MarmitaController"})
 public class MarmitaController extends HttpServlet {
 
     private static final String INSERT_OR_EDIT = "/marmita.jsp";
-    private static final String LIST_MARMITA = "/listmarmita.jsp";
+    private static final String LIST_MARMITA = "/listMarmita.jsp";
     private final MarmitaDao dao;
 
     MarmitaDao marmita = new MarmitaDao(); 
@@ -49,9 +49,12 @@ public class MarmitaController extends HttpServlet {
             Marmita marmita = dao.getMarmitaById(cd_nr_marmita);
             request.setAttribute("cd_nr_marmita", cd_nr_marmita);
             request.setAttribute("marmita", marmita);
-        } else if (action.equalsIgnoreCase("listMarmita")) {
-            forward = LIST_MARMITA;
+        } else if (action.equalsIgnoreCase("listMarmitas")) {
+            String cpf = request.getParameter("cpf");
+            System.out.println("CPF vindo da tela anterior: " + cpf);
+            request.setAttribute("cpf", cpf);
             request.setAttribute("marmitas", dao.getAllMarmitas());
+            forward = LIST_MARMITA;            
         } else {
             int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
             forward = INSERT_OR_EDIT;
