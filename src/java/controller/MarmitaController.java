@@ -42,20 +42,27 @@ public class MarmitaController extends HttpServlet {
             dao.deleteMarmita(Integer.parseInt("numeroMarmita"));
             forward = LIST_MARMITA;
             request.setAttribute("marmita", dao.getAllMarmitas());
-        } else if (action.equalsIgnoreCase("edit")) {
+        } 
+        
+        else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
-            String numeroMarmita = request.getParameter("numeroMarmita");
+            String cpf = request.getParameter("cpf");
             int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));
             Marmita marmita = dao.getMarmitaById(cd_nr_marmita);
+            request.setAttribute("cpf", cpf);        
             request.setAttribute("cd_nr_marmita", cd_nr_marmita);
             request.setAttribute("marmita", marmita);
-        } else if (action.equalsIgnoreCase("listMarmitas")) {
+        }
+        
+        else if (action.equalsIgnoreCase("listMarmitas")) {
             String cpf = request.getParameter("cpf");
             System.out.println("CPF vindo da tela anterior: " + cpf);
             request.setAttribute("cpf", cpf);
             request.setAttribute("marmitas", dao.getAllMarmitas());
             forward = LIST_MARMITA;            
-        } else {//insert
+        }
+        
+        else {//insert
             String cpf = request.getParameter("cpf");
             System.out.println("Estamos indo para a tela de preenchimento da nova marmita -> CPF do logado: " + cpf);            
             forward = INSERT_OR_EDIT;
@@ -70,6 +77,7 @@ public class MarmitaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {                      
         Marmita marmita = new Marmita();
         String cpf = request.getParameter("cpf");                
+        int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));                              
          
         Float preco = Float.parseFloat(request.getParameter("preco"));
         String nomeMarmita = request.getParameter("nomeMarmita");
@@ -83,11 +91,25 @@ public class MarmitaController extends HttpServlet {
         System.out.println("INGREDIENTES: " + ds_ingredientes);
         System.out.println("PRECO: " + preco);
         
+        
+        if(dao.marmitaExist(request.getParameter("cd_nr_marmita"))){            
+            dao.updateMarmita(marmita, cd_nr_marmita);            
+        }else{
+            dao.addMarmita(marmita);            
+        }
+        request.setAttribute("cpf", cpf);  
+        System.out.println("CPF do ADM Logado: " + cpf);
+        request.setAttribute("marmitas", dao.getAllMarmitas());
+        RequestDispatcher view = request.getRequestDispatcher(LIST_MARMITA);
+        view.forward(request, response);
+        
+        
+        /*
         dao.addMarmita(marmita);
         request.setAttribute("cpf", cpf);  
         System.out.println("CPF do ADM Logado: " + cpf);
         request.setAttribute("marmitas", dao.getAllMarmitas());
         RequestDispatcher view = request.getRequestDispatcher(LIST_MARMITA);
-        view.forward(request, response);        
+        view.forward(request, response);        */
     } 
 }

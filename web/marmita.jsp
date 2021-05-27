@@ -23,7 +23,7 @@
     <form method="POST" action='MarmitaController' name="frmAddMarmita">                                                      
         NOME MARMITA(informe o nome junto): 
         <input
-            type="text" name="nomeMarmita" style="text-transform: uppercase"
+            type="text" name="nomeMarmita"
             value="<c:out value="${marmita.nomeMarmita}" />" /> <br/>   
         
         INGREDIENTES: 
@@ -38,6 +38,9 @@
 
         <input type="hidden" name="cpf" readonly 
         value="<c:out value="<%=request.getAttribute("cpf")%>" />"/> <br/> 
+        
+        <input type="hidden" name="cd_nr_marmita" readonly 
+        value="<c:out value="<%=request.getAttribute("cd_nr_marmita")%>" />"/> <br/> 
         
         <input type="submit" value="Submit" />        
     </form>

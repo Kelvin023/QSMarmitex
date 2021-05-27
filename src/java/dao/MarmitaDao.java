@@ -55,7 +55,7 @@ public class MarmitaDao {
         }
     }
 
-    public void updateMarmita(Marmita marmita) {
+    public void updateMarmita(Marmita marmita, int cd_nr_marmita) {
         System.out.println("Entrei na updateMarmita!");
         try {
             PreparedStatement ps = connection
@@ -64,11 +64,11 @@ public class MarmitaDao {
             ps.setString(1,marmita.getNomeMarmita());
             ps.setString(2,marmita.getDs_ingredientes());
             ps.setFloat(3,marmita.getPreco());
-            ps.setInt(4,marmita.getCd_nr_marmita());            
+            ps.setInt(4,cd_nr_marmita);            
             
             ps.executeUpdate();
             
-            System.out.println("Número da marmita a ser atualizada= " + marmita.getCd_nr_marmita());
+            System.out.println("Número da marmita a ser atualizada= " + cd_nr_marmita);
             System.out.println("Marmita atualizada com sucesso!");
             
             ps.close();
@@ -118,5 +118,20 @@ public class MarmitaDao {
             throw new RuntimeException("Erro ao buscar registro de marmita solicitada.");
         }
         return marmita;
-    }   
+    }
+    
+    public boolean marmitaExist(String cd_nr_marmita) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_marmita where cd_nr_marmita=?");
+            preparedStatement.setString(1, cd_nr_marmita);
+            ResultSet rs = preparedStatement.executeQuery();
+                        
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL.", e);
+        }
+        return false;
+    }
 }
