@@ -78,8 +78,8 @@ public class MarmitaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {                      
         Marmita marmita = new Marmita();
-        String cpf = request.getParameter("cpf");                
-        int cd_nr_marmita = Integer.parseInt(request.getParameter("cd_nr_marmita"));                              
+        String cpf = request.getParameter("cpf"); 
+        String cd_nr_marmita = request.getParameter("cd_nr_marmita");                                       
          
         Float preco = Float.parseFloat(request.getParameter("preco"));
         String nomeMarmita = request.getParameter("nomeMarmita");

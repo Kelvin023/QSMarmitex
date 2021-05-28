@@ -55,7 +55,7 @@ public class MarmitaDao {
         }
     }
 
-    public void updateMarmita(Marmita marmita, int cd_nr_marmita) {
+    public void updateMarmita(Marmita marmita, String cd_nr_marmita) {
         System.out.println("Entrei na updateMarmita!");
         try {
             PreparedStatement ps = connection
@@ -64,7 +64,7 @@ public class MarmitaDao {
             ps.setString(1,marmita.getNomeMarmita());
             ps.setString(2,marmita.getDs_ingredientes());
             ps.setFloat(3,marmita.getPreco());
-            ps.setInt(4,cd_nr_marmita);            
+            ps.setString(4,cd_nr_marmita);            
             
             ps.executeUpdate();
             

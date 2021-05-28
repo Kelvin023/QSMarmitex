@@ -9,7 +9,7 @@
     href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
-<title>Nova Marmita</title>
+<title>Novo Acompanhamneto</title>
 <link rel="shortcut icon" href="img/icone.png">
 </head>
 <body>
@@ -20,27 +20,22 @@
         });
     </script>        
     
-    <form method="POST" action='MarmitaController' name="frmAddMarmita">                                                      
-        NOME MARMITA(informe o nome junto): 
+    <form method="POST" action='AcompController' name="frmAddAcomp">                                                      
+        NOME ACOMPANHAMENTO: 
         <input
-            type="text" name="nomeMarmita"
-            value="<c:out value="${marmita.nomeMarmita}" />" /> <br/>   
-        
-        INGREDIENTES: 
-        <input
-            type="text" name="ds_ingredientes"
-            value="<c:out value="${marmita.ds_ingredientes}" />" /> <br/>                                
+            type="text" name="nomeAcompanhamento"
+            value="<c:out value="${acomp.nomeAcompanhamento}" />" /> <br/>                                              
         
         PREÇO: 
         <input
-            type="text" name="preco"
-            value="<c:out value="${marmita.preco}" />"/><br/>
+            type="text" name="precoAcompanhamento"
+            value="<c:out value="${acomp.precoAcompanhamento}" />"/><br/>
 
         <input type="text" name="cpf" readonly hidden
         value="<c:out value="<%=request.getAttribute("cpf")%>" />"/> <br/> 
         
-        <input type="text" name="cd_nr_marmita" readonly hidden
-        value="<c:out value="<%=request.getAttribute("cd_nr_marmita")%>" />"/> <br/> 
+        <input type="text" name="cd_acompanhamento" readonly hidden
+        value="<c:out value="<%=request.getAttribute("cd_acompanhamento")%>" />"/> <br/> 
         
         <input type="submit" value="Submit" />        
     </form>

@@ -17,15 +17,13 @@ public class AcompanhamentoDao {
     }
     
     public void addAcompanhamento(Acompanhamento acompanhamento) {
-        System.out.println("Entrei na addUser!!");
+        System.out.println("Entrei na addAcompanhamento!!");
         try {
-            String SQL = "INSERT INTO tb_acompanhamento(nomeAcompanhamento,precoAcompanhamento,cd_tamanho,foto) VALUES"
-                    + "(?, ?, ?, ?)";
+            String SQL = "INSERT INTO tb_acompanhamento(nomeAcompanhamento,precoAcompanhamento) VALUES"
+                    + "(?, ?)";
             try (PreparedStatement ps = connection.prepareStatement(SQL)) {
                 ps.setString(1, acompanhamento.getNomeAcompanhamento());
-                ps.setDouble(2, acompanhamento.getPrecoAcompanhemento());
-                ps.setString(3, acompanhamento.getTamanho());
-                /*ps.setBlob(4, acompanhamento.getFoto());*/
+                ps.setFloat(2, acompanhamento.getPrecoAcompanhamento());                
              
                 ps.executeUpdate();
                 ps.close();
@@ -38,11 +36,11 @@ public class AcompanhamentoDao {
         }
     }
     
-     public void deleteAcompanhamento(String nomeAcompanhamento) {
+     public void deleteAcompanhamento(int cd_acompanhamento) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from tb_acompanhamento where nomeAcompanhamento=?");            
-            preparedStatement.setString(1, nomeAcompanhamento);
+                    .prepareStatement("delete from tb_acompanhamento where cd_acompanhamento=?");            
+            preparedStatement.setInt(1, cd_acompanhamento);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -50,27 +48,29 @@ public class AcompanhamentoDao {
         }
     }
      
-     public void updateAcompanhamento(Acompanhamento acompanhamento) {
-        System.out.println("Entrei na updateAcompanhamento!!");
+     public void updateAcompanhamento(Acompanhamento acompanhamento, String cd_acompanhamento) {
+        System.out.println("Entrei na updateAcompanhamento!");
         try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("update tb_acompanhamento set nomeAcompnhamento=?, cd_tamanho=?, precoAcompanhamento=?, foto=?" +
-                            "where nomeAcompanhamento=?");            
-            preparedStatement.setString(1, acompanhamento.getNomeAcompanhamento());
-            preparedStatement.setString(2, acompanhamento.getTamanho());
-            preparedStatement.setDouble(3, acompanhamento.getPrecoAcompanhemento());
-            /*preparedStatement.setBlob(4, acompanhamento.getFoto());*/                   
-            System.out.println("Nome do Acompanhamento = " + acompanhamento.getNomeAcompanhamento());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            System.out.println("Acompanhamento atualizada com sucesso!");            
+            PreparedStatement ps = connection
+                    .prepareStatement("update tb_acompanhamento set nomeAcompanhamento=?, precoAcompanhamento=?"
+                            + "where cd_acompanhamento=?");            
+            ps.setString(1,acompanhamento.getNomeAcompanhamento());            
+            ps.setFloat(2,acompanhamento.getPrecoAcompanhamento());
+            ps.setString(3,cd_acompanhamento);            
+            
+            ps.executeUpdate();
+            
+            System.out.println("Número do acompanhamento a ser atualizado= " + cd_acompanhamento);
+            System.out.println("Acompanhamento atualizada com sucesso!");
+            
+            ps.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao atualizar acompanhamento!");
         }
     }
-      public List<Acompanhamento> getAllUsers() {
+      public List<Acompanhamento> getAllAcomps() {
         List<Acompanhamento> listaDeAcompanhamentos = new ArrayList<Acompanhamento>();
         try {
             String SQL = "select * from tb_acompanhamento";
@@ -78,10 +78,9 @@ public class AcompanhamentoDao {
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {
                 Acompanhamento acompanhamento = new Acompanhamento();
+                acompanhamento.setCd_acompanhamento(rs.getInt("cd_acompanhamento"));
                 acompanhamento.setNomeAcompanhamento(rs.getString("nomeAcompanhamento"));
-                acompanhamento.setTamanho(rs.getString("cd_tamanho"));
-                acompanhamento.setPrecoAcompanhemento(rs.getDouble("precoAcompanhamento"));
-                /*acompanhamento.setFoto(rs.getBlob("foto"));*/
+                acompanhamento.setPrecoAcompanhamento(rs.getFloat("precoAcompanhamento"));
                 listaDeAcompanhamentos.add(acompanhamento);
             }
             
@@ -89,5 +88,39 @@ public class AcompanhamentoDao {
             throw new RuntimeException("Falha ao listar acompanhamentos em AcompanhamentoDAO.", e);
         }   
         return listaDeAcompanhamentos;
+    }
+      
+    public Acompanhamento getAcompById(int cd_acompanhamento) {
+        Acompanhamento acompanhamento = new Acompanhamento();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_acompanhamento where cd_acompanhamento=?");
+            preparedStatement.setInt(1, cd_acompanhamento);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {                
+                acompanhamento.setCd_acompanhamento(rs.getInt("cd_acompanhamento"));
+                acompanhamento.setNomeAcompanhamento(rs.getString("nomeAcompanhamento"));                
+                acompanhamento.setPrecoAcompanhamento(rs.getFloat("precoAcompanhamento"));                                                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar registro de acompanhamento solicitado.");
+        }
+        return acompanhamento;
+    }
+    
+    public boolean acompExist(String cd_acompanhamento) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from tb_acompanhamento where cd_acompanhamento=?");
+            preparedStatement.setString(1, cd_acompanhamento);
+            ResultSet rs = preparedStatement.executeQuery();
+                        
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL.", e);
+        }
+        return false;
     }
 }

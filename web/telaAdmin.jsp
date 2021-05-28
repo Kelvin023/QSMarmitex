@@ -40,6 +40,8 @@
         <br>
         <a href="MarmitaController?action=listMarmitas&cpf=<%=(String)request.getAttribute("cpf")%>">MARMITAS</a>
         <br>
+        <a href="AcompController?action=listAcomps&cpf=<%=(String)request.getAttribute("cpf")%>">ACOMPANHAMENTOS</a>
+        <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>

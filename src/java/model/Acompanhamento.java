@@ -1,10 +1,17 @@
 package model;
 
 public class Acompanhamento {
-     private String nomeAcompanhamento;
-    private String tamanho;
-    private double precoAcompanhemento;
-    /*private Blob foto;*/
+    private int cd_acompanhamento;
+    private String nomeAcompanhamento;    
+    private Float precoAcompanhamento;
+
+    public int getCd_acompanhamento() {
+        return cd_acompanhamento;
+    }
+
+    public void setCd_acompanhamento(int cd_acompanhamento) {
+        this.cd_acompanhamento = cd_acompanhamento;
+    }
 
     public String getNomeAcompanhamento() {
         return nomeAcompanhamento;
@@ -14,29 +21,14 @@ public class Acompanhamento {
         this.nomeAcompanhamento = nomeAcompanhamento;
     }
 
-    public String getTamanho() {
-        return tamanho;
+    public Float getPrecoAcompanhamento() {
+        return precoAcompanhamento;
     }
 
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
-    }
-
-    public double getPrecoAcompanhemento() {
-        return precoAcompanhemento;
-    }
-
-    public void setPrecoAcompanhemento(double precoAcompanhemento) {
-        this.precoAcompanhemento = precoAcompanhemento;
+    public void setPrecoAcompanhamento(Float precoAcompanhamento) {
+        this.precoAcompanhamento = precoAcompanhamento;
     }
     
-    /*
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
-    }
-   */
+    
+    
 }
