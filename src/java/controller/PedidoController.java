@@ -1,5 +1,6 @@
 package controller;
 
+import dao.AcompanhamentoDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.PedidoDao;
 import dao.UserDao;
 import dao.CartaoDao;
+import dao.MarmitaDao;
 import java.util.List;
 import model.Cartao;
 import model.Pedido;
@@ -18,12 +20,16 @@ public class PedidoController extends HttpServlet {
     private final PedidoDao dao;
     private final UserDao udao;
     private final CartaoDao cdao;
+    private final MarmitaDao mdao;
+    private final AcompanhamentoDao adao;
     
     public PedidoController() {
         super();
         dao = new PedidoDao();
         udao = new UserDao();
         cdao = new CartaoDao();
+        mdao = new MarmitaDao();
+        adao = new AcompanhamentoDao();
     }
     
     @Override
@@ -47,6 +53,8 @@ public class PedidoController extends HttpServlet {
         else if (action.equalsIgnoreCase("atendenteRealizaPedido")){            
             String cpf = request.getParameter("cpf");            
             request.setAttribute("users", udao.getUserById(cpf));
+            request.setAttribute("marmitas", mdao.getAllMarmitas());
+            request.setAttribute("acomps", adao.getAllAcomps());
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/atendenteRealizaPedido.jsp").forward(request, response);
         }

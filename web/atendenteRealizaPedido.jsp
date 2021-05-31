@@ -50,35 +50,38 @@
         <form method="POST" action='PedidoController'>
             <h1>CARDÁPIO</h1>
             <label> Nome Cliente: </label>
-            <input type="text" name="nm_cliente_temp" placeholder="Digite o nome do cliente  "/>
+            <input type="text" required name="nm_cliente_temp" placeholder="Digite o nome do cliente  "/>
             <br>
             <label> Endereço Cliente: </label>
-        <input type="text" name="ds_endereco_cliente_temp" placeholder="Digite o endereço do cliente  "/>
-            <table border="1">
-                <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS PEQUENO</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="12.90" hidden>R$ 12,90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>            
-            <input type="text" name="cd_marmita" value="3" hidden><br>                        
+            <input type="text" required name="ds_endereco_cliente_temp" placeholder="Digite o endereço do cliente  "/>
+            <br><br>
+            <c:forEach items="${marmitas}" var="marmita">
+                <table border="1">
+                    <thead>
+                    <th colspan="2" style="text-transform: uppercase"><c:out value="${marmita.nomeMarmita}" /></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                            <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="${marmita.preco}" hidden>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${marmita.preco}"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </c:forEach>
+            <br>
+            <label for="acomp">Acompanhamento</label>
+
+            <select name='role'>
+                <option value="${selected}" selected>${selected}</option>
+                <c:forEach items="${acomps}" var="acomp">
+                    <c:if test="${acomp.cd_acompanhamento != selected}">
+                        <option value="${acomp.cd_acompanhamento}">${acomp.nomeAcompanhamento} - Valor R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${acomp.precoAcompanhamento}"/></option>
+                    </c:if>
+                </c:forEach>
+            </select>
+                
             
-            <table border="1">
-                <thead>
-                    <th colspan="2">ESCONDIDINHO FITNESS MÉDIO</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
-                        <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="18.90" hidden>R$ 18,90</td>
-                    </tr>
-                </tbody>
-            </table>
             <br>
             <input type="radio" id="frmpgmt" name="frmpgmt" value="dinheiro">
             <label for="male">Dinheiro</label>

@@ -36,7 +36,7 @@
                 </table>            
         <p><a href="AcompController?action=insert&cpf=<%=(String)request.getAttribute("cpf")%>">Add Novo Acompanhamento</a></p>
                 
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar ao Cardapio</a>
+        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
     </body>

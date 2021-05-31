@@ -38,7 +38,7 @@
                 </table>            
         <p><a href="MarmitaController?action=insert&cpf=<%=(String)request.getAttribute("cpf")%>">Add Nova Marmita</a></p>
                 
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar ao Cardapio</a>
+        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
     </body>
