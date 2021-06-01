@@ -47,23 +47,24 @@
         
         <!--CARDÁPIO-->                            
         <!--ESCONDIDINHO PEQUENIO-->
-        <form method="POST" action='PedidoController'>
+        <form method="POST" action='TesteController'>
             <h1>CARDÁPIO</h1>
             <label> Nome Cliente: </label>
-            <input type="text" required name="nm_cliente_temp" placeholder="Digite o nome do cliente  "/>
+            <input type="text" name="nm_cliente_temp" placeholder="Digite o nome do cliente  "/>
             <br>
             <label> Endereço Cliente: </label>
-            <input type="text" required name="ds_endereco_cliente_temp" placeholder="Digite o endereço do cliente  "/>
+            <input type="text" name="ds_endereco_cliente_temp" placeholder="Digite o endereço do cliente  "/>
             <br><br>
             <c:forEach items="${marmitas}" var="marmita">
                 <table border="1">
                     <thead>
-                    <th colspan="2" style="text-transform: uppercase"><c:out value="${marmita.nomeMarmita}" /></th>
+                    <th colspan="3" style="text-transform: uppercase"><c:out value="${marmita.nomeMarmita}" /></th>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5" required></td>
+                            <td class="itemCardapio">Quantidade: <input id="qtd" type="number" name="quantidade" min="1" max="5"></td>
                             <td class="itemCardapio">Preço por unidade: <input type="text" name="preco" value="${marmita.preco}" hidden>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${marmita.preco}"/></td>
+                            <input type="text" hidden name="cd_nr_marmita" value="${marmita.cd_nr_marmita}">
                         </tr>
                     </tbody>
                 </table>

@@ -42,6 +42,8 @@
         <br>
         <a href="AcompController?action=listAcomps&cpf=<%=(String)request.getAttribute("cpf")%>">ACOMPANHAMENTOS</a>
         <br>
+        <a href="DespesaController?action=listDespesas&cpf=<%=(String)request.getAttribute("cpf")%>">DESPESAS</a>
+        <br>
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
