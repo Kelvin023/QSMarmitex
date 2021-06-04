@@ -47,5 +47,5 @@
         <a href="login.jsp">Sair</a>
         <br><br><br><br><br><br>    
         <c:import url="includes/rodape.jsp"/>
-    </body>
+    </body>    
 </html>
