@@ -6,6 +6,7 @@ public class Despesa {
     private int cd_despesa;
     private int cd_tipo;
     private Float vl_despesa;
+    private String ds_despesa;
     private Date dt_inclusion;
 
     public int getCd_despesa() {
@@ -39,4 +40,13 @@ public class Despesa {
     public void setDt_inclusion(Date dt_inclusion) {
         this.dt_inclusion = dt_inclusion;
     }        
+
+    public String getDs_despesa() {
+        return ds_despesa;
+    }
+
+    public void setDs_despesa(String ds_despesa) {
+        this.ds_despesa = ds_despesa;
+    }
+    
 }

@@ -51,7 +51,7 @@
                     <td><c:out value="${pedidos.nomeUsuario}" /></td>                    
                     <td><c:out value="${pedidos.qtd_marmita}" /></td>
                     <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedidos.valorPedido * pedidos.qtd_marmita}"/></td>                    
-                    <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>                                                                
+                    <td><c:out default="dd/MM/yyyy" value="${pedidos.dt_pedido}" /></td>
                     <c:choose>
                         <c:when test="${pedidos.cd_marmita == 1}">                
                             <td>SALADA AMERICANA PEQUENA</td> 

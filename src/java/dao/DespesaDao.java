@@ -20,10 +20,12 @@ public class DespesaDao {
     public void addDespesa(Despesa despesa, int cd_tipo) {
         System.out.println("Entrei na addDespesa!!");
         try {
-            String SQL = "INSERT INTO tb_despesa(vl_despesa, cd_tipo) VALUES"
-                    + "(?," + cd_tipo + ")";
+            String SQL = "INSERT INTO tb_despesa(vl_despesa, ds_despesa, cd_tipo) VALUES"
+                    + "(?, ? , ?)";
             try (PreparedStatement ps = connection.prepareStatement(SQL)) {
                 ps.setFloat(1, despesa.getVl_despesa());                
+                ps.setString(2, despesa.getDs_despesa());                
+                ps.setInt(3, cd_tipo);
              
                 ps.executeUpdate();
                 ps.close();
@@ -33,6 +35,7 @@ public class DespesaDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Falha ao adicionar a despesa");
         }
     }
     
@@ -52,10 +55,11 @@ public class DespesaDao {
         System.out.println("Entrei na updateDespesa!");
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("update tb_acompanhamento set vl_despesa=?"
+                    .prepareStatement("update tb_despesa set vl_despesa=?, ds_despesa =?"
                             + "where cd_despesa=?");            
             ps.setFloat(1,despesa.getVl_despesa());            
-            ps.setString(2,cd_despesa);
+            ps.setString(2,despesa.getDs_despesa());            
+            ps.setString(3,cd_despesa);
             
             ps.executeUpdate();
             
@@ -80,6 +84,7 @@ public class DespesaDao {
                 despesa.setCd_despesa(rs.getInt("cd_despesa"));
                 despesa.setCd_tipo(rs.getInt("cd_tipo"));
                 despesa.setVl_despesa(rs.getFloat("vl_despesa"));
+                despesa.setDs_despesa(rs.getString("ds_despesa"));
                 despesa.setDt_inclusion(rs.getDate("dt_inclusion"));
                 listaDeDespesas.add(despesa);
             }
@@ -100,7 +105,8 @@ public class DespesaDao {
             if (rs.next()) {                
                 despesa.setCd_despesa(rs.getInt("cd_despesa"));
                 despesa.setCd_tipo(rs.getInt("cd_tipo"));                
-                despesa.setVl_despesa(rs.getFloat("vl_despesa"));                                                
+                despesa.setVl_despesa(rs.getFloat("vl_despesa"));  
+                despesa.setDs_despesa(rs.getString("ds_despesa"));
                 despesa.setDt_inclusion(rs.getDate("dt_inclusion"));  
             }
         } catch (SQLException e) {
