@@ -63,8 +63,7 @@
 
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" required="true" placeholder="Digite a sua senha" id="senha"> 
-                
-                <a href="" id="forgot-pass">Esqueceu a senha?</a>
+                                
                 <input type="submit" value="Login">
                 
                 <div id="registrar-container"> 

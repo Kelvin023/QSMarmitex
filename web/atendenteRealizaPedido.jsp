@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Pedido"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,6 +50,14 @@
         
         <!--CARDÁPIO-->                            
         <!--ESCONDIDINHO PEQUENIO-->
+        
+        <%
+        List<Pedido> lista = new ArrayList();
+        
+        
+            
+        %>
+        
         <form method="POST" action='TesteController'>
             <h1>CARDÁPIO</h1>
             <label> Nome Cliente: </label>
