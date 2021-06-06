@@ -67,12 +67,18 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("qtdusers", udao.getQtdUsuariosSistema());
             request.setAttribute("qtdpedidos", udao.getQtdPedidosByCliente());
             request.setAttribute("pedidos", dao.getMarmitaMaisVendida());
-            request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());
+            request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());            
+            request.setAttribute("cpf", cpf);  
+            request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
+        }
+        else if (action.equalsIgnoreCase("listFluxoCaixa")){//MOSTRA OS DADOS DE FINANÇAS
+            String cpf = request.getParameter("cpf");
+            request.setAttribute("users", udao.getUserById(cpf));
             request.setAttribute("totfaturado", dao.getTotalFaturadoByPeriodo());
             request.setAttribute("totdespesas", ddao.getTotalDespesaByPeriodo());
             request.setAttribute("fluxodecaixa", dao.getFluxodeCaixa());
             request.setAttribute("cpf", cpf);  
-            request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
+            request.getRequestDispatcher("/relatorioFluxodeCaixa.jsp").forward(request, response);
         }
         else if (action.equalsIgnoreCase("listallPedidosProducao")){//PEDIDOS PARA O COZINHEIRO PRODUZIR            
             String cpf = request.getParameter("cpf");

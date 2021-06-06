@@ -38,6 +38,8 @@
         <br>
         <a href="PedidoController?action=listPedidosMon&cpf=<%=(String)request.getAttribute("cpf")%>">MONITORAMENTO</a>        
         <br>
+        <a href="PedidoController?action=listFluxoCaixa&cpf=<%=(String)request.getAttribute("cpf")%>">FLUXO DE CAIXA</a>        
+        <br>
         <a href="MarmitaController?action=listMarmitas&cpf=<%=(String)request.getAttribute("cpf")%>">MARMITAS</a>
         <br>
         <a href="AcompController?action=listAcomps&cpf=<%=(String)request.getAttribute("cpf")%>">ACOMPANHAMENTOS</a>

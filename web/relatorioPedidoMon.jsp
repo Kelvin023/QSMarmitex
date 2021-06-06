@@ -156,75 +156,7 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        <br>
-        <table border=1>
-            <thead>
-                <tr>
-                    <td colspan="3" align="center" style="font-weight: bold">TOTAL FATURADO POR PERÍODO</td>
-                </tr>
-                <tr>
-                    <th>MES</th>                    
-                    <th>ANO</th>                                                       
-                    <th>TOTAL FATURADO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${totfaturado}" var="pedidos">
-                    <tr>                                                                                                                                                            
-                        <td><c:out value="${pedidos.mes_particao}" /></td>
-                        <td><c:out value="${pedidos.ano_particao}" /></td>
-                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${pedidos.vlr_total_pedido}"/></td>                                             
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        
-        <br>
-        <table border=1>
-            <thead>
-                <tr>
-                    <td colspan="3" align="center" style="font-weight: bold">TOTAL DAS DESPESAS POR PERÍODO</td>
-                </tr>
-                <tr>
-                    <th>MES</th>                    
-                    <th>ANO</th>                                                       
-                    <th>VALOR TOTAL DE DESPESA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${totdespesas}" var="totdespesas">
-                    <tr>                                                                                                                                                            
-                        <td><c:out value="${totdespesas.mes_despesa_particao}" /></td>
-                        <td><c:out value="${totdespesas.ano_despesa_particao}" /></td>
-                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${totdespesas.vlr_total_despesa}"/></td>                                             
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        
-        <br>
-        <table border=1>
-            <thead>
-                <tr>
-                    <td colspan="3" align="center" style="font-weight: bold">FLUXO DE CAIXA</td>
-                </tr>
-                <tr>
-                    <th>MES</th>                    
-                    <th>ANO</th>                                                       
-                    <th>FLUXO RESULTANTE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${fluxodecaixa}" var="fluxodecaixa">
-                    <tr>                                                                                                                                                            
-                        <td><c:out value="${fluxodecaixa.mes_particao}" /></td>
-                        <td><c:out value="${fluxodecaixa.ano_particao}" /></td>
-                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fluxodecaixa.fluxo_resultante}"/></td>                                             
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+        </table>                                             
         <br>
         <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br>
