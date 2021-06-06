@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.PedidoDao;
 import dao.UserDao;
 import dao.CartaoDao;
+import dao.DespesaDao;
 import dao.MarmitaDao;
 import java.util.List;
 import model.Cartao;
@@ -22,6 +23,7 @@ public class PedidoController extends HttpServlet {
     private final CartaoDao cdao;
     private final MarmitaDao mdao;
     private final AcompanhamentoDao adao;
+    private final DespesaDao ddao;
     
     public PedidoController() {
         super();
@@ -30,6 +32,7 @@ public class PedidoController extends HttpServlet {
         cdao = new CartaoDao();
         mdao = new MarmitaDao();
         adao = new AcompanhamentoDao();
+        ddao = new DespesaDao();
     }
     
     @Override
@@ -66,6 +69,7 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("pedidos", dao.getMarmitaMaisVendida());
             request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());
             request.setAttribute("totfaturado", dao.getTotalFaturadoByPeriodo());
+            request.setAttribute("totdespesas", ddao.getTotalDespesaByPeriodo());
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
         }

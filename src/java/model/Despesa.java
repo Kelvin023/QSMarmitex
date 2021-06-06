@@ -8,6 +8,9 @@ public class Despesa {
     private Float vl_despesa;
     private String ds_despesa;
     private Date dt_inclusion;
+    private Float vlr_total_despesa;
+    private int ano_despesa_particao;
+    private int mes_despesa_particao;
 
     public int getCd_despesa() {
         return cd_despesa;
@@ -48,5 +51,30 @@ public class Despesa {
     public void setDs_despesa(String ds_despesa) {
         this.ds_despesa = ds_despesa;
     }
+
+    public int getAno_despesa_particao() {
+        return ano_despesa_particao;
+    }
+
+    public void setAno_despesa_particao(int ano_despesa_particao) {
+        this.ano_despesa_particao = ano_despesa_particao;
+    }
+
+    public int getMes_despesa_particao() {
+        return mes_despesa_particao;
+    }
+
+    public void setMes_despesa_particao(int mes_despesa_particao) {
+        this.mes_despesa_particao = mes_despesa_particao;
+    }
+
+    public Float getVlr_total_despesa() {
+        return vlr_total_despesa;
+    }
+
+    public void setVlr_total_despesa(Float vlr_total_despesa) {
+        this.vlr_total_despesa = vlr_total_despesa;
+    }
+    
     
 }

@@ -130,4 +130,33 @@ public class DespesaDao {
         }
         return false;
     }
+    
+    //TOTAL DE DESPESAS POR PERIODO(MÊS)
+    public List<Despesa> getTotalDespesaByPeriodo() {
+        System.out.println("Entrei na getTotalDespesaByPeriodo");
+        List<Despesa> listaDeDespesas = new ArrayList<Despesa>();
+        try {
+            String SQL = "select \n" +
+                    "    sum(vl_despesa) as vlr_total_despesa,\n" +
+                    "    month(dt_inclusion) as mes,\n" +
+                    "    year(dt_inclusion) as ano\n" +
+                    "from tb_despesa\n" +
+                    "group by mes, ano\n" +
+                    "order by ano, mes;";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Despesa despesa = new Despesa();
+                despesa.setVlr_total_despesa(rs.getFloat("vlr_total_despesa"));                
+                despesa.setAno_despesa_particao(rs.getInt("ano"));                
+                despesa.setMes_despesa_particao(rs.getInt("mes"));                
+                
+                listaDeDespesas.add(despesa);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar despesas.", e);
+        }   
+        return listaDeDespesas;
+    }
 }

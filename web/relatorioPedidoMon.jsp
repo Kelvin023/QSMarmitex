@@ -181,6 +181,29 @@
         </table>
         
         <br>
+        <table border=1>
+            <thead>
+                <tr>
+                    <td colspan="3" align="center" style="font-weight: bold">TOTAL DAS DESPESAS POR PERÍODO</td>
+                </tr>
+                <tr>
+                    <th>MES</th>                    
+                    <th>ANO</th>                                                       
+                    <th>VALOR TOTAL DE DESPESA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${totdespesas}" var="totdespesas">
+                    <tr>                                                                                                                                                            
+                        <td><c:out value="${totdespesas.mes_despesa_particao}" /></td>
+                        <td><c:out value="${totdespesas.ano_despesa_particao}" /></td>
+                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${totdespesas.vlr_total_despesa}"/></td>                                             
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        
+        <br>
         <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br>
         <a href="login.jsp">Sair</a>
