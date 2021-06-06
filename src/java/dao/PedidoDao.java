@@ -503,6 +503,46 @@ public class PedidoDao {
     }
     
     
+    //FLUXO DE CAIXA
+    public List<Pedido> getFluxodeCaixa() {
+        System.out.println("Entrei na getFluxodeCaixa");
+        List<Pedido> listaDePedidos = new ArrayList<Pedido>();
+        try {
+            String SQL = "select \n" +                    
+                    "    tp.vlr_total_pedido - sum(vl_despesa) AS fluxo_resultante,\n" +
+                    "    tp.mes,\n" +
+                    "    tp.ano\n" +
+                    "from \n" +
+                    "(SELECT \n" +
+                    "	sum((qtd_marmita*valorPedido)) as vlr_total_pedido,   \n" +
+                    "	month(dt_pedido) as mes,\n" +
+                    "	year(dt_pedido) as ano\n" +
+                    "FROM tb_pedido\n" +
+                    "group by mes, ano\n" +
+                    "order by ano, mes) as tp,\n" +
+                    "tb_despesa\n" +
+                    "where mes = month(dt_inclusion) and\n" +
+                    "ano = year(dt_inclusion)\n" +
+                    "group by mes, ano\n" +
+                    "order by ano, mes;";
+            PreparedStatement ps = connection.prepareStatement(SQL);            
+            ResultSet rs = ps.executeQuery();                        
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setFluxo_resultante(rs.getFloat("fluxo_resultante"));                
+                pedido.setAno_particao(rs.getInt("ano"));                
+                pedido.setMes_particao(rs.getInt("mes"));                
+                
+                listaDePedidos.add(pedido);
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao listar pedidos.", e);
+        }   
+        return listaDePedidos;
+    }
+    
+    
     /*DESLIGA A FK PARA DELEÇÃO DO USUARIO COM PEDIDOS FEITOS*/
     public void desligaFK() {        
         System.out.println("Entrei na desligaFK!!");                

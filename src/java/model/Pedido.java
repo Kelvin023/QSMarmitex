@@ -11,11 +11,12 @@ public class Pedido {
     private int cd_marmita;
     private String nomeUsuario;
     private String endereco;
-    private Float vlr_total_pedido;
+    private Float vlr_total_pedido;    
     private int ano_particao;
     private int mes_particao;
     private String nm_cliente_temp;
     private String ds_endereco_cliente_temp;
+    private Float fluxo_resultante;
 
     public int getCd_numeroPedido() {
         return cd_numeroPedido;
@@ -127,6 +128,14 @@ public class Pedido {
 
     public void setDs_endereco_cliente_temp(String ds_endereco_cliente_temp) {
         this.ds_endereco_cliente_temp = ds_endereco_cliente_temp;
+    }
+
+    public Float getFluxo_resultante() {
+        return fluxo_resultante;
+    }
+
+    public void setFluxo_resultante(Float fluxo_resultante) {
+        this.fluxo_resultante = fluxo_resultante;
     }
     
     

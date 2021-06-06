@@ -70,6 +70,7 @@ public class PedidoController extends HttpServlet {
             request.setAttribute("pedidosmenos", dao.getMarmitaMenosVendida());
             request.setAttribute("totfaturado", dao.getTotalFaturadoByPeriodo());
             request.setAttribute("totdespesas", ddao.getTotalDespesaByPeriodo());
+            request.setAttribute("fluxodecaixa", dao.getFluxodeCaixa());
             request.setAttribute("cpf", cpf);  
             request.getRequestDispatcher("/relatorioPedidoMon.jsp").forward(request, response);
         }

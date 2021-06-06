@@ -204,6 +204,28 @@
         </table>
         
         <br>
+        <table border=1>
+            <thead>
+                <tr>
+                    <td colspan="3" align="center" style="font-weight: bold">FLUXO DE CAIXA</td>
+                </tr>
+                <tr>
+                    <th>MES</th>                    
+                    <th>ANO</th>                                                       
+                    <th>FLUXO RESULTANTE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${fluxodecaixa}" var="fluxodecaixa">
+                    <tr>                                                                                                                                                            
+                        <td><c:out value="${fluxodecaixa.mes_particao}" /></td>
+                        <td><c:out value="${fluxodecaixa.ano_particao}" /></td>
+                        <td>R$ <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fluxodecaixa.fluxo_resultante}"/></td>                                             
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <br>
         <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
         <br>
         <a href="login.jsp">Sair</a>
