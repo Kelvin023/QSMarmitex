@@ -68,10 +68,20 @@
     <meta charset ="UTF-8">
     
     <style>
-        .tamanho{
-            width: 22vw;
-            height: fit-content;
-            margin-bottom: 50px;
+        @media (min-width: 1400px){
+                .tamanho{
+                    width: 22vw;
+                    height: fit-content;
+                    margin-bottom: 6%;   
+                }    
+        }
+        
+        @media (max-width: 1400px){
+                .tamanho{
+                    width: 28vw;
+                    height: fit-content;
+                    margin-bottom: 5%;   
+                }    
         }
         
         label, input{
