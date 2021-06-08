@@ -11,10 +11,21 @@
         <link rel="stylesheet" href="css/estilo.css">
         
         <style>
-            .tamanho{
-               width: 40vw; 
-               height: fit-content;
-               margin-bottom: 13%;
+            @media (min-width: 1400px){
+                .tamanho{
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 11.2%; 
+   
+                }           
+            }
+            
+            @media (max-width: 1400px){
+                .tamanho{
+                    width: 40vw;
+                    height: fit-content;
+                    margin-bottom: 7%;    
+                }   
             }
             
             .listaPedidos{
