@@ -9,21 +9,31 @@
         <link rel="stylesheet" href="css/estilo.css">
         
         <style>
-            .tamanho {
-                width: 42vw;
-                height: fit-content;
-                margin-bottom: 5%;
-               
+            @media (max-width: 1400px){
+                .tamanho {
+                    width: 52vw;
+                    height: fit-content;
+                    margin-bottom: 5%;
+
+                }
+                li{
+                    font-size: 13.7px;
+                }
             }
-            
+            @media (min-width: 1400px){
+                .tamanho {
+                    width: 42vw;
+                    height: fit-content;
+                    margin-bottom: 5%;
+                }
+            } 
             label, input{
-                width: 100%;  
+                    width: 100%;  
             }
             ul, a{
-                color: #FFF;
-                text-decoration: none;
+                    color: #FFF;
+                    text-decoration: none;
             }
-            
         </style>
     </head>
     <body>
