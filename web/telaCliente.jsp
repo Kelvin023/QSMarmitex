@@ -7,12 +7,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>QS Marmitex - Cliente</title>
         <style>
-            .tamanho{
-                width: 45vw;
-                height: fit-content;
-                margin-bottom: 5%;
+            @media (max-width: 1400px){
+                .tamanho{
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 11.3%; 
+                    
+                    
+                }
                 
-                
+            }
+            
+            @media (min-width: 1400px){
+                .tamanho{
+                    width: 40vw;
+                    height: fit-content;
+                    margin-bottom: 11.3%; 
+                    
+                }
+                .lista{
+                        font-size: 18px;
+                }
             }
             #topo{
                 text-align: left;
@@ -69,7 +84,6 @@
                 width: 22%;
                 margin: 4%;  
                 padding-left:  5%;
-                font-size: 18px;
                 float: left;
                 
             }
