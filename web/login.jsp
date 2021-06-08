@@ -11,11 +11,23 @@
         <link rel="stylesheet" href="css/estilo.css">
         
         <style>
-            .tamanho{
-                width: 20vw;
+            
+            @media (min-width: 1400px){
+            .tamanho {
+                width: 22vw;
                 height: fit-content;
-                margin-bottom: 10.2%;
+                margin-bottom: 14.4%;
             }
+            } 
+            
+             @media (max-width: 1400px){
+            .tamanho {
+                width: 32vw;
+                height: fit-content;
+                margin-bottom: 4%;
+            }
+            }
+            
             
             label, input{
                 width: 100%;       
@@ -35,6 +47,7 @@
                 display: inline-block;
                 font-size: 1rem;   
                 border-radius: 30px;
+                margin-bottom: -17px;
             }  
         </style>
     </head>
