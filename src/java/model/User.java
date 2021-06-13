@@ -13,6 +13,7 @@ public class User {
     private Date dt_nascimento;
     private int qtd_usuario;
     private int qtd_pedidos;
+    private int qt_fidelidade;
     
     
     public String getCpf() {
@@ -93,7 +94,17 @@ public class User {
 
     public void setQtd_pedidos(int qtd_pedidos) {
         this.qtd_pedidos = qtd_pedidos;
-    }     
+    }    
+
+    public int getQt_fidelidade() {
+        return qt_fidelidade;
+    }
+
+    public void setQt_fidelidade(int qt_fidelidade) {
+        this.qt_fidelidade = qt_fidelidade;
+    }
+    
+    
         
     @Override
     public String toString() {

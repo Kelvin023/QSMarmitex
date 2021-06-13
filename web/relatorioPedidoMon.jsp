@@ -136,7 +136,8 @@
                 </tr>
                 <tr>
                     <th>NOME USUÁRIO</th>                    
-                    <th>QUANTIDADE PEDIDOS</th>
+                    <th>QTD TOTAL PEDIDOS</th>
+                    <th>QTD PEDIDOS FIDELIDADE</th>
                     <th>PROXIMO PEDIDO</th>
                 </tr>
             </thead>
@@ -145,8 +146,9 @@
                     <tr>                                       
                         <td><c:out value="${pedidos.nomeUsuario}" /></td>
                         <td><c:out value="${pedidos.qtd_pedidos}" /></td>
+                        <td><c:out value="${pedidos.qt_fidelidade}" /></td>
                         <c:choose>
-                            <c:when test="${pedidos.qtd_pedidos == 10}">                
+                            <c:when test="${pedidos.qt_fidelidade == 10}">                
                                 <td>GRATUITO</td> 
                             </c:when>                                          
                             <c:otherwise>                

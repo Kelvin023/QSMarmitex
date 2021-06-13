@@ -241,9 +241,10 @@ public class UserDao {
         System.out.println("Entrei na getQtdPedidosByCliente");
         List<User> listaDePedidos = new ArrayList<User>();
         try {
-            String SQL = "select 	\n" +
-                        "    u.nomeUsuario,\n" +
-                        "    count(p.cd_numeroPedido) as qtd_pedidos\n" +                                                
+            String SQL = "select\n" +
+                        " u.nomeUsuario,\n" +
+                        " count(p.cd_numeroPedido) as qtd_pedidos,\n" +
+                        " u.qt_fidelidade\n" +
                         "from tb_pedido as p\n" +
                         "inner join tb_usuario as u\n" +
                         "on p.cpf = u.cpf\n" +
@@ -254,6 +255,7 @@ public class UserDao {
                 User user = new User();
                 user.setNomeUsuario(rs.getString("nomeUsuario"));
                 user.setQtd_pedidos(rs.getInt("qtd_pedidos"));                                
+                user.setQt_fidelidade(rs.getInt("qt_fidelidade"));                                
                 listaDePedidos.add(user);
             }
             
@@ -261,5 +263,64 @@ public class UserDao {
             throw new RuntimeException("Falha ao listar pedidos.", e);
         }   
         return listaDePedidos;
+    }
+    
+    public int getQtFidelidade(String cpf){
+        System.out.println("Entrei na getQtFidelidade");
+        int qt_fidelidade = 0;
+        try {
+            String SQL = "select qt_fidelidade from tb_usuario where cpf = ?;";
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setString(1, cpf);            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                qt_fidelidade = rs.getInt("qt_fidelidade");                
+                System.out.println("Quantidade de pedidos efetuados para checar se o próximo será ou não 0800: " + qt_fidelidade);
+            }else{
+                System.out.println("Usuario nao possui pedido algum");
+            }            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro de SQL", e);            
+        }                   
+        return qt_fidelidade;
+    }
+    
+    public void updateQtFidelidade(String cpf, int qt_fidelidade) {
+        System.out.println("Entrei na updateQtFidelidade!!");
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update tb_usuario set qt_fidelidade = ? + 1 where cpf = ?;");            
+            preparedStatement.setInt(1, qt_fidelidade);
+            preparedStatement.setString(2, cpf);  
+            
+            System.out.println("CPF = " + cpf);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Usuario atualizado com sucesso!");            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar usuário!");
+        }
+    }
+    
+    public void zeraQtFidelidade(String cpf, int qt_fidelidade) {
+        System.out.println("Entrei na zeraQtFidelidade!!");
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update tb_usuario set qt_fidelidade = 0 where cpf = ?;");                        
+            preparedStatement.setString(1, cpf);  
+            
+            System.out.println("CPF = " + cpf);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Qtd zerada com sucesso!");            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar usuário!");
+        }
     }
 }

@@ -142,6 +142,12 @@
                     <%=request.getAttribute("mensagem")%>
                 </h2>
             </c:if>
+                    
+            <c:if test="${not empty msgFidelidade}">
+                <h2 >
+                    <%=request.getAttribute("msgFidelidade")%>
+                </h2>
+            </c:if>
 
             <c:choose>           
                 <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
@@ -213,7 +219,7 @@
                     <input type="radio"  name="frmpgmt" value="cartao">Cartão
                     <!--<label for="female">Cartão</label>-->
                     </div>
-                    
+                    <!--<input type="text" name="ds_observacao" placeholder="Entre com a observação a respeito do pedido">-->
                     <input type="submit" value="Efetuar pedido">
                     <input type="text" name="tamanho" value="pequeno" hidden>           
                     <input type="text" name="cd_marmita" value="3" hidden>           

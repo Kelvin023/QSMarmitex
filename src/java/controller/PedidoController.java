@@ -134,11 +134,14 @@ public class PedidoController extends HttpServlet {
         Float preco = Float.parseFloat(request.getParameter("preco"));        
         String cpf = request.getParameter("cpf");
         String frmpgmt = request.getParameter("frmpgmt");
-        
+                
         pedido.setCpf(cpf);
         pedido.setQtd_marmita(quantidade);
         pedido.setValorPedido(preco);
+        int qt_fidelidade = udao.getQtFidelidade(cpf);
         
+        System.out.println("Quantidade de pedidos retornados da funcao. Na hora do insert, vamos"
+                + "incrementar esse trem com mais um: " + qt_fidelidade);
         System.out.println("Quantidade: " + quantidade);
         System.out.println("Tamanho: " + tamanho);
         System.out.println("Codigo da marmita: " + cd_marmita);
@@ -150,16 +153,34 @@ public class PedidoController extends HttpServlet {
         //VERIFICANDO SE O USUARIO QUE ESTÁ EFETUANDO O PEDIDO, POSSUI CARTAO PARA PAGAR E CONCLUIR O PEDIDO
         if (frmpgmt.equalsIgnoreCase("Dinheiro")){
             dao.addPedido(pedido, cd_marmita);
+            udao.updateQtFidelidade(cpf, qt_fidelidade);
+            qt_fidelidade = udao.getQtFidelidade(cpf);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
             request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador estará munido de troco!");
+            if (qt_fidelidade == 10) {
+                System.out.println("Qt fidelidade vale 10!!!!!!!");
+                request.setAttribute("msgFidelidade", "\n\nEste foi seu décimo pedido! O próximo sairá GRATUITAMENTE!!\n");                
+            } 
+            if (qt_fidelidade == 11) {
+                udao.zeraQtFidelidade(cpf, qt_fidelidade);
+            }
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
         else{
             dao.addPedido(pedido, cd_marmita);
+            udao.updateQtFidelidade(cpf, qt_fidelidade);
+            qt_fidelidade = udao.getQtFidelidade(cpf);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
             request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador levará a maquininha de cartão para efetuar o pagamento!");
+            if (qt_fidelidade == 10) {
+                System.out.println("Qt fidelidade vale 10!!!!!!!");
+                request.setAttribute("msgFidelidade", "\n\nEste foi seu décimo pedido! O próximo sairá GRATUITAMENTE!!\n");                
+            }     
+            if (qt_fidelidade == 11) {
+                udao.zeraQtFidelidade(cpf, qt_fidelidade);
+            }
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
         }
         /*
