@@ -157,12 +157,15 @@ public class PedidoController extends HttpServlet {
             qt_fidelidade = udao.getQtFidelidade(cpf);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
-            request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador estará munido de troco!");
+            if (qt_fidelidade != 10) {
+                request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador estará munido de troco!");
+            }            
             if (qt_fidelidade == 10) {
                 System.out.println("Qt fidelidade vale 10!!!!!!!");
                 request.setAttribute("msgFidelidade", "\n\nEste foi seu décimo pedido! O próximo sairá GRATUITAMENTE!!\n");                
             } 
             if (qt_fidelidade == 11) {
+                request.setAttribute("msgPedidoGratuito", "\n\nEste pedido é GRATUITO!!\nAproveite sua marmita!\n");                
                 udao.zeraQtFidelidade(cpf, qt_fidelidade);
             }
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);
@@ -173,12 +176,15 @@ public class PedidoController extends HttpServlet {
             qt_fidelidade = udao.getQtFidelidade(cpf);
             request.setAttribute("cpf", cpf);        
             request.setAttribute("users", udao.getUserById(cpf));
-            request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador levará a maquininha de cartão para efetuar o pagamento!");
+            if (qt_fidelidade < 10) {
+                request.setAttribute("mensagem", "Seu Pedido foi registrado!\nO entregador levará a maquininha de cartão para efetuar o pagamento!");
+            }            
             if (qt_fidelidade == 10) {
                 System.out.println("Qt fidelidade vale 10!!!!!!!");
-                request.setAttribute("msgFidelidade", "\n\nEste foi seu décimo pedido! O próximo sairá GRATUITAMENTE!!\n");                
+                request.setAttribute("msgFidelidade", "\n\nEste foi seu décimo pedido! O próximo sairá GRATUITAMENTE!!");                
             }     
             if (qt_fidelidade == 11) {
+                request.setAttribute("msgPedidoGratuito", "\n\nEste pedido é GRATUITO!!\nO entregador está ciente.\nAproveite sua marmita!\n");                
                 udao.zeraQtFidelidade(cpf, qt_fidelidade);
             }
             request.getRequestDispatcher("/telaCliente.jsp").forward(request, response);

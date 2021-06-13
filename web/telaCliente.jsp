@@ -148,6 +148,12 @@
                     <%=request.getAttribute("msgFidelidade")%>
                 </h2>
             </c:if>
+                    
+            <c:if test="${not empty msgPedidoGratuito}">
+                <h2 >
+                    <%=request.getAttribute("msgPedidoGratuito")%>
+                </h2>
+            </c:if>
 
             <c:choose>           
                 <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
