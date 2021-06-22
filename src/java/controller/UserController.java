@@ -170,7 +170,8 @@ public class UserController extends HttpServlet {
                 case 1:
                     System.out.println("CdPerfilLogado = " + cdPerfilUsuarioLogado);
                     System.out.println("Novo cadastro efetuado com sucesso!");
-                    request.setAttribute("users", dao.getAllUsers());
+                    //request.setAttribute("users", dao.getAllUsers());
+                    request.setAttribute("users", dao.getUserById(cpfLogado));
                     request.getRequestDispatcher("/telaAdmin.jsp").forward(request, response);
                     break;  
                     
