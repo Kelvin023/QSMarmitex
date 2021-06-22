@@ -83,7 +83,7 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> listaDeUsuario = new ArrayList<User>();
         try {
-            String SQL = "select * from tb_usuario";
+            String SQL = "select * from tb_usuario order by cd_perfilUsuario";
             PreparedStatement ps = connection.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();                        
             while (rs.next()) {

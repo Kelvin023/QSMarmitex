@@ -67,11 +67,13 @@ public class UserController extends HttpServlet {
             request.setAttribute("cpf", cpfLogado);        
             request.setAttribute("users", dao.getAllUsers());    
         } else if (action.equalsIgnoreCase("edit")){
-            forward = INSERT_OR_EDIT;
+            forward = INSERT_OR_EDIT;  
+            String cpfLogado = request.getParameter("cpfLogado");
             String cpf = request.getParameter("cpf");
+            System.out.println("Estou na edit. CPF do cara logado = " + cpfLogado);
             int cdPerfilUsuario = Integer.parseInt(request.getParameter("cd_perfilUsuario"));
             User user = dao.getUserById(cpf);
-            request.setAttribute("cpfLogado", cpf);        
+            request.setAttribute("cpfLogado", cpfLogado);        
             request.setAttribute("cdPerfilUsuario", cdPerfilUsuario);        
             request.setAttribute("user", user);
         } else if (action.equalsIgnoreCase("listUser")){

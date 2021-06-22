@@ -59,7 +59,7 @@
                     <td><c:out value="${user.email}" /></td>
                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${user.dt_nascimento}" /></td>                    
                     <!--<td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>">Update</a></td>-->
-                    <td><a href="UserController?action=edit&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=<c:out value="${user.cd_perfilUsuario}"/>">Update</a></td>
+                    <td><a href="UserController?action=edit&cpfLogado=<%=(String)request.getAttribute("cpf")%>&cpf=<c:out value="${user.cpf}"/>&cd_perfilUsuario=<c:out value="${user.cd_perfilUsuario}"/>">Update</a></td>
                     
                     <td><a href="UserController?action=delete&cpfLogado=<%=(String)request.getAttribute("cpf")%>&cpf=<c:out value="${user.cpf}"/>">Delete</a></td>
                 </tr>
@@ -67,8 +67,8 @@
         </tbody>
     </table>
     <p><a href="UserController?action=insert&cd_perfilUsuario=1&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo ADM</a></p>
-    <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Entregador</a></p>
-    <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
+    <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Entregador</a></p>    
+    <a class="voltar" href="login.jsp">Sair</a>
     <br><br><br><br><br><br>    
     <c:import url="includes/rodape.jsp"/>
 </body>
