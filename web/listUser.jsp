@@ -68,6 +68,8 @@
     </table>
     <p><a href="UserController?action=insert&cd_perfilUsuario=1&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo ADM</a></p>
     <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Entregador</a></p>    
+    <p><a href="UserController?action=insert&cd_perfilUsuario=5&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Cozinheiro</a></p>    
+    <a href="UserController?action=voltar&cd_perfilUsuario=1&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a><br>
     <a class="voltar" href="login.jsp">Sair</a>
     <br><br><br><br><br><br>    
     <c:import url="includes/rodape.jsp"/>
