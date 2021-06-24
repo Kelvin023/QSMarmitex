@@ -6,11 +6,45 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Pedidos</title>
+        <title>QS Marmitex - Lista de Pedidos</title>
         <link rel="shortcut icon" href="img/icone.png">
+           <link rel="stylesheet" href="css/estilo.css">
+        <style>
+            
+             @media (max-width: 1400px){
+                .tamanho {
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 19.6%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 29vw;
+                    height: fit-content;
+                    margin-bottom: 28.5%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+                
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
+        <div id="container" class="tamanho">
         <h1>Lista de Pedidos</h1>                
         
         <c:choose>
@@ -76,7 +110,7 @@
             </c:choose>         
                 
         <a href="PedidoController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar ao Cardapio</a>
-        <br><br><br><br><br><br>    
+        </div>  
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
