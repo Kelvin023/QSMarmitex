@@ -5,14 +5,49 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Marmitas do Sistema</title>
+        <title>QS Marmitex - Lista de Marmitas</title>
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="css/estilo.css">
+        <style>
+            
+             @media (max-width: 1400px){
+                .tamanho {
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 11.5%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 29vw;
+                    height: fit-content;
+                    margin-bottom: 22.9%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+                
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
+        <div id="container" class="tamanho">
         <h1>Lista de Marmitas</h1>                
-                            
+        <br><br>                  
             CPF LOGADO: <c:out value="<%=(String)request.getAttribute("cpf")%>" />
+            <br><br> 
                 <table border="1">
                     <thead>
                         <tr>
@@ -38,8 +73,9 @@
                 </table>            
         <p><a href="MarmitaController?action=insert&cpf=<%=(String)request.getAttribute("cpf")%>">Add Nova Marmita</a></p>
                 
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
-        <br><br><br><br><br><br>    
+        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Retornar</a>
+   
+        </div>
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
