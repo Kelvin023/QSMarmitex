@@ -8,25 +8,113 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TELA ATENDENTE PEDIDO</title>
+        <title>QS Marmitex - Pedido Atendente</title>
+        <link rel="stylesheet" href="css/estilo.css">
         <style>
-            #qtd{
-                width:40px;                
-             }
-             .itemCardapio{
-                 text-align: center;                
-             }
-             
-             #btnSair{
-                 background-color: red;
-                 color: white;
-             }
+            @media (max-width: 1400px){
+                .tamanho{
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 11.3%; 
+                    
+                    
+                }
+                
+            }
+            
+            @media (min-width: 1400px){
+                .tamanho{
+                    width: 40vw;
+                    height: fit-content;
+                    margin-bottom: 11.3%; 
+                    
+                }
+                .lista{
+                        font-size: 18px;
+                }
+            }
+            
+            #topo{
+                text-align: left;
+                margin-bottom: 3%;
+                
+            }   
+
+            #cardapio {
+               padding-top: 1%;    
+            }
+ 
+            .item {
+               border: solid 0.2px red;
+               padding: 1%;
+               margin-bottom: 1%;  
+               width: 43%;
+               float: left; 
+               border-radius: 10px;
+            }
+            
+            .clear{
+                clear: both;
+            }
+            
+           input[type="button"]{
+                text-align: center;
+                text-transform: uppercase;              
+                border: none;            
+                color: #B22222;           
+                cursor: pointer;
+                margin-top: 3%;
+                background-color: #FFF;
+
+            }
+
+            input[type="button"]:hover {
+                color: #8B0000;
+                transition: 0.5s;
+                border: none;
+            }
+            
+            .bvC{
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 2%; 
+            }
+            
+            .lista{
+                text-decoration: none;
+                color: #B22222;
+                text-align: center;
+                border: solid 0.2px #B22222;
+                width: 22%;
+                margin: 4%;  
+                padding-left:  5%;
+                float: left;
+                
+            }
+            
+            .nomeMmta{
+                text-align: center;
+                padding-bottom: 2%;
+                font-weight: bold;
+            }
+           
+            .pedido{
+               text-align: left;
+               margin-bottom: 2%;
+            }
+            
+            
         </style>
         <link rel="shortcut icon" href="img/icone.png">
     </head>
     <body>
-        <c:import url="includes/cabecalho.jsp"/>                
-        TELA DE PEDIDOS - ATENDENTE <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>!                       
+        <c:import url="includes/cabecalho.jsp"/>    
+        <div id="container" class="tamanho">
+            <div id="topo">             
+       <h1 style="text-align: center">Tela Atendente</h1> 
+       <br><br><br>
+       <span style="color: red"><c:out value="${users.nomeUsuario}" /></span>                      
         <c:choose>
             <c:when test="${not empty users.email}"> <!--Veio da tela do UPDATE-->               
                 <p style="color: blue; font-family: monospace; font-size: 20px;">E-mail logado: ${users.email}</p>
@@ -45,12 +133,10 @@
             </c:otherwise>
         </c:choose>                                                                                        
                
-        <br>
-        <input id="btnSair" type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>                        
-        <br>
+        
         <!--CARDÁPIO-->                            
         <!--ESCONDIDINHO PEQUENIO-->                
-                
+        <br><br><br>    
             <label> Nome Cliente: </label>
             <input type="text" name="nm_cliente_temp" placeholder="Digite o nome do cliente  "/>
             <br>
@@ -102,7 +188,8 @@
             >>>Preço Unitário <input type="text" name="precoescondg" value="24.90" hidden>R$ 24,90
             >>> Quantidade<input  type="number" name="qtdescondg" min="1" max="5"><br>
             -->                        
-            
+           </div>  
+           <div id="cardapio">
            <h1 style="margin-bottom: 4%">CARDÁPIO</h1>
             
              <div class="item" style="margin-right:14%"  >                 
@@ -323,19 +410,11 @@
                 </form>
             </div>                              
             
-            
-            <br>
-            <label for="acomp">Acompanhamento</label>
-
-            <select name='role'>
-                <option value="${selected}" selected>${selected}</option>
-                <c:forEach items="${acomps}" var="acomp">
-                    <c:if test="${acomp.cd_acompanhamento != selected}">
-                        <option value="${acomp.cd_acompanhamento}">${acomp.nomeAcompanhamento} - Valor R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${acomp.precoAcompanhamento}"/></option>
-                    </c:if>
-                </c:forEach>
-            </select>                                        
-            <input type="submit" value="Efetuar pedido">                    
+            <hr class="clear"> 
+           </div>
+            <input  type="button" value="Sair" onclick="window.location='login.jsp'"><%session.invalidate();%>    
+        </div> 
         <c:import url="includes/rodape.jsp"/>
     </body>
+    
 </html>
