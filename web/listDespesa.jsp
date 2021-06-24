@@ -5,15 +5,46 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Despesas registradas no Sistema</title>
+        <title>QS Marmitex - Lista de Despesas</title>
         <link rel="shortcut icon" href="img/icone.png">
-        
+        <link rel="stylesheet" href="css/estilo.css">
+              
         <style>
+            
+            @media (max-width: 1400px){
+                .tamanho {
+                    width: 68vw;
+                    height: fit-content;
+                    margin-bottom: 11.1%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 12.5%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            
             #btnZerar{
                 width: 160px;
                 height: 40px;
                 line-height: 40px;
-                padding: 10px 5px;
+                
                 background-color: #000;
                 color: #FFF;
                 border-radius: 5px;
@@ -21,22 +52,26 @@
                 text-align: center;
                 font-weight: bold;
                 font-family: Arial;
-            }            
+                
+            }
+
+            
         </style>
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Lista de DESPESAS</h1>                
-                            
+        <div id="container" class="tamanho">
+            <h1 >Lista de Despesas</h1>                
+              <br><br>              
             CPF LOGADO: <c:out value="<%=(String)request.getAttribute("cpf")%>" />
             
-            <br><br>
+            <br><br><br><br>
             <!--FILTROS DE PERÍODO-->        
             <span style="font-size: 20px; font-weight: bold">PERÍODO: </span>
             <form method="POST" action="RelatorioDespesaController">
-                <label>Data início</label>
+                Data início
                 <input type="date" name="dtinicio">
-                <label>Data fim</label>
+                Data fim
                 <input type="date" name="dtfim">
                 <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>           
 
@@ -51,7 +86,7 @@
                     <option value="5">TEMPEROS</option>
               </select>
                 <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>
-                <button type="submit">APLICAR FILTRO</button>            
+                <button type="submit" class="">APLICAR FILTRO</button>            
             </form>        
             <br>
         
@@ -108,8 +143,8 @@
                 </table>            
         <p><a href="DespesaController?action=selectDespesas&cpf=<%=(String)request.getAttribute("cpf")%>">REGISTRAR NOVA DESPESA</a></p>
                 
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
-        <br><br><br><br><br><br>    
+        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Retornar</a>
+        </div>
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>

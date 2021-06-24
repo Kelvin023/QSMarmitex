@@ -49,7 +49,7 @@
             <h1 style="padding-bottom: 20px">Lista de Acompanhamentos</h1>                
                             
             <div style="padding-bottom: 20px">
-                Cpf Logado: <c:out value="<%=(String)request.getAttribute("cpf")%>" />
+                CPF LOGADO: <c:out value="<%=(String)request.getAttribute("cpf")%>" />
                
             </div>
             
