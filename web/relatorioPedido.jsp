@@ -8,12 +8,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Relatorio Pedido</title>
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="css/estilo.css">
+              
         <style>
+            
+            @media (max-width: 1400px){
+                .tamanho {
+                    width: 73vw;
+                    height: fit-content;
+                    margin-bottom: 11.1%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 12.5%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            
             #btnZerar{
                 width: 160px;
                 height: 40px;
                 line-height: 40px;
-                padding: 10px 5px;
+                
                 background-color: #000;
                 color: #FFF;
                 border-radius: 5px;
@@ -21,21 +53,25 @@
                 text-align: center;
                 font-weight: bold;
                 font-family: Arial;
-            }            
+                
+            }
+
+            
         </style>
     </head>
     
     
     <body>
         <c:import url="includes/cabecalho.jsp"/>
+        <div id="container" class="tamanho">
         <h1>Relatório de pedidos</h1>
         
         <!--FILTROS DE PERÍODO-->        
         <span style="font-size: 20px; font-weight: bold">PERÍODO: </span>
         <form method="POST" action="RelatorioPedidoController">
-            <label>Data início</label>
+            Data início
             <input type="date" name="dtinicio">
-            <label>Data fim</label>
+           Data fim
             <input type="date" name="dtfim">
             <input type="text" name="cpf" hidden value="<%=request.getAttribute("cpf")%>"/>           
         
@@ -123,10 +159,10 @@
         </tbody>
     </table>                                                       
         <br><br>
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
+        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Voltar</a>        
         <br>
-        <a href="login.jsp">Sair</a>
-        <br><br><br><br><br><br>    
+        <a href="login.jsp" class="retornar">Sair</a>
+        </div> 
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
