@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Relatorio Pedido</title>
+        <title>Qs Marmitex - Relatorio Pedido</title>
         <link rel="shortcut icon" href="img/icone.png">
         <link rel="stylesheet" href="css/estilo.css">
               

@@ -6,11 +6,43 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tela Monitoramento</title>
+        <title>Qs Marmitex - Tela Monitoramento</title>
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="css/estilo.css">
+        <style>
+             @media (max-width: 1400px){
+                .tamanho {
+                    width: 68vw;
+                    height: fit-content;
+                    margin-bottom: 11.1%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 48vw;
+                    height: fit-content;
+                    margin-bottom: 12.5%;
+                }
+            }  
+            
+             table, th, td{
+                border: solid 2px black;
+                
+            }
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <c:import url="includes/cabecalho.jsp"/>
+        <div id="container" class="tamanho">
         <h1>Tela ADMIN</h1>
         <h3>
             Tela de Monitoramento - Auxílio Tomada de Decisão <br>            
@@ -132,7 +164,7 @@
         <table border=1>
             <thead>
                 <tr>
-                    <td colspan="3" align="center" style="font-weight: bold">STATUS FIDELIDADE</td>
+                    <td colspan="4" align="center" style="font-weight: bold">STATUS FIDELIDADE</td>
                 </tr>
                 <tr>
                     <th>NOME USUÁRIO</th>                    
@@ -160,10 +192,10 @@
             </tbody>
         </table>                                             
         <br>
-        <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>">Retornar</a>
+        <a href="PedidoController?action=voltarTelaAdm&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Retornar</a>
         <br>
-        <a href="login.jsp">Sair</a>
-        <br><br><br><br><br><br>    
+        <a href="login.jsp" class="retornar">Sair</a>
+        </div>   
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
