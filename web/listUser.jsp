@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,14 +6,59 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-        <title>Show All Users</title>
+        <title>QS Marmitex - Lista de Usuários </title>
         <link rel="shortcut icon" href="img/icone.png">
+        <link rel="stylesheet" href="css/estilo.css">
+        <style>
+        @media (max-width: 1400px){
+                .tamanho {
+                    width: 82vw;
+                    height: fit-content;
+                    margin-bottom: 19.6%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 60vw;
+                    height: fit-content;
+                    margin-bottom: 28.5%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+                
+            }
+            th, td {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            .add{
+                text-decoration: none; 
+                
+                width: 40%;
+                display: inline-block;
+                
+                cursor: pointer;
+            }
+        </style>
     </head>
 <body>
     <c:import url="includes/cabecalho.jsp"/>       
     <!--<h1>CPF do Admin logado: <%=(String)request.getAttribute("cpf")%></h1>-->
-    <h1>Nome do Admin logado: <c:out value="${usuario.nomeUsuario}" /></h1>
-    
+    <div id="container" class="tamanho">
+    <h1>Administrador logado: <c:out value="${usuario.nomeUsuario}" /></h1>
+    <br><br>
     <table border=1>
         <thead>
             <tr>
@@ -66,12 +111,12 @@
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="UserController?action=insert&cd_perfilUsuario=1&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo ADM</a></p>
-    <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Entregador</a></p>    
-    <p><a href="UserController?action=insert&cd_perfilUsuario=5&cpfLogado=<%=(String)request.getAttribute("cpf")%>">Add Novo Cozinheiro</a></p>    
-    <a href="UserController?action=voltar&cd_perfilUsuario=1&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a><br>
+    <p><a href="UserController?action=insert&cd_perfilUsuario=1&cpfLogado=<%=(String)request.getAttribute("cpf")%>" class="add">Add Administrador</a></p>
+    <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>" class="add">Add Entregador</a></p>    
+    <p><a href="UserController?action=insert&cd_perfilUsuario=5&cpfLogado=<%=(String)request.getAttribute("cpf")%>" class="add">Add Cozinheiro</a></p>    
+    <a href="UserController?action=voltar&cd_perfilUsuario=1&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Voltar</a><br>
     <a class="voltar" href="login.jsp">Sair</a>
-    <br><br><br><br><br><br>    
+    </div> 
     <c:import url="includes/rodape.jsp"/>
 </body>
 </html>
