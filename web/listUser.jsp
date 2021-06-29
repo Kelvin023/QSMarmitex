@@ -115,7 +115,7 @@
     <p><a href="UserController?action=insert&cd_perfilUsuario=4&cpfLogado=<%=(String)request.getAttribute("cpf")%>" class="add">Add Entregador</a></p>    
     <p><a href="UserController?action=insert&cd_perfilUsuario=5&cpfLogado=<%=(String)request.getAttribute("cpf")%>" class="add">Add Cozinheiro</a></p>    
     <a href="UserController?action=voltar&cd_perfilUsuario=1&cpf=<%=(String)request.getAttribute("cpf")%>" class="retornar">Voltar</a><br>
-    <a class="voltar" href="login.jsp">Sair</a>
+    <a class="retornar" href="login.jsp">Sair</a>
     </div> 
     <c:import url="includes/rodape.jsp"/>
 </body>
