@@ -54,6 +54,16 @@
                 font-family: Arial;
                 
             }
+            
+            .btnUpdate{
+                text-decoration: none;
+                color: green;
+            }
+            
+            .btnDelete{
+                text-decoration: none;
+                color: #B22222;
+            }
 
             
         </style>
@@ -134,8 +144,8 @@
                             <td>R$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${despesa.vl_despesa}"/></td>                    
                             <td><c:out value="${despesa.ds_despesa}" /></td>   
                             <td><c:out default="dd/MM/yyyy" value="${despesa.dt_inclusion}" /></td>
-                            <td><a href="DespesaController?action=edit&cd_despesa=<c:out value="${despesa.cd_despesa}"/>&cd_tipo=<c:out value="${despesa.cd_tipo}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Update</a></td>
-                            <td><a href="DespesaController?action=delete&cd_despesa=<c:out value="${despesa.cd_despesa}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Delete</a></td>
+                            <td><a class="btnUpdate" href="DespesaController?action=edit&cd_despesa=<c:out value="${despesa.cd_despesa}"/>&cd_tipo=<c:out value="${despesa.cd_tipo}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Update</a></td>
+                            <td><a class="btnDelete" href="DespesaController?action=delete&cd_despesa=<c:out value="${despesa.cd_despesa}"/>&cpf=<%=(String)request.getAttribute("cpf")%>">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>            

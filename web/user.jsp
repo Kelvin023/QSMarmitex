@@ -143,14 +143,7 @@
                 <input type="text" name="cpfLogado" hidden="true"
                    value="<%=request.getAttribute("cpfLogado")%>"/>
                 
-                <input type="submit" value="Cadastrar" id="botao" />
-                
-                    <!--
-                    <div id="registrar-container"> 
-                        <p>Já tem uma conta?</p>-->
-                        <!--<input type="button" value="Cadastrar" onclick="window.location.href='UserController?action=insert&cd_perfilUsuario=3'">-->
-                    <!--    <a href="login.jsp">Logar</a>
-                    </div>-->
+                <input type="submit" value="Cadastrar" id="botao" />                                    
                 
         </form>              
 

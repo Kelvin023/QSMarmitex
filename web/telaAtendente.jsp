@@ -14,7 +14,7 @@
         <style>
             @media (max-width: 1400px){
                 .tamanho{
-                    width: 40vw;
+                    width: 41vw;
                     height: fit-content;
                     margin-bottom: 11.3%; 
                 }
