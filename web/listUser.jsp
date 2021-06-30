@@ -5,14 +5,14 @@
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>QS Marmitex - Lista de Usuários </title>
         <link rel="shortcut icon" href="img/icone.png">
         <link rel="stylesheet" href="css/estilo.css">
         <style>
         @media (max-width: 1400px){
                 .tamanho {
-                    width: 82vw;
+                    width: 90vw;
                     height: fit-content;
                     margin-bottom: 19.6%;
                 }   
@@ -28,7 +28,7 @@
             
             table, th, td{
                 border: solid 2px black;
-                
+                font-size: 12px;
             }
             th, td {
                 padding-left: 30px;
@@ -62,8 +62,7 @@
     <table border=1>
         <thead>
             <tr>
-                <th>PERFIL</th>
-                <th>CPF</th>
+                <th>PERFIL</th>                
                 <th>NOME</th>                
                 <th>TELEFONE</th>
                 <th>ENDERECO</th>
@@ -96,8 +95,7 @@
                             <!--<td>CLIENTE - <c:out value="${user.cd_perfilUsuario}"/></td>-->
                             <td>CLIENTE</td>
                         </c:otherwise>
-                    </c:choose>                    
-                    <td><c:out value="${user.cpf}" /></td>
+                    </c:choose>                                        
                     <td><c:out value="${user.nomeUsuario}" /></td>                    
                     <td><c:out value="${user.telefoneUsuario}" /></td>
                     <td><c:out value="${user.endereco}" /></td>
