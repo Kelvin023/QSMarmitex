@@ -75,7 +75,7 @@
             <ul >         
             <li><a class="listaAtendente" href="PedidoController?action=listallPedidos&cpf=<%=(String)request.getAttribute("cpf")%>">Lista Pedidos</a></li>
         
-            <li><a class="listaAtendente" href="PedidoController?action=atendenteRealizaPedido&cpf=<%=(String)request.getAttribute("cpf")%>">Realizar Pedido</a></li>
+            <li><a class="listaAtendente" href="#">Realizar Pedido -> PARA PRÓXIMA VERSÃO</a></li>
         
         <c:choose>           
             <c:when test="${not empty users.email}"><!--Veio da tela do UPDATE--> 
