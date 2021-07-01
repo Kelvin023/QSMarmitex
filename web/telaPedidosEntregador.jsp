@@ -6,14 +6,46 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista dos Deliverys</title>
+        <title>QS Marmitex - Delivery</title>
         <link rel="shortcut icon" href="img/icone.png">
+        
+        <link rel="stylesheet" href="css/estilo.css">
         <style>
+           @media (max-width: 1400px){
+                .tamanho {
+                    width: 80vw;
+                    height: fit-content;
+                    margin-bottom: 13.7%;
+                }   
+            } 
+            
+             @media (min-width: 1400px){
+                .tamanho {
+                    width: 62vw;
+                    height: fit-content;
+                    margin-bottom: 24.3%;
+                }
+            }  
+            
+            table, th, td{
+                border: solid 2px black;
+                font-size: 12px;
+            }
+            
+            .retornar{
+                 text-decoration: none; 
+                color: #B22222;
+                width: 20%;
+                display: inline-block;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            
             #btnZerar{
                 width: 160px;
                 height: 40px;
                 line-height: 40px;
-                padding: 10px 5px;
+                
                 background-color: #000;
                 color: #FFF;
                 border-radius: 5px;
@@ -21,14 +53,19 @@
                 text-align: center;
                 font-weight: bold;
                 font-family: Arial;
-            }            
+                
+            }
+            
+                       
         </style>
     </head>
     
     
     <body>
         <c:import url="includes/cabecalho.jsp"/>
-        <h1>Lista de pedidos a serem entregues</h1>                                              
+        <div id="container" class="tamanho">
+        <h1>Lista de pedidos a serem entregues</h1>   
+        <br>
         <h3>CPF do Entregador logado: <%=request.getAttribute("cpf")%></h3>
         <br>                                              
     <table border=1>
@@ -81,10 +118,10 @@
     </table>                       
                                     
         <br><br>
-        <a href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
-        <br>
-        <a href="login.jsp">Sair</a>
-        <br><br><br><br><br><br>    
+        <a class="retornar" href="UserController?action=voltar&cpf=<%=(String)request.getAttribute("cpf")%>">Voltar</a>        
+       
+       
+        </div>  
         <c:import url="includes/rodape.jsp"/>
     </body>
 </html>
