@@ -30,7 +30,7 @@
                 .tamanho {
                     width: 42vw;
                     height: fit-content;
-                    margin-bottom: 9.5%;
+                    margin-bottom: 13.8%;
                 }
             } 
             
@@ -55,16 +55,7 @@
         });
     </script>   
         
-     <div>
-                <ul>
-                    <li><a href="cardapio.jsp">Menu </a> </li> 
-                    <li><a href="listmarmita.jsp">Marmitas</a> </li> 
-                    <li><a href="contact.asp">Acompanhamentos</a> </li> 
-                    <li><a href="listUser">Usuários</a> </li> 
-                    <li><a href="relatorioPedido">Relatórios</a> </li> 
-                    <li><a href="listPedido">Carrinho</a></li>
-                </ul>
-     </div>
+    
     <h1>Cadastro de acompanhamento</h1>
     <form method="POST" action='AcompController' name="frmAddAcomp">                                                      
         <label for="nomeAcompanhamento">Nome:</label> 
